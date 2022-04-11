@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Pelican" />
+        {% if FEED_ALL_ATOM %}
+            <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+        {% endif %}
+        {% if FEED_ALL_RSS %}
+            <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+        {% endif %}
+        {% if FEED_ATOM %}
+            <link href="{{ FEED_DOMAIN }}/{%if FEED_ATOM_URL %}{{ FEED_ATOM_URL }}{% else %}{{ FEED_ATOM }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+        {% endif %}
+        {% if FEED_RSS %}
+            <link href="{{ FEED_DOMAIN }}/{% if FEED_RSS_URL %}{{ FEED_RSS_URL }}{% else %}{{ FEED_RSS }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+        {% endif %}
+        {% if CATEGORY_FEED_ATOM and category %}
+            <link href="{{ FEED_DOMAIN }}/{% if CATEGORY_FEED_ATOM_URL %}{{ CATEGORY_FEED_ATOM_URL.format(slug=category.slug) }}{% else %}{{ CATEGORY_FEED_ATOM.format(slug=category.slug) }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
+        {% endif %}
+        {% if CATEGORY_FEED_RSS and category %}
+            <link href="{{ FEED_DOMAIN }}/{% if CATEGORY_FEED_RSS_URL %}{{ CATEGORY_FEED_RSS_URL.format(slug=category.slug) }}{% else %}{{ CATEGORY_FEED_RSS.format(slug=category.slug) }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
+        {% endif %}
+        {% if TAG_FEED_ATOM and tag %}
+            <link href="{{ FEED_DOMAIN }}/{% if TAG_FEED_ATOM_URL %}{{ TAG_FEED_ATOM_URL.format(slug=tag.slug) }}{% else %}{{ TAG_FEED_ATOM.format(slug=tag.slug) }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" />
+        {% endif %}
+        {% if TAG_FEED_RSS and tag %}
+            <link href="{{ FEED_DOMAIN }}/{% if TAG_FEED_RSS_URL %}{{ TAG_FEED_RSS_URL.format(slug=tag.slug) }}{% else %}{{ TAG_FEED_RSS.format(slug=tag.slug) }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
+        {% endif %}
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+              theme: {
+                extend: {
+                  colors: {
+                    brand: '#64aff7',
+                    terminal: '#212128',
+                  }
+                }
+              }
+            }
+        </script>
+        <style type="text/tailwindcss">
+            @layer components {
+              main a {
+                @apply text-brand hover:underline
+              }
+              main h1 {
+                  @apply text-xl my-4 border-b-2 border-brand
+              }
+              main h2 {
+                  @apply text-lg my-4 border-b border-brand
+              }
+              main h3 {
+                  @apply my-4 border-b border-brand
+              }
+              main p {
+                  @apply my-2
+              }
+              main {
+                  @apply max-w-lg
+              }
+            }
+        </style>
+    {% endblock head %}
+</head>
+
+<body class="bg-terminal text-gray-50 font-mono p-4">
+    <header>
+        <h1 class="border-b-4 border-brand">
+            <a class="bg-brand p-2 pb-1 inline-block" href="{{ SITEURL }}/">{{ SITENAME }}</a>
+        </h1>
+        <nav class="border-b-4 border-brand py-2">
+            <ul>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="{{ SITEURL }}/">Home</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="{{ SITEURL }}/about/">About</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="{{ SITEURL }}/projects/">Projects</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="{{ SITEURL }}/contact/">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="my-4">{% block content %}{% endblock %}</main>
+    <footer></footer>
+</body>
+
+</html>
