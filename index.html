@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>MayorTech Limited</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Pelican" />
+            <link href="https://mayortech.co.uk/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="MayorTech Limited Full Atom Feed" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+              theme: {
+                extend: {
+                  colors: {
+                    brand: '#64aff7',
+                    terminal: '#212128',
+                  }
+                }
+              }
+            }
+        </script>
+        <style type="text/tailwindcss">
+            @layer components {
+              main a {
+                @apply text-brand hover:underline
+              }
+              main h1 {
+                  @apply text-xl my-4 border-b-2 border-brand
+              }
+              main h2 {
+                  @apply text-lg my-4 border-b border-brand
+              }
+              main h3 {
+                  @apply my-4 border-b border-brand
+              }
+              main p {
+                  @apply my-2
+              }
+              main {
+                  @apply max-w-lg
+              }
+            }
+        </style>
+</head>
+
+<body class="bg-terminal text-gray-50 font-mono p-4">
+    <header>
+        <h1 class="border-b-4 border-brand">
+            <a class="bg-brand p-2 pb-1 inline-block" href="https://mayortech.co.uk/">MayorTech Limited</a>
+        </h1>
+        <nav class="border-b-4 border-brand py-2">
+            <ul>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="https://mayortech.co.uk/">Home</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="https://mayortech.co.uk/about/">About</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="https://mayortech.co.uk/projects/">Projects</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="https://mayortech.co.uk/contact/">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="my-4">    <section>
+        <p>Mayor Tech Limited is a London (UK) based company that builds high quality, bespoke websites and web apps.</p>
+        <p>Whatever project you have in mind, we can build it.</p>
+        <p>Our <a href="/projects/">projects page</a> is a showcase of the kinds of things that we've been working on.</p>
+        <p>You can read more about us and our founder on our <a href="/about/">about page</a>.</p>
+
+        <h2>Interested?</h2>
+
+        <p>Our standard rate is £150 per hour (£1,200 per day), we can also do project-based billing if that suits. We are flexible and will work with you to find an arrangement that fits.</p>
+        <p>Please <a href="/contact/">get in touch</a>. We're excited to work with you 🙂</p>
+    </section>
+</main>
+    <footer></footer>
+</body>
+
+</html>
