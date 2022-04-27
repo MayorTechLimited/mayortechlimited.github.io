@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}MayorTech Limited{% endblock title %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+            extend: {
+                colors: {
+                brand: '#64aff7',
+                terminal: '#212128',
+                }
+            }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer components {
+            main a {
+            @apply text-brand hover:underline
+            }
+            main h1 {
+                @apply text-xl my-4 border-b-2 border-brand
+            }
+            main h2 {
+                @apply text-lg my-4 border-b border-brand
+            }
+            main h3 {
+                @apply my-4 border-b border-brand
+            }
+            main p {
+                @apply my-2
+            }
+            main {
+                @apply max-w-lg
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-terminal text-gray-50 font-mono p-4">
+    <header>
+        <h1 class="border-b-4 border-brand">
+            <a class="bg-brand p-2 pb-1 inline-block" href="/">MayorTech Limited</a>
+        </h1>
+        <nav class="border-b-4 border-brand py-2">
+            <ul>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="/">Home</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="/about/">About</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="/projects/">Projects</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="/contact/">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="my-4">{% block content %}{% endblock %}</main>
+</body>
+
+</html>

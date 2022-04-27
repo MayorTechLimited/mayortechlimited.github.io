@@ -1,4 +1,6 @@
 __pycache__
-output/
+dist/
 venv/
 .DS_Store
+.env/
+.vantage
