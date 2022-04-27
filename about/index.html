@@ -1,80 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>MayorTech Limited - About</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="generator" content="Pelican" />
-            <link href="https://www.mayortech.co.uk/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="MayorTech Limited Full Atom Feed" />
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = {
-              theme: {
-                extend: {
-                  colors: {
-                    brand: '#64aff7',
-                    terminal: '#212128',
-                  }
-                }
-              }
-            }
-        </script>
-        <style type="text/tailwindcss">
-            @layer components {
-              main a {
-                @apply text-brand hover:underline
-              }
-              main h1 {
-                  @apply text-xl my-4 border-b-2 border-brand
-              }
-              main h2 {
-                  @apply text-lg my-4 border-b border-brand
-              }
-              main h3 {
-                  @apply my-4 border-b border-brand
-              }
-              main p {
-                  @apply my-2
-              }
-              main {
-                  @apply max-w-lg
-              }
-            }
-        </style>
+    <title>MayorTech Limited - About Us</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/styles.css" rel="stylesheet">
 </head>
 
 <body class="bg-terminal text-gray-50 font-mono p-4">
     <header>
-        <h1 class="border-b-4 border-brand">
-            <a class="bg-brand p-2 pb-1 inline-block" href="https://www.mayortech.co.uk/">MayorTech Limited</a>
-        </h1>
+        <div class="border-b-4 border-brand">
+            <a class="bg-brand p-2 pb-1 inline-block" href="/">MayorTech Limited</a>
+        </div>
         <nav class="border-b-4 border-brand py-2">
             <ul>
-                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="https://www.mayortech.co.uk/">Home</a></li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="/">Home</a></li>
                 <li class="hidden md:inline-block">&middot;</li>
-                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="https://www.mayortech.co.uk/about/">About</a></li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="/about/">About</a></li>
                 <li class="hidden md:inline-block">&middot;</li>
-                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="https://www.mayortech.co.uk/projects/">Projects</a></li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="/projects/">Projects</a></li>
                 <li class="hidden md:inline-block">&middot;</li>
-                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="https://www.mayortech.co.uk/contact/">Contact Us</a></li>
+                <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="/contact/">Contact Us</a></li>
             </ul>
         </nav>
     </header>
-    <main class="my-4">    <h1>About</h1>
-    <h2>The Mayor Tech Story</h2>
-<p>Mayor Tech work with a range of businesses to provide the software support that they need. </p>
-<p>Some of our clients are small companies, like <a href="https://insidetheedit.com">Inside the Edit</a>, where we are responsible for building and maintaining payment processing, video streaming, behind the scenes admin processes/reports, and subscription-based access controls. </p>
-<p>Others are large multi-national companies, like <a href="https://softiron.com">SoftIron</a>, where we help build complex APIs that support internal manufacturing and marketing processes. </p>
-<p>To get a real feel for the type of work we do, read about our past clients and projects on our <a href="/projects/">projects list</a>.</p>
-<h2>Our Ethos</h2>
-<p>We build high quality software, we don't cut corners, and we don't rush. We work closely with our clients, often over many years, making sure that what we make is exactly what they needed.</p>
-<p>Technologies are tools to be used in the right context. We are not wedded to any particular way of doings things, or any particular frameworks/libraries. We choose the right tool for the job.</p>
-<p>We want to leave the world in a better state than we found it. We want to work with people/companies that are doing good things. We will not work with people/companies doing bad things.</p>
-<h2>Our Founder - William Mayor</h2>
-<p>William Mayor started as a freelance software engineer in 2012. He specialises in "back end" software; building APIs, setting up servers, dealing with databases, security, backups, and all the things that keep a project running smoothly. He’s primarily a Python developer but he’s been known to dabble with JavaScript as well.</p>
-<p>William is also a Director of <a href="https://diversityandability.com">Diversity and Ability</a>, a social enterprise that champions neurodiversity and disability inclusion. He runs the IT department there and is resonsible for keeping the emails, internal tools, and other critical business infrastructure running. He is also the Data Protection Lead; making sure that the company meets all GDPR requirements. He runs a team within the company that provide website accessibility audits, making sure that clients' websites meet the W3C's Web Content Accessility Guidelines (WCAG).</p>
+    <main class="my-4">
+    <section>
+        <h1>About</h1>
+
+        <h2>The Mayor Tech Story</h2>
+        <p>Mayor Tech work with a range of businesses to provide the software support that they need. </p>
+        <p>Some of our clients are small companies, like <a href="https://insidetheedit.com">Inside the Edit</a>, where we are responsible for building and maintaining payment processing, video streaming, behind the scenes admin processes/reports, and subscription-based access controls. </p>
+        <p>Others are large multi-national companies, like <a href="https://softiron.com">SoftIron</a>, where we help build complex APIs that support internal manufacturing and marketing processes. </p>
+        <p>To get a real feel for the type of work we do, read about our past clients and projects on our <a href="/projects/">projects list</a>.</p>
+
+        <h2>Our Ethos</h2>
+        <p>We build high quality software, we don't cut corners, and we don't rush. We work closely with our clients, often over many years, making sure that what we make is exactly what they needed.</p>
+        <p>Technologies are tools to be used in the right context. We are not wedded to any particular way of doings things, or any particular frameworks/libraries. We choose the right tool for the job.</p>
+        <p>We want to leave the world in a better state than we found it. We want to work with people/companies that are doing good things. We will not work with people/companies doing bad things.</p>
+        <h2>Our Founder - William Mayor</h2>
+        <p>William Mayor started as a freelance software engineer in 2012. He specialises in "back end" software; building APIs, setting up servers, dealing with databases, security, backups, and all the things that keep a project running smoothly. He’s primarily a Python developer but he’s been known to dabble with JavaScript as well.</p>
+        <p>William is also a Director of <a href="https://diversityandability.com">Diversity and Ability</a>, a social enterprise that champions neurodiversity and disability inclusion. He runs the IT department there and is resonsible for keeping the emails, internal tools, and other critical business infrastructure running. He is also the Data Protection Lead; making sure that the company meets all GDPR requirements. He runs a team within the company that provide website accessibility audits, making sure that clients' websites meet the W3C's Web Content Accessility Guidelines (WCAG).</p>
+    </section>
 </main>
-    <footer></footer>
 </body>
 
 </html>
