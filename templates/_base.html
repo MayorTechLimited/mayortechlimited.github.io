@@ -20,13 +20,19 @@
     <style type="text/tailwindcss">
         @layer components {
             main a {
-            @apply text-brand hover:underline
+                @apply text-brand hover:underline
             }
             main h1 {
                 @apply text-xl my-4 border-b-2 border-brand
             }
+            main h1::first-letter {
+                @apply bg-brand p-2 pb-0 text-4xl mr-1
+            }
             main h2 {
-                @apply text-lg my-4 border-b border-brand
+                @apply text-lg my-4 border-b-2 border-brand
+            }
+            main h2::first-letter {
+                @apply bg-brand px-2 pb-0.5 text-2xl mr-1
             }
             main h3 {
                 @apply my-4 border-b border-brand
@@ -34,8 +40,8 @@
             main p {
                 @apply my-2
             }
-            main {
-                @apply max-w-lg
+            main section {
+                @apply max-w-lg mx-auto
             }
         }
     </style>
@@ -43,9 +49,9 @@
 
 <body class="bg-terminal text-gray-50 font-mono p-4">
     <header>
-        <h1 class="border-b-4 border-brand">
+        <div class="border-b-4 border-brand">
             <a class="bg-brand p-2 pb-1 inline-block" href="/">MayorTech Limited</a>
-        </h1>
+        </div>
         <nav class="border-b-4 border-brand py-2">
             <ul>
                 <li class="block md:inline-block mx-2"><a class="hover:text-brand underline" href="/">Home</a></li>
