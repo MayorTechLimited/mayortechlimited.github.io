@@ -4,47 +4,7 @@
     <title>{% block title %}MayorTech Limited{% endblock title %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-            extend: {
-                colors: {
-                brand: '#64aff7',
-                terminal: '#212128',
-                }
-            }
-            }
-        }
-    </script>
-    <style type="text/tailwindcss">
-        @layer components {
-            main a {
-                @apply text-brand hover:underline
-            }
-            main h1 {
-                @apply text-xl my-4 border-b-2 border-brand
-            }
-            main h1::first-letter {
-                @apply bg-brand p-2 pb-0 text-4xl mr-1
-            }
-            main h2 {
-                @apply text-lg my-4 border-b-2 border-brand
-            }
-            main h2::first-letter {
-                @apply bg-brand px-2 pb-0.5 text-2xl mr-1
-            }
-            main h3 {
-                @apply my-4 border-b border-brand
-            }
-            main p {
-                @apply my-2
-            }
-            main section {
-                @apply max-w-lg mx-auto
-            }
-        }
-    </style>
+    <link href="/styles.css" rel="stylesheet">
 </head>
 
 <body class="bg-terminal text-gray-50 font-mono p-4">
