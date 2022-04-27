@@ -8,4 +8,7 @@ staticjinja build --outpath ./dist
 tailwindcss -i ./styles.css -o ./dist/styles.css --minify
 
 ghp-import dist --branch=main --cname=www.mayortech.co.uk
-git push origin main:main
+
+git checkout main
+git push origin main
+git checkout develop
