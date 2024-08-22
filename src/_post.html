@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+{% block content %}
+    <div class="max-w-2xl mx-auto">
+        <div class="">
+            <dl class="grid inline-grid grid-cols-2 gap-x-4">
+               <dt class="text-right">Author:</dt>
+               <dd>William Mayor</dd>
+               <dt class="text-right">Written on:</dt>
+               <dd>{{ created }}</dd>
+            </dl>
+        </div>
+        {{ content }}
+    </div>
+{% endblock %}

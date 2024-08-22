@@ -2,4 +2,4 @@
 set -eu
 
 . venv/bin/activate
-staticjinja watch --outpath dist
+python build.py --watch

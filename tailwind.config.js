@@ -1,10 +1,9 @@
 module.exports = {
-    content: ["./templates/**/*.html"],
+    content: ["./src/**/*.html"],
     theme: {
         extend: {
             colors: {
-                brand: '#64aff7',
-                terminal: '#212128',
+                brand: '#D73F3C'
             }
         },
     },
