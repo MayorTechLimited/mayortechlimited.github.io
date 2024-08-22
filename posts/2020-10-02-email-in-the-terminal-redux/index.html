@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MayorTech Limited</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+
+<body class="bg-white text-slate-900 p-4">
+    <header>
+        <div class="">
+            <a class="p-2 pb-1 inline-block font-bold text-2xl" href="/">MayorTech Limited</a>
+        </div>
+        <nav class="border-b-4 border-brand py-2">
+            <ul>
+                <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/">Home</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/about/">About</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/projects/">Projects</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/posts/">Blog</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/contact/">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="my-4">
+    <div class="max-w-2xl mx-auto">
+        <div class="">
+            <dl class="grid inline-grid grid-cols-2 gap-x-4">
+               <dt class="text-right">Author:</dt>
+               <dd>William Mayor</dd>
+               <dt class="text-right">Written on:</dt>
+               <dd>2020-10-02</dd>
+            </dl>
+        </div>
+        <h1>Email in the Terminal: Redux</h1>
+<p>More than two years ago I wrote a post about <a href="/posts/using-the-terminal-for-my-email/">reading my emails via a terminal interface</a> instead of a GUI. That solution lasted me a good while but eventually I gave up and switched to a new GUI. I switched because it was too much of a pain not having access to my emails when I was out and about. With my emails only ever on my laptop I couldn't easily do things like find a ticket to an event that had been emailed to me, or quickly reply to something whilst on the bus.</p>
+<p>I used an email client that offered fantastic sync features between all my devices. If I added an account on my laptop, it just appeared on my phone. Problem solved.</p>
+<p>Then the slow bugginess of GUI email clients came to get on my nerves again. So now I'm back looking for a snappy Terminal User Interface (TUI) option that will let me access my emails on the go.</p>
+<p>Here are my requirements for an email client solution:</p>
+<ul>
+<li>Fast (to start up, to search, to fetch, to send)</li>
+<li>Easy to use on multiple devices</li>
+<li>Easy to add new accounts and access on all devices</li>
+<li>Keeps emails safe (offline backup)</li>
+</ul>
+<p>Here's the new plan:</p>
+<p>I'm going to create a server in the cloud specifically for coping with my emails. I'll SSH into it when I want to read my emails. This way I can access them from any computer that can SSH.</p>
+<p>I'm going to use OfflineIMAP and notmuch to sync and index my emails. This gives me an offline backup of all of my emails and also gives me really fast search and tagging.</p>
+<p>I'm going to use aerc to read and send email.</p>
+    </div>
+</main>
+</body>
+
+</html>

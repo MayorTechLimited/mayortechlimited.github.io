@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MayorTech Limited</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+
+<body class="bg-white text-slate-900 p-4">
+    <header>
+        <div class="">
+            <a class="p-2 pb-1 inline-block font-bold text-2xl" href="/">MayorTech Limited</a>
+        </div>
+        <nav class="border-b-4 border-brand py-2">
+            <ul>
+                <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/">Home</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/about/">About</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/projects/">Projects</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/posts/">Blog</a></li>
+                <li class="hidden md:inline-block">&middot;</li>
+                <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/contact/">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="my-4">
+    <div class="max-w-2xl mx-auto">
+        <div class="">
+            <dl class="grid inline-grid grid-cols-2 gap-x-4">
+               <dt class="text-right">Author:</dt>
+               <dd>William Mayor</dd>
+               <dt class="text-right">Written on:</dt>
+               <dd>2020-09-18</dd>
+            </dl>
+        </div>
+        <h1>Small Project Skeleton: The Server</h1>
+<p>Fairly often I'll need to spin up a new server for a smallish project that I'm working on. Maybe a demo/staging site for a client, or maybe I've started a new side-project again.</p>
+<p>Over the years I've found a way of doing things that I like, and that I'm going to document here. So this post should be useful for you if you want to get a new server up and running with sensible security defaults and a largely blank slate for actually creating your site.</p>
+<h2>The Hardware</h2>
+<p>First things first, you'll need an actual server. There are plenty of <strong>cloud providers</strong> to choose from. My preferred provider at the moment is <a href="https://www.digitalocean.com/">Digital Ocean</a>. I think they provide a very good service at a good price.</p>
+<p>You normally have to choose what <strong>operating system</strong> to use on your server. I tend to pick Ubuntu or Debian, but any Linux flavour is probably a good choice. Pick a recent but LTS (long-term support) version.</p>
+<p>If you can <strong>setup a firewall</strong> for your new server this is a good idea. A firewall at the level of your hosting provider will be largely pain free from your point of view. I set mine up to allow (whitelist) traffic from any IP but only to ports 80 (http), 443 (https), and 22 (ssh).</p>
+<p>If you're given the choice of setting up a <strong>fixed (or static) IP address,</strong> do this too.</p>
+<p>Some providers give you the option to pre-load your new server with an <strong>SSH key</strong>. This is an awesome feature, definitely do this. If you don't already have an SSH key, I'd recommend looking up the <a href="https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">GitHub</a> or <a href="https://docs.gitlab.com/ee/gitlab-basics/create-your-ssh-keys.html">GitLab</a> instructions on how to create one. They tend to keep their docs up to date with latest best practises.</p>
+<p>Check to see if your cloud provider offer <strong>automated backups</strong>. This is often a very useful failsafe. Turn it on and forget about it. If you ever have a huge data loss you know for certain that you will be able to restore the entire machine to a recent-ish state.</p>
+<p>Setup any simple <strong>alerts and notifications</strong> that your provider offer. It's very useful to be sent an email when your server is starting to use all of its memory, or when it's using 90% of its CPU all the time.</p>
+<h2>DNS</h2>
+<p>Now you have a server and an IP address you should point your domain at it.</p>
+<p>If you need to <strong>find a domain name</strong> first I'd recommend <a href="https://domainr.com">Domainr</a> as a tool to use to quickly find available domain names. It has a cool feature where you can type in the name of your project (without a TLD like .com) and it will give you lots of options that use the letters in the name. Just like Domainr have <a href="https://domai.nr">domai.nr</a> as a domain alias.</p>
+<p>Then <strong>register the domain</strong> name. I'd recommend <a href="https://www.hover.com">Hover</a> as a domain registrar, I've also used DNSSimple and found them to be very good.</p>
+<p>Now add some <strong>DNS rules</strong>:</p>
+<pre><code>A @.DOMAIN IP-ADDRESS
+A *.DOMAIN IP-ADDRESS
+</code></pre>
+<p>Pretty simple, just point the <strong>root</strong> of your domain (the <code>@</code> part) to your IP address, then point all <strong>subdomains</strong> (the <code>*</code> part) to the same IP address.</p>
+<h2>SSH</h2>
+<p>Now you'll want to actually <strong>connect to the new server</strong> and get started! So open up your terminal emulator of choice (I use <a href="https://iterm2.com">iTerm2</a>) and type this:</p>
+<pre><code>$ ssh -i PATH_TO_PRIVATE_SSH_KEY root@IP-ADDRESS
+</code></pre>
+<p>The path to the SSH key will likely be something like this: <code>~/.ssh/id_rsa</code>.</p>
+<p>The <strong>default username</strong> might be <code>root</code> but it might be something else. It depends on which operating system you picked and how your provider has set it up. I've seen things like <code>admin</code> and <code>ubuntu</code> used before. Check with the documentation for your hosting provider.</p>
+<h3>Using Root User?</h3>
+<p>If you're logging in as <code>root</code> then let's <strong>beef up the security</strong> a little bit. We'll <strong>create a new user</strong> to log in as instead. You don't want a bad guy to crack through your SSH setup and then immediately have root access.</p>
+<p>These <strong>instructions are for Ubuntu,</strong> you might have to find different instructions if you're using a different OS.</p>
+<pre><code># adduser USER
+# usermod -aG sudo USER
+# cp ~/.ssh home/USER/
+# chown -R USER:USER /home/USER/.ssh
+</code></pre>
+<p>Replace <code>USER</code> with the username you want to use.</p>
+<p>The above commands create a new user, add that user to the <code>sudo</code> group then setup the new user's SSH to use the same authorized keys as your root user does.</p>
+<p>Let's test the setup by trying to log in as the new user, open up a new tab/window in your terminal and try to SSH in:</p>
+<pre><code>$ ssh -i PATH_TO_PRIVATE_SSH_KEY USER@IP-ADDRESS
+</code></pre>
+<p>If that works we'll now want to turn off SSH access for the root user. Open up the <code>/etc/ssh/sshd_config</code> file in your terminal editor of choice and change the <code>PermitRootLogin</code> line to say <code>PermitRootLogin=no</code>.</p>
+<p>Whilst we're editing the config, let's change the default SSH port to give us a bit of protection from port scanning bots. Find the line that says <code># Port=22</code> and change it to <code>Port=RANDOM_NUMBER</code>. Pick a large random number greater than 10,000. You'll have to add this port to your firewall, and remove the port 22 rule.</p>
+<p>Then restart the SSH daemon:</p>
+<pre><code># service ssh restart
+</code></pre>
+<p>This is the basis for a pretty sound SSH setup, as far as I know anyway, I'm not a security expert.</p>
+<h3>SSH Config</h3>
+<p>The final step I take is to add our SSH arguments to the <strong>SSH config</strong> file on my local machine to make accessing the remote machine nice and easy next time. Find or create the <code>~/.ssh/config</code> file and add this to it:</p>
+<pre><code>Host PROJECT
+    User USER
+    HostName IP-ADDRESS
+    PasswordAuthentication no
+    Port RANDOM_NUMBER
+    IdentityFile PATH_TO_PRIVATE_KEY
+</code></pre>
+<p>Replace <code>PROJECT</code> with whatever project name would make sense. Now you can do this:</p>
+<pre><code>$ ssh PROJECT
+</code></pre>
+<p>You don't need to remember which user, or which SSH key. Easy!</p>
+<h2>Done?</h2>
+<p>So now we have a server running, we've got backups, a firewall, and a reasonable SSH setup. We can now start putting applications on the server :)</p>
+<h2>Outgrowing this Setup</h2>
+<p>This is a series on how to get a small project with low traffic up and running. The guides here are not going to suit larger projects with more requirements. Having said that, here are some ideas you might like to Google for when this setup stops working for you:</p>
+<p><strong>Scale vertically</strong> by making your server bigger. Just go to your cloud provider and give the machine a better spec. More RAM, faster processors, more processors, more hard disk space. Which bit you need to scale up will depend on what your project is using most of.</p>
+<p><strong>Scale horizontally</strong> by adding more (identical) servers. You'd also need to look at things like load balancers. Scaling horizontally is harder to do than vertically, but it does give you more flexibility.</p>
+<p>You could consider <strong>hosting somewhere else,</strong> somewhere that would manage lots of this low level hardware set up for you. At a price of course. I'd recommend Heroku as a platform-as-a-service solution. Scaling to meet demand with Heroku is as easy as moving a slider up and down.</p>
+    </div>
+</main>
+</body>
+
+</html>
