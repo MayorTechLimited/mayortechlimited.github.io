@@ -11,26 +11,26 @@ html {
 
 @layer components {
     main a {
-        @apply text-brand hover:underline
+        @apply text-brand hover:underline;
     }
 
     main h1 {
-        @apply text-xl my-4 border-b-2 border-brand font-bold
+        @apply text-4xl my-4 font-bold;
     }
 
     main h2 {
-        @apply text-lg my-4 border-b-2 border-brand font-bold
+        @apply text-3xl mb-4 mt-8 font-bold;
     }
 
     main h3 {
-        @apply my-4 font-bold
+        @apply text-2xl mb-4 mt-8 font-bold;
     }
 
     main p {
-        @apply my-2
+        @apply text-xl my-4;
     }
 
     main section {
-        @apply max-w-2xl mx-auto
+        @apply max-w-3xl mx-auto;
     }
 }
