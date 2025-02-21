@@ -1,6 +1,8 @@
+description: An update to a previous post on how to read emails on the terminal
+
 # Email in the Terminal: Redux
 
-More than two years ago I wrote a post about [reading my emails via a terminal interface](/posts/using-the-terminal-for-my-email/) instead of a GUI. That solution lasted me a good while but eventually I gave up and switched to a new GUI. I switched because it was too much of a pain not having access to my emails when I was out and about. With my emails only ever on my laptop I couldn't easily do things like find a ticket to an event that had been emailed to me, or quickly reply to something whilst on the bus.
+More than two years ago I wrote a post about [reading my emails via a terminal interface](/posts/2018-08-22-using-the-terminal-for-my-email/) instead of a GUI. That solution lasted me a good while but eventually I gave up and switched to a new GUI. I switched because it was too much of a pain not having access to my emails when I was out and about. With my emails only ever on my laptop I couldn't easily do things like find a ticket to an event that had been emailed to me, or quickly reply to something whilst on the bus.
 
 I used an email client that offered fantastic sync features between all my devices. If I added an account on my laptop, it just appeared on my phone. Problem solved.
 

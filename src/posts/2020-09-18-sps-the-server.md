@@ -1,3 +1,5 @@
+description: A quick guide to getting a small server up and running, ready to run some code
+
 # Small Project Skeleton: The Server
 
 Fairly often I'll need to spin up a new server for a smallish project that I'm working on. Maybe a demo/staging site for a client, or maybe I've started a new side-project again.

@@ -1,3 +1,5 @@
+description: Some thoughts on how scary it is to ask people for feedback on side-projects
+
 # Asking for Feedback is Terrifying
 
 Recently I've upgraded one of my side-projects to be an actual website that actual people can pay money for. I started to tell people about it to see if I could get any customers. That didn't go too well, I couldn't get a single person to sign up, not even my friends, family, and fools.

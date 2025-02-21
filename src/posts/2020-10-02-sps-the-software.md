@@ -1,6 +1,8 @@
+description: A quick guide to getting a small server up and running
+
 # Small Project Skeleton: The Software
 
-Assuming you've read the first part to this guide: Small Project Skeleton: The Server [/sps-server], you're now ready with a blank machine and you need to install things on it.
+Assuming you've read the first part to this guide: [Small Project Skeleton: The Server](/posts/2020-09-18-sps-the-server/), you're now ready with a blank machine and you need to install things on it.
 
 ## System Updates
 

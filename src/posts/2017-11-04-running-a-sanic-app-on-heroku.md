@@ -1,3 +1,5 @@
+description: A quick guide to deploying a Python Sanic app on Heroku
+
 # Running a Sanic App on Heroku
 
 Here's the context; I've built lots of Python-based websites before, mostly using [Flask](http://flask.pocoo.org/). My latest side-project uses [Sanic](http://sanic.readthedocs.io/en/latest/) instead. I've hosted lots of websites on [Heroku](https://heroku.com) before, I've never hosted a Sanic app, and there didn't seem to be much in the way of documentation.  I managed to get something running, here's how.

@@ -2,11 +2,35 @@
 
 {% block title %}MayorTech Limited - Contact Us{% endblock %}
 
+{% block description %}The contact details for MayorTech Limited.{% endblock %}
+
 {% block content %}
-    <section>
-        <h1>Contact</h1>
-        <p>To get in touch with us please send an email to:</p>
-        <p>mail [at] mayortech.co.uk</p>
-        <p>We look forward to hearing from you.</p>
-    </section>
+<section
+    class="max-w-4xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8 text-mt-darkest-blue"
+>
+    <h1 class="text-4xl">Contact</h1>
+    <p class="text-2xl mt-8">
+        To get in touch with us please send an email to:
+    </p>
+    <p class="text-2xl mt-8">
+        <a
+            class="text-mt-blue hover:underline"
+            href="mailto:mail@mayortech.co.uk"
+        >
+            <i class="fa-solid fa-envelope"></i>
+            mail@mayortech.co.uk
+        </a>
+    </p>
+    <p class="text-2xl mt-8">Or contact me on LinkedIn:</p>
+    <p class="text-2xl mt-8">
+        <a
+            class="text-mt-blue hover:underline"
+            href="https://www.linkedin.com/in/william-mayor/"
+        >
+            <i class="fa-brands fa-linkedin"></i>
+            william-mayor
+        </a>
+    </p>
+    <p class="text-2xl mt-8">I look forward to hearing from you.</p>
+</section>
 {% endblock content %}

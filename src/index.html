@@ -1,84 +1,152 @@
-{% extends "_base.html" %} {% block content %}
-<section>
-    <h1 class="sr-only">MayorTech Limited</h1>
-    <p>
-        Mayor Tech Limited is a London (UK) based company that builds high
-        quality, bespoke websites and web apps.
-    </p>
-    <p>Whatever project you have in mind, we can build it.</p>
-    <p>
-        Our <a href="/projects/">projects page</a> is a showcase of the kinds of
-        things that we've been working on.
-    </p>
+{% extends "_base.html" %}
 
-    <h2>The Story</h2>
-    <p>
-        Mayor Tech work with a range of businesses to provide the software
-        support that they need.
-    </p>
-    <p>
-        Some of our clients are small companies, like
-        <a href="https://insidetheedit.com">Inside the Edit</a>, where we are
-        responsible for building and maintaining payment processing, video
-        streaming, behind the scenes admin processes/reports, and
-        subscription-based access controls.
-    </p>
-    <p>
-        Others are large multi-national companies, like
-        <a href="https://softiron.com">SoftIron</a>, where we help build complex
-        APIs that support internal manufacturing and marketing processes.
-    </p>
-    <p>
-        To get a real feel for the type of work we do, read about our past
-        clients and projects on our <a href="/projects/">projects list</a>.
-    </p>
+{% block description %}
+    Hi I'm Billy. I'm a software engineer. I'm a freelancer. I build high quality, bespoke websites and
+web apps.
+{% endblock %}
 
-    <h2>Our Ethos</h2>
-    <p>
-        We build high quality software, we don't cut corners, and we don't rush.
-        We work closely with our clients, often over many years, making sure
-        that what we make is exactly what they needed.
-    </p>
-    <p>
-        Technologies are tools to be used in the right context. We are not
-        wedded to any particular way of doings things, or any particular
-        frameworks/libraries. We choose the right tool for the job.
-    </p>
-    <p>
-        We want to leave the world in a better state than we found it. We want
-        to work with people/companies that are doing good things. We will not
-        work with people/companies doing bad things.
-    </p>
-    <h2>Our Founder - William Mayor</h2>
-    <p>
-        William Mayor started as a freelance software engineer in 2012. He
-        specialises in "back end" software; building APIs, setting up servers,
-        dealing with databases, security, backups, and all the things that keep
-        a project running smoothly. He’s primarily a Python developer but he’s
-        been known to dabble with JavaScript as well.
-    </p>
-    <p>
-        William is also a Director of
-        <a href="https://diversityandability.com">Diversity and Ability</a>, a
-        social enterprise that champions neurodiversity and disability
-        inclusion. He runs the IT department there and is resonsible for keeping
-        the emails, internal tools, and other critical business infrastructure
-        running. He is also the Data Protection Lead; making sure that the
-        company meets all GDPR requirements. He runs a team within the company
-        that provide website accessibility audits, making sure that clients'
-        websites meet the W3C's Web Content Accessility Guidelines (WCAG).
-    </p>
+{% block content %}
+<h1 class="sr-only">MayorTech Limited</h1>
+<div class="flex flex-col gap-8">
+    <section
+        class="bg-mt-gray rounded-xl p-4 sm:p-8 flex flex-row justify-between items-center"
+    >
+        <div class="text-4xl sm:text-5xl text-mt-darkest-blue">
+            <p>👋 Hi I’m Billy.</p>
+            <p>I’m a software engineer.</p>
+        </div>
+        <div class="hidden sm:block">
+            <img
+                src="/img/logo.png"
+                alt="The MayorTech limited logo; a pixel art cartoon image of William Mayor."
+                class="h-36"
+            />
+        </div>
+    </section>
+    <div class="flex flex-col sm:flex-row gap-8">
+        <section
+            class="bg-mt-dark-blue rounded-xl p-4 sm:p-8 flex flex-row justify-between items-center"
+        >
+            <div class="text-3xl text-white">
+                <p>
+                    I'm a freelancer. I build high quality, bespoke websites and
+                    web apps.
+                </p>
+                <p class="mt-8">
+                    Whatever project you have in mind, I can build it.
+                </p>
+            </div>
+        </section>
+        <div class="flex flex-col gap-8">
+            <section class="bg-mt-red rounded-xl p-4 sm:p-8">
+                <div
+                    class="text-xl text-mt-darkest-blue flex flex-row gap-8 items-center"
+                >
+                    <div class="">
+                        <img
+                            class="w-16 min-w-16"
+                            width="64"
+                            src="/img/Hammer_Blue.png"
+                            alt=""
+                        />
+                    </div>
+                    <p>
+                        I build high quality software, I don't cut corners, and
+                        I don't rush. I work closely with clients, often over
+                        many years, making sure that what I build is exactly
+                        what they need.
+                    </p>
+                </div>
+            </section>
+            <section class="bg-mt-blue rounded-xl p-4 sm:p-8">
+                <div
+                    class="text-xl text-mt-gray flex flex-row gap-8 items-center"
+                >
+                    <div class="">
+                        <img
+                            class="w-16 min-w-16"
+                            width="64"
+                            src="/img/Heart_Yellow.png"
+                            alt=""
+                        />
+                    </div>
+                    <p>
+                        I want to leave the world in a better state than I found
+                        it. I want to work with people/companies that are doing
+                        good things. I will not work with people/companies doing
+                        bad things.
+                    </p>
+                </div>
+            </section>
+            <section class="bg-mt-yellow rounded-xl p-4 sm:p-8">
+                <div
+                    class="text-xl text-mt-darkest-blue flex flex-row gap-8 items-center"
+                >
+                    <div class="">
+                        <img
+                            class="w-16 min-w-16"
+                            width="64"
+                            src="/img/House_Red.png"
+                            alt=""
+                        />
+                    </div>
+                    <p>
+                        The internet is for everyone; websites and apps need to
+                        be built in accessible ways. A truly accessible website
+                        is a pleasure for all to use.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <section class="bg-mt-gray rounded-xl p-4 sm:p-8 text-mt-darkest-blue">
+        <h2 class="text-3xl">About me</h2>
+        <p class="text-xl mt-8">
+            I started as a freelance software engineer in 2012. I specialise in
+            "back end" software; building APIs, setting up servers, dealing with
+            databases, security, backups, and all the things that keep a project
+            running smoothly. I'm primarily a Python developer but I'm very
+            comfortable diving into the HTML, JavaScript, and CSS sides of
+            things too.
+        </p>
+        <p class="text-xl mt-8">
+            Over the years I've built lots of websites/apps (see
+            <a class="text-mt-blue hover:underline" href="/projects"
+                >the projects list</a
+            >
+            for some examples), and worked on the things that accompany software
+            engineering too. Things like:
+        </p>
+        <ul
+            class="text-xl font-bold mt-8 flex flex-row flex-wrap gap-x-8 gap-y-4"
+        >
+            <li class="whitespace-nowrap">DevOps</li>
+            <li class="whitespace-nowrap">Emails</li>
+            <li class="whitespace-nowrap">GDPR</li>
+            <li class="whitespace-nowrap">Cyber Essentials</li>
+            <li class="whitespace-nowrap">WCAG accessibility audits</li>
+            <li class="whitespace-nowrap">Agile</li>
+            <li class="whitespace-nowrap">Working in teams</li>
+            <li class="whitespace-nowrap">Leading teams</li>
+            <li class="whitespace-nowrap">Designing and architecting</li>
+            <li class="whitespace-nowrap">Internationalisation</li>
+            <li class="whitespace-nowrap">Online payments and tax</li>
+        </ul>
+    </section>
+    <section class="bg-mt-dark-blue rounded-xl p-4 sm:p-8">
+        <h2 class="text-3xl">Interested?</h2>
+        <p class="text-2xl mt-8">
+            Have a cool project you want to build? Need an experienced senior
+            dev to help with some tricky edges cases? Want to explore some ideas
+            together?
+        </p>
+        <p class="text-2xl mt-8">
+            Please
+            <a href="/contact/" class="text-mt-red hover:underline"
+                >get in touch</a
+            >. I'm excited to work with you.
+        </p>
+    </section>
+</div>
 
-    <h2>Interested?</h2>
-
-    <p>
-        Our standard rate is £150 per hour (£1,200 per day), we can also do
-        project-based billing if that suits. We are flexible and will work with
-        you to find an arrangement that fits.
-    </p>
-    <p>
-        Please <a href="/contact/">get in touch</a>. We're excited to work with
-        you.
-    </p>
-</section>
 {% endblock content %}

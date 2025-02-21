@@ -1,140 +1,317 @@
-{% extends "_base.html" %} {% block title %}MayorTech Limited - Projects{%
-endblock %} {% block content %}
-<div class="max-w-3xl mx-auto">
-    <h1>Projects</h1>
-    <p>
-        Here's a list of projects and clients that Mayor Tech Limited have
-        worked with.
-    </p>
+{% extends "_base.html" %}
+
+{% block title %}MayorTech Limited - Projects{% endblock %}
+
+{% block description %}A list of names and descriptions of the the projects and clients that MayorTech have worked with over the years.{% endblock %}
+
+{% block content %}
+<div class="flex flex-col gap-8">
+    <section class="bg-mt-gray rounded-xl p-4 sm:p-8">
+        <div class="text-mt-darkest-blue">
+            <h1 class="text-4xl">Projects</h1>
+            <p class="text-2xl mt-8">
+                Here's a list of projects and clients that I've have worked on.
+            </p>
+        </div>
+    </section>
+    <section
+        class="bg-mt-red text-mt-darkest-blue rounded-xl p-4 sm:p-8 flex flex-col sm:flex-row gap-8 justify-between items-center"
+    >
+        <div class="">
+            <h2 class="text-2xl">Asahi</h2>
+            <p class="">
+                <a class="hover:underline" href="https://asahisuperdry.com">
+                    https://asahisuperdry.com
+                </a>
+            </p>
+            <p class="mt-8 text-xl max-w-4xl">
+                I helped build the Asahi Super Dry website using Python and
+                Wagtail. This is a marketing/blog site ran by many teams across
+                the world. I built a flexible translation system
+                (internationalisation, i18n) for them, as well as custom CRM
+                widgets to help them easily create competitions. These
+                competitions have seen tens of thousands of entries.
+            </p>
+        </div>
+        <div class="order-first sm:order-last">
+            <div class="p-4 bg-white">
+                <img
+                    src="/img/projects/asahi_super_dry.png"
+                    alt=""
+                    height="144"
+                    class="max-h-36 max-w-[200px]"
+                />
+            </div>
+        </div>
+    </section>
+    <section
+        class="bg-mt-blue rounded-xl p-4 sm:p-8 flex flex-col sm:flex-row gap-8 justify-between items-center"
+    >
+        <div class="">
+            <h2 class="text-2xl">AXS Passport</h2>
+            <p class="">
+                <a class="hover:underline" href="https://axs-passport.co">
+                    https://axs-passport.co
+                </a>
+            </p>
+            <p class="mt-8 text-xl max-w-4xl">
+                AXS Passport is a digital tool for sharing accessibility and
+                inclusion requirements in order to create a more equitable
+                society. I helped build the web app (JS, SvelteKit) and API
+                (Python, FastAPI), and run the servers. I ran the team building
+                this product including designers, front-end devs, back-end devs,
+                mobile devs, and others.
+            </p>
+        </div>
+        <div class="order-first sm:order-last">
+            <div class="p-4 bg-white">
+                <img
+                    src="/img/projects/axs_passport.png"
+                    alt=""
+                    height="144"
+                    class="max-h-36 max-w-[200px]"
+                />
+            </div>
+        </div>
+    </section>
+    <section
+        class="bg-mt-dark-blue rounded-xl p-4 sm:p-8 flex flex-col sm:flex-row gap-8 justify-between items-center"
+    >
+        <div class="">
+            <h2 class="text-2xl">billabl</h2>
+            <p class="">
+                <a class="hover:underline" href="https://billabl.co">
+                    https://billabl.co
+                </a>
+            </p>
+            <p class="mt-8 text-xl max-w-4xl">
+                billable is a side-project I built to help me track and report
+                on the time I spend working as a freelancer. It connects to your
+                Google calendar instead of needing you to remember to clock in
+                and out.
+            </p>
+        </div>
+        <div class="order-first sm:order-last">
+            <div class="p-4">
+                <img
+                    src="/img/projects/billabl.png"
+                    alt=""
+                    height="144"
+                    class="max-h-36 max-w-[200px]"
+                />
+            </div>
+        </div>
+    </section>
+    <section
+        class="bg-mt-yellow text-mt-darkest-blue rounded-xl p-4 sm:p-8 flex flex-col sm:flex-row gap-8 justify-between items-center"
+    >
+        <div class="">
+            <h2 class="text-2xl">Diversity and Ability</h2>
+            <p class="">
+                <a
+                    class="hover:underline"
+                    href="https://diversityandability.com"
+                >
+                    https://diversityandability.com
+                </a>
+            </p>
+            <p class="mt-8 text-xl max-w-4xl">
+                From the early days of this social enterprise I set up and ran
+                the engineering team. For many years I was the only SWE. I
+                built, and now run, the software team, the data protection team,
+                and our website accessibility audit team.
+            </p>
+        </div>
+        <div class="order-first sm:order-last">
+            <div class="p-4 bg-white">
+                <img
+                    src="/img/projects/dna.png"
+                    alt=""
+                    height="144"
+                    class="max-h-36 max-w-[200px]"
+                />
+            </div>
+        </div>
+    </section>
+    <section
+        class="bg-mt-dark-blue rounded-xl p-4 sm:p-8 flex flex-col sm:flex-row gap-8 justify-between items-center"
+    >
+        <div class="">
+            <h2 class="text-2xl">MenuWizard</h2>
+            <p class="">
+                <a class="hover:underline" href="https://menuwizard.com">
+                    https://menuwizard.com
+                </a>
+            </p>
+            <p class="mt-8 text-xl max-w-4xl">
+                An app that helps people find restaurants and meals that are
+                suitable for their dietry/allergen requirements. I built the API
+                (Python, FastAPI) that powers the app, and I manage the servers
+                and hosting.
+            </p>
+        </div>
+        <div class=""></div>
+    </section>
+    <section
+        class="bg-mt-red text-mt-darkest-blue rounded-xl p-4 sm:p-8 flex flex-col sm:flex-row gap-8 justify-between items-center"
+    >
+        <div class="">
+            <h2 class="text-2xl">PickTeamz</h2>
+            <p class="">
+                <a class="hover:underline" href="https://pickteamz.com">
+                    https://pickteamz.com
+                </a>
+            </p>
+            <p class="mt-8 text-xl max-w-4xl">
+                I brought the ideas and passion of the founder to life; a
+                new-style fantasy football game. As well as playing the game via
+                the website (Python, Django), I also built an iOS and Android
+                app (Dart, Flutter).
+            </p>
+        </div>
+        <div class="order-first sm:order-last">
+            <div class="p-4 bg-white">
+                <img
+                    src="/img/projects/pickteamz.png"
+                    alt=""
+                    height="144"
+                    class="max-h-36 max-w-[200px]"
+                />
+            </div>
+        </div>
+    </section>
+    <section
+        class="bg-mt-blue rounded-xl p-4 sm:p-8 flex flex-col sm:flex-row gap-8 justify-between items-center"
+    >
+        <div class="">
+            <h2 class="text-2xl">RFGraph</h2>
+            <p class="">
+                <a class="hover:underline" href="https://rfgraph.com">
+                    https://rfgraph.com
+                </a>
+            </p>
+            <p class="mt-8 text-xl max-w-4xl">
+                I built a single page app (JS, Svelte) and back-end API (Python,
+                FastAPI) that enables complex hardware simulations. As well as a
+                feature-rich front-end application I also built payment
+                processing, and created the marketing and customer support
+                sites.
+            </p>
+        </div>
+        <div class="order-first sm:order-last">
+            <div class="p-4 bg-white">
+                <img
+                    src="/img/projects/rfgraph.png"
+                    alt=""
+                    height="144"
+                    class="max-h-36 max-w-[200px]"
+                />
+            </div>
+        </div>
+    </section>
+    <section
+        class="bg-mt-yellow text-mt-darkest-blue rounded-xl p-4 sm:p-8 flex flex-col sm:flex-row gap-8 justify-between items-center"
+    >
+        <div class="">
+            <h2 class="text-2xl">SleepyMap</h2>
+            <p class="">
+                <a class="hover:underline" href="https://sleepymap.com">
+                    https://sleepymap.com
+                </a>
+            </p>
+            <p class="mt-8 text-xl max-w-4xl">
+                An side-project that I built to meet a gap in the market; a
+                simple way to turn a spreadsheet into a map.
+            </p>
+        </div>
+        <div class="order-first sm:order-last">
+            <div class="p-4 bg-white">
+                <img
+                    src="/img/projects/sleepymap.png"
+                    alt=""
+                    height="144"
+                    class="max-h-36 max-w-[200px]"
+                />
+            </div>
+        </div>
+    </section>
+    <section
+        class="bg-mt-dark-blue rounded-xl p-4 sm:p-8 flex flex-col sm:flex-row gap-8 justify-between items-center"
+    >
+        <div class="">
+            <h2 class="text-2xl">SoftIron</h2>
+            <p class="">
+                <a class="hover:underline" href="https://softiron.com">
+                    https://softiron.com
+                </a>
+            </p>
+            <p class="mt-8 text-xl max-w-4xl">
+                I helped them build various internal tools. Some for supporting
+                their manufacturing; serial number generation, MAC address
+                assignments, and lots more. Other projects included marketing
+                tools (static asset management and hosting), and hardware
+                cluster management (APIs for adding removing servers to a CEPH
+                cluster).
+            </p>
+        </div>
+        <div class="order-first sm:order-last">
+            <div class="p-4 bg-white">
+                <img
+                    src="/img/projects/softiron.jpg"
+                    alt=""
+                    height="144"
+                    class="max-h-36 max-w-[200px]"
+                />
+            </div>
+        </div>
+    </section>
+    <section
+        class="bg-mt-red text-mt-darkest-blue rounded-xl p-4 sm:p-8 flex flex-col sm:flex-row gap-8 justify-between items-center"
+    >
+        <div class="">
+            <h2 class="text-2xl">UDISAS</h2>
+            <p class="">
+                <a class="hover:underline" href="https://udisas.com">
+                    https://udisas.com
+                </a>
+            </p>
+            <p class="mt-8 text-xl max-w-4xl">
+                An online assessment tool that can help a person to identify the
+                barriers they are facing and possible solutions. I build the
+                website (Python, Flask) and manage the servers and hosting.
+            </p>
+        </div>
+        <div class="order-first sm:order-last">
+            <div class="p-4 bg-white">
+                <img
+                    src="/img/projects/udisas.png"
+                    alt=""
+                    height="144"
+                    class="max-h-36 max-w-[200px]"
+                />
+            </div>
+        </div>
+    </section>
+    <section
+        class="bg-mt-blue rounded-xl p-4 sm:p-8 flex flex-col sm:flex-row gap-8 justify-between items-center"
+    >
+        <div class="">
+            <h2 class="text-2xl">vantage</h2>
+            <p class="">
+                <a
+                    class="hover:underline"
+                    href="https://vantage-org.github.io/vantage"
+                >
+                    https://vantage-org.github.io/vantage
+                </a>
+            </p>
+            <p class="mt-8 text-xl max-w-4xl">
+                A task runner that integrates nicely with Docker and that has
+                great support for managing environment variables. I use it in
+                almost all of my projects.
+            </p>
+        </div>
+        <div class=""></div>
+    </section>
 </div>
-<section>
-    <h2 class="mb-0">Asahi</h2>
-    <p class="mt-0">
-        <a href="https://asahisuperdry.com">https://asahisuperdry.com</a>
-    </p>
-    <p>
-        We helped build the Asahi Super Dry website. This is a marketing/blog
-        site ran by many teams across the world. We built a flexible translation
-        system (internationalisation, i18n) for them, as well as processes for
-        easily adding and managing new brands/themes as new marketing material
-        is generated.
-    </p>
-
-    <h2 class="mb-0">AXS Passport</h2>
-    <p class="mt-0">
-        <a href="https://axs-passport.co">https://axs-passport.co</a>
-    </p>
-    <p>
-        AXS passport is a digital tool for sharing accessibility and inclusion
-        requirements in order to create a more equitable society. We built the
-        web app and API, and run the servers.
-    </p>
-
-    <h2 class="mb-0">BAFTA</h2>
-    <p class="mt-0">
-        <a href="https://baftaelectron.com">https://baftaelectron.com</a>
-    </p>
-    <p>
-        We worked on a product called “Source2Screen” (now called “BAFTA
-        Electron“). It had started as an in-house tool for managing large
-        volumes of media, used for the BAFTA awards nominations. We helped to
-        build an application that turned the in-house tool into a
-        software-as-a-service (SAAS) product.
-    </p>
-
-    <h2 class="mb-0">Diversity and Ability</h2>
-    <p class="mt-0">
-        <a href="https://diversityandability.com"
-            >https://diversityandability.com</a
-        >
-    </p>
-    <p>
-        We run their internal IT systems (email, collaborative documents,
-        business intelligence tools, etc. etc.). We also build their internal
-        information security management system (ISMS).
-    </p>
-
-    <h2 class="mb-0">Inside the Edit</h2>
-    <p class="mt-0">
-        <a href="https://insidetheedit.com">https://insidetheedit.com</a>
-    </p>
-    <p>
-        We extended their existing website; adding subscription payment
-        processing, live-streaming events, HD video storage/streaming, and many
-        other features. We also migrated their hosting provider in order to save
-        hosting costs and reduce downtime.
-    </p>
-
-    <h2 class="mb-0">MenuWizard</h2>
-    <p class="mt-0">
-        <a href="https://menuwizard.com">https://menuwizard.com</a>
-    </p>
-    <p>
-        An app that helps people find restaurants and meals that are suitable
-        for their dietry requirements. We build the API that powers the app, and
-        we manage the servers and hosting.
-    </p>
-
-    <h2 class="mb-0">PickTeamz</h2>
-    <p class="mt-0">
-        <a href="https://pickteamz.com">https://pickteamz.com</a>
-    </p>
-    <p>
-        We brought the ideas and passion of the founder to life; a new-style
-        fantasy football game. As well as playing the game via the website, we
-        also built an iOS and Android app.
-    </p>
-
-    <h2 class="mb-0">RFGraph</h2>
-    <p class="mt-0">
-        <a href="https://rfgraph.com">https://rfgraph.com</a>
-    </p>
-    <p>
-        We built a single page app (SPA) and back-end API that enables complex
-        hardware simulations. As well as a feature-rich front-end application we
-        also built payment processing, and created the marketing and customer
-        support sites.
-    </p>
-
-    <h2 class="mb-0">SleepyMap</h2>
-    <p class="mt-0">
-        <a href="https://sleepymap.com">https://sleepymap.com</a>
-    </p>
-    <p>
-        An internal project that we built to meet a gap in the market; a simple
-        way to turn a spreadsheet into a map.
-    </p>
-
-    <h2 class="mb-0">SoftIron</h2>
-    <p class="mt-0">
-        <a href="https://softiron.com">https://softiron.com</a>
-    </p>
-    <p>
-        We help them build various internal tools. Some for supporting their
-        manufacturing; serial number generation, MAC address assignments, and
-        lots more. Other projects included marketing tools (static asset
-        management and hosting), and hardware cluster management (APIs for
-        adding removing servers to a CEPH cluster).
-    </p>
-
-    <h2 class="mb-0">UDISAS</h2>
-    <p class="mt-0"><a href="https://udisas.com">https://udisas.com</a></p>
-    <p>
-        An online assessment tool that can help a person to identify the
-        barriers they are facing and possible solutions. We build the website
-        and manage the servers and hosting.
-    </p>
-
-    <h2 class="mb-0">vantage</h2>
-    <p class="mt-0">
-        <a href="https://vantage-org.github.io/vantage"
-            >https://vantage-org.github.io/vantage</a
-        >
-    </p>
-    <p>
-        A task runner that integrates nicely with Docker and that has great
-        support for managing environment variables. We use it in almost all of
-        our projects.
-    </p>
-</section>
 {% endblock content %}

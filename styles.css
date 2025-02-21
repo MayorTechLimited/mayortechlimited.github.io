@@ -2,35 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-    font-family: "Comfortaa", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
+@layer base {
+    @font-face {
+        font-family: SpaceGrotesk;
+        font-weight: bold;
+        src: url("/fonts/SpaceGrotesk-Bold.otf") format("opentype");
+    }
+
+    @font-face {
+        font-family: SpaceGrotesk;
+        font-weight: regular;
+        src: url("/fonts/SpaceGrotesk-Regular.otf") format("opentype");
+    }
 }
 
 @layer components {
-    main a {
-        @apply text-brand hover:underline;
-    }
-
-    main h1 {
-        @apply text-4xl my-4 font-bold;
-    }
-
-    main h2 {
-        @apply text-3xl mb-4 mt-8 font-bold;
-    }
-
-    main h3 {
-        @apply text-2xl mb-4 mt-8 font-bold;
-    }
-
-    main p {
-        @apply text-xl my-4;
-    }
-
-    main section {
-        @apply max-w-3xl mx-auto;
+    .prose :where(ul > li):not(:where([class~="not-prose"] *))::marker {
+        color: #090535;
     }
 }

@@ -1,21 +1,25 @@
-{% extends "_base.html" %}
-
-{% block title %}MayorTech Limited - Blog{% endblock %}
-
-{% block content %}
-    <div class="max-w-2xl mx-auto">
-        <h1>Blog</h1>
-        <p>We don't write many blog posts, but here's what we've got for you...</p>
-        <ul>
-            {% for p in posts %}
-                <li class="my-2">
-                    <div class="">
-                        <div class=""><a href="/posts/{{ p.stem }}">{{ p.name }}</a></div>
-                        <div class="text-sm">William Mayor &middot {{ p.created }}</div>
-                    </div>
-
-                </li>
-            {% endfor %}
-        </ul>
+{% extends "_base.html" %} {% block title %}MayorTech Limited - Blog{% endblock
+%} {% block content %}
+<section class="bg-mt-gray rounded-xl p-4 sm:p-8">
+    <div class="text-mt-darkest-blue">
+        <h1 class="text-4xl">Blog</h1>
+        <p class="text-2xl mt-8">
+            I don't write many blog posts, but here's what I've got so far...
+        </p>
     </div>
+</section>
+<section class="bg-mt-dark-blue text-white text-2xl rounded-xl p-4 sm:p-8 mt-8">
+    <ul>
+        {% for p in posts %}
+        <li class="my-2 border-b-white border-b pb-2 last:border-b-0">
+            <div class="">
+                <div class="">
+                    <a href="/posts/{{ p.stem }}">{{ p.name }}</a>
+                </div>
+                <div class="text-sm">{{ p.created }}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
 {% endblock content %}

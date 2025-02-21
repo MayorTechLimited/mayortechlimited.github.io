@@ -1,6 +1,8 @@
+description: Details on my plans to read my email via the terminal
+
 # Using the Terminal for my Email
 
-Over the last several years I've flitted from email client to email client, never satisfied. They were either too ugly, too hard to use, or too slow. Too slow has been the bane of my existence for the past several months, my client of choice just ground to halt. I had to open it up and wait for minutes (!!) whilst it \"indexed\" things.
+Over the last several years I've flitted from email client to email client, never satisfied. They were either too ugly, too hard to use, or too slow. Too slow has been the bane of my existence for the past several months, my client of choice just ground to halt. I had to open it up and wait for minutes (!!) whilst it "indexed" things.
 
 So last week I decided to make a change and switch to reading and writing emails in the terminal. I knew it was possible, I just hadn't had the impulse to switch until now.
 
