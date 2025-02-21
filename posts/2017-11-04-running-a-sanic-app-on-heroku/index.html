@@ -1,76 +1,72 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
     <head>
         <title>MayorTech Limited</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap"
-            rel="stylesheet"
+        <meta
+            name="description"
+            content="A quick guide to deploying a Python Sanic app on Heroku"
         />
         <link href="/styles.css" rel="stylesheet" />
+        <script
+            src="https://kit.fontawesome.com/0ebfed0803.js"
+            crossorigin="anonymous"
+            defer
+            async
+        ></script>
     </head>
 
-    <body class="bg-orange-50 text-slate-900 p-4">
-        <div class="border-b-4 border-brand py-2">
-            <header class="max-w-3xl mx-auto">
-                <div class="mb-4">
-                    <a class="inline-block font-bold text-4xl" href="/">
+    <body class="bg-mt-darkest-blue text-slate-50 flex flex-col gap-8 h-full">
+        <div class="border-b-2 border-mt-dark-blue py-4 px-4">
+            <header
+                class="flex flex-col sm:flex-row items-center justify-between"
+            >
+                <div class="">
+                    <a
+                        class="flex flex-row items-center gap-2 font-bold text-2xl"
+                        href="/"
+                    >
+                        <img
+                            src="/img/logo.png"
+                            alt="The MayorTech limited logo; a pixel art cartoon image of William Mayor."
+                            height="56"
+                            class="h-14"
+                        />
                         MayorTech Limited
                     </a>
                 </div>
                 <nav class="">
-                    <ul>
-                        <li class="block md:inline-block mr-2 my-2 md:my-0">
-                            <a
-                                class="hover:text-brand decoration-2 text-xl"
-                                href="/"
-                            >
-                                Home
-                            </a>
+                    <ul class="flex flex-row items-center gap-4">
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/">Home</a>
                         </li>
-                        <li class="hidden md:inline-block">&middot;</li>
-                        <li class="block md:inline-block mx-2 my-2 md:my-0">
-                            <a
-                                class="hover:text-brand decoration-2 text-xl"
-                                href="/projects/"
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/projects/"
+                                >Projects</a
                             >
-                                Projects
-                            </a>
                         </li>
-                        <li class="hidden md:inline-block">&middot;</li>
-                        <!-- <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/posts/">Blog</a></li>
-                        <li class="hidden md:inline-block">&middot;</li> -->
-                        <li class="block md:inline-block ml-2 my-2 md:my-0">
-                            <a
-                                class="hover:text-brand decoration-2 text-xl"
-                                href="/contact/"
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/posts/">Blog</a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/contact/"
+                                >Contact</a
                             >
-                                Contact Us
-                            </a>
                         </li>
                     </ul>
                 </nav>
             </header>
         </div>
-        <main class="my-8">
-    <div class="max-w-2xl mx-auto">
-        <div class="">
-            <dl class="grid inline-grid grid-cols-2 gap-x-4">
-               <dt class="text-right">Author:</dt>
-               <dd>William Mayor</dd>
-               <dt class="text-right">Written on:</dt>
-               <dd>2017-11-04</dd>
-            </dl>
-        </div>
-        <h1>Running a Sanic App on Heroku</h1>
-<p>Here's the context; I've built lots of Python-based websites before, mostly using <a href="http://flask.pocoo.org/">Flask</a>. My latest side-project uses <a href="http://sanic.readthedocs.io/en/latest/">Sanic</a> instead. I've hosted lots of websites on <a href="https://heroku.com">Heroku</a> before, I've never hosted a Sanic app, and there didn't seem to be much in the way of documentation.  I managed to get something running, here's how.</p>
+        <main class="grow px-4 sm:px-8">
+    <section class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
+        <div class="text-mt-darkest-blue text-sm mb-8">2017-11-04</div>
+        <div class="text-mt-darkest-blue prose prose-xl"><h1>Running a Sanic App on Heroku</h1>
+<p>Here&rsquo;s the context; I&rsquo;ve built lots of Python-based websites before, mostly using <a href="http://flask.pocoo.org/">Flask</a>. My latest side-project uses <a href="http://sanic.readthedocs.io/en/latest/">Sanic</a> instead. I&rsquo;ve hosted lots of websites on <a href="https://heroku.com">Heroku</a> before, I&rsquo;ve never hosted a Sanic app, and there didn&rsquo;t seem to be much in the way of documentation.  I managed to get something running, here&rsquo;s how.</p>
 <h3>To Gunicorn or Not?</h3>
-<p>Normally, when it comes time to put an app in production, I turn to <a href="http://gunicorn.org/">Gunicorn</a>. The local flask development servers that I use until then aren't production-ready. This message, "not production-ready", is really drummed into you by the docs. Not so by the Sanic docs though. In fact, when I first read it, the <a href="http://sanic.readthedocs.io/en/latest/sanic/deploying.html">deployment section</a> of their docs was incredibly sparse. This made me a bit uncertain, do I use the same server in production as I am for dev? Really? That doesn't seem right...</p>
-<p>Turns out, it is! Whilst running behind gunicorn is possible, it <a href="https://github.com/channelcat/sanic/issues/61#issuecomment-255982541">doesn't seem like it's encouraged</a>. So no  pip install gunicorn, Sanic comes batteries included.</p>
-<p>So what's in the Procfile? There are plenty of ways to get this working, here's mine:</p>
+<p>Normally, when it comes time to put an app in production, I turn to <a href="http://gunicorn.org/">Gunicorn</a>. The local flask development servers that I use until then aren&rsquo;t production-ready. This message, &ldquo;not production-ready&rdquo;, is really drummed into you by the docs. Not so by the Sanic docs though. In fact, when I first read it, the <a href="http://sanic.readthedocs.io/en/latest/sanic/deploying.html">deployment section</a> of their docs was incredibly sparse. This made me a bit uncertain, do I use the same server in production as I am for dev? Really? That doesn&rsquo;t seem right&hellip;</p>
+<p>Turns out, it is! Whilst running behind gunicorn is possible, it <a href="https://github.com/channelcat/sanic/issues/61#issuecomment-255982541">doesn&rsquo;t seem like it&rsquo;s encouraged</a>. So no  pip install gunicorn, Sanic comes batteries included.</p>
+<p>So what&rsquo;s in the Procfile? There are plenty of ways to get this working, here&rsquo;s mine:</p>
 <pre><code>$ cat
 Procfile web: python web.py
 $ cat web.py
@@ -89,21 +85,61 @@ if __name__ == '__main__':
 <p>Pretty easy right? The only less-than-simple parts here are the environment variables:</p>
 <ul>
 <li>PORT: This is set by Heroku to let the application know where to bind itself    to. In dev I can easily set this myself, or rely on the default 8000.</li>
-<li>WEB_CONCURRENCY: This rather awesome variable is a recommendation from Heroku    on how many worker threads to use, given the dyno that the app is running in.    I'm anticipating modifying this slightly in the future, but for now, thanks    for the recommendation!</li>
-<li>DEBUG: This one's pretty obvious, if there's a DEBUG environment variable,    then run Sanic in debug mode.</li>
+<li>WEB_CONCURRENCY: This rather awesome variable is a recommendation from Heroku    on how many worker threads to use, given the dyno that the app is running in.    I&rsquo;m anticipating modifying this slightly in the future, but for now, thanks    for the recommendation!</li>
+<li>DEBUG: This one&rsquo;s pretty obvious, if there&rsquo;s a DEBUG environment variable,    then run Sanic in debug mode.</li>
 </ul>
 <h2>Using asyncpg?</h2>
-<p>Here's a gotcha I came across. I'm using <a href="https://github.com/MagicStack/asyncpg">asyncpg</a> to connect to a PostgreSQL database, I'm using a connection pool, like this:</p>
+<p>Here&rsquo;s a gotcha I came across. I&rsquo;m using <a href="https://github.com/MagicStack/asyncpg">asyncpg</a> to connect to a PostgreSQL database, I&rsquo;m using a connection pool, like this:</p>
 <pre><code>pool = await asyncpg.create_pool(
     dsn=os.environ['DATABASE_URL'],
     loop=loop # loop comes from sanic
 )
 </code></pre>
-<p>When I first booted my new app I tried to run the database migrations, they failed with a "max connections for role XYZ" error message. Turns out asyncpg will by default create 10 connections when the pool is created. Couple that with the 2 workers that Heroku recommend per Hobby dyno and you've hit the 20 connection limit on the free tier Postgres addon.</p>
+<p>When I first booted my new app I tried to run the database migrations, they failed with a &ldquo;max connections for role XYZ&rdquo; error message. Turns out asyncpg will by default create 10 connections when the pool is created. Couple that with the 2 workers that Heroku recommend per Hobby dyno and you&rsquo;ve hit the 20 connection limit on the free tier Postgres addon.</p>
 <p>To connect to your DB using an external tool you have to turn off the web dynos so that your connections are freed up. That or pay more for your Heroku service :)</p>
 <h2>Anything Else?</h2>
-<p>That's all I've got so far, I'll update this post when I come across more things worth noting down.</p>
-    </div>
+<p>That&rsquo;s all I&rsquo;ve got so far, I&rsquo;ll update this post when I come across more things worth noting down.</p></div>
+    </section>
 </main>
+        <div class="border-t-2 border-mt-dark-blue py-4 px-4">
+            <footer
+                class="flex flex-col sm:flex-row items-center justify-between"
+            >
+                <div class="">
+                    <a
+                        class="flex flex-row items-center gap-2 font-bold text-2xl"
+                        href="/"
+                    >
+                        <img
+                            src="/img/logo.png"
+                            alt="The MayorTech limited logo; a pixel art cartoon image of William Mayor."
+                            height="56"
+                            class="h-14"
+                        />
+                        MayorTech Limited
+                    </a>
+                </div>
+                <nav class="">
+                    <ul class="flex flex-row items-center gap-4">
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/">Home</a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/projects/"
+                                >Projects</a
+                            >
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/posts/">Blog</a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/contact/"
+                                >Contact</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+            </footer>
+        </div>
     </body>
 </html>

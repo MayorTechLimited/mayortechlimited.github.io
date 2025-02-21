@@ -1,67 +1,132 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
     <head>
         <title>MayorTech Limited - Contact Us</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap"
-            rel="stylesheet"
+        <meta
+            name="description"
+            content="The contact details for MayorTech Limited."
         />
         <link href="/styles.css" rel="stylesheet" />
+        <script
+            src="https://kit.fontawesome.com/0ebfed0803.js"
+            crossorigin="anonymous"
+            defer
+            async
+        ></script>
     </head>
 
-    <body class="bg-orange-50 text-slate-900 p-4">
-        <div class="border-b-4 border-brand py-2">
-            <header class="max-w-3xl mx-auto">
-                <div class="mb-4">
-                    <a class="inline-block font-bold text-4xl" href="/">
+    <body class="bg-mt-darkest-blue text-slate-50 flex flex-col gap-8 h-full">
+        <div class="border-b-2 border-mt-dark-blue py-4 px-4">
+            <header
+                class="flex flex-col sm:flex-row items-center justify-between"
+            >
+                <div class="">
+                    <a
+                        class="flex flex-row items-center gap-2 font-bold text-2xl"
+                        href="/"
+                    >
+                        <img
+                            src="/img/logo.png"
+                            alt="The MayorTech limited logo; a pixel art cartoon image of William Mayor."
+                            height="56"
+                            class="h-14"
+                        />
                         MayorTech Limited
                     </a>
                 </div>
                 <nav class="">
-                    <ul>
-                        <li class="block md:inline-block mr-2 my-2 md:my-0">
-                            <a
-                                class="hover:text-brand decoration-2 text-xl"
-                                href="/"
-                            >
-                                Home
-                            </a>
+                    <ul class="flex flex-row items-center gap-4">
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/">Home</a>
                         </li>
-                        <li class="hidden md:inline-block">&middot;</li>
-                        <li class="block md:inline-block mx-2 my-2 md:my-0">
-                            <a
-                                class="hover:text-brand decoration-2 text-xl"
-                                href="/projects/"
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/projects/"
+                                >Projects</a
                             >
-                                Projects
-                            </a>
                         </li>
-                        <li class="hidden md:inline-block">&middot;</li>
-                        <!-- <li class="block md:inline-block mx-2 my-2 md:my-0"><a class="hover:text-brand underline underline-offset-4 decoration-2" href="/posts/">Blog</a></li>
-                        <li class="hidden md:inline-block">&middot;</li> -->
-                        <li class="block md:inline-block ml-2 my-2 md:my-0">
-                            <a
-                                class="hover:text-brand decoration-2 text-xl"
-                                href="/contact/"
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/posts/">Blog</a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/contact/"
+                                >Contact</a
                             >
-                                Contact Us
-                            </a>
                         </li>
                     </ul>
                 </nav>
             </header>
         </div>
-        <main class="my-8">
-    <section>
-        <h1>Contact</h1>
-        <p>To get in touch with us please send an email to:</p>
-        <p>mail [at] mayortech.co.uk</p>
-        <p>We look forward to hearing from you.</p>
-    </section>
+        <main class="grow px-4 sm:px-8">
+<section
+    class="max-w-4xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8 text-mt-darkest-blue"
+>
+    <h1 class="text-4xl">Contact</h1>
+    <p class="text-2xl mt-8">
+        To get in touch with us please send an email to:
+    </p>
+    <p class="text-2xl mt-8">
+        <a
+            class="text-mt-blue hover:underline"
+            href="mailto:mail@mayortech.co.uk"
+        >
+            <i class="fa-solid fa-envelope"></i>
+            mail@mayortech.co.uk
+        </a>
+    </p>
+    <p class="text-2xl mt-8">Or contact me on LinkedIn:</p>
+    <p class="text-2xl mt-8">
+        <a
+            class="text-mt-blue hover:underline"
+            href="https://www.linkedin.com/in/william-mayor/"
+        >
+            <i class="fa-brands fa-linkedin"></i>
+            william-mayor
+        </a>
+    </p>
+    <p class="text-2xl mt-8">I look forward to hearing from you.</p>
+</section>
 </main>
+        <div class="border-t-2 border-mt-dark-blue py-4 px-4">
+            <footer
+                class="flex flex-col sm:flex-row items-center justify-between"
+            >
+                <div class="">
+                    <a
+                        class="flex flex-row items-center gap-2 font-bold text-2xl"
+                        href="/"
+                    >
+                        <img
+                            src="/img/logo.png"
+                            alt="The MayorTech limited logo; a pixel art cartoon image of William Mayor."
+                            height="56"
+                            class="h-14"
+                        />
+                        MayorTech Limited
+                    </a>
+                </div>
+                <nav class="">
+                    <ul class="flex flex-row items-center gap-4">
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/">Home</a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/projects/"
+                                >Projects</a
+                            >
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/posts/">Blog</a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/contact/"
+                                >Contact</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+            </footer>
+        </div>
     </body>
 </html>
