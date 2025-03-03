@@ -16,7 +16,6 @@ RUN curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4
 RUN python3 -m venv /venv
 
 RUN /venv/bin/pip install --no-cache-dir \
-    ghp-import==2.1.0 \
     Markdown==3.7 \
     staticjinja==5.0.0 \
     watchdog==4.0.2
