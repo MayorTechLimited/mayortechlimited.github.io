@@ -1,3 +1,4 @@
+import sys
 import json
 import shutil
 from pathlib import Path
@@ -64,15 +65,19 @@ class Mover(FileSystemEventHandler):
 
 
 if __name__ == "__main__":
-    observer = Observer()
     handler = Mover()
-    observer.schedule(handler, path="static", recursive=True)
-    print("Starting...")
-    observer.start()
-    try:
-        while observer.is_alive():
-            observer.join(1)
-    finally:
-        observer.stop()
-        observer.join()
-    print("FIN")
+    if "--watch" in sys.argv:
+        observer = Observer()
+        observer.schedule(handler, path="static", recursive=True)
+        print("Starting...")
+        observer.start()
+        try:
+            while observer.is_alive():
+                observer.join(1)
+        finally:
+            observer.stop()
+            observer.join()
+        print("FIN")
+    else:
+        # TODO: Minify/process the files? Add hash to the filename?
+        handler.sync()
