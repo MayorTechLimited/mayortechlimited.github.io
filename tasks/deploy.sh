@@ -1,4 +1,7 @@
 #!/bin/bash
+# ---
+# help-text: Deploy the site
+# ---
 set -eu
 
 . venv/bin/activate

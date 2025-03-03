@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+    css:
+        build: .
+        tty: true
+        stop_signal: SIGKILL
+        command:
+            [
+                "/tailwindcss",
+                "--watch",
+                "--input",
+                "/app/styles.css",
+                "--output",
+                "/app/dist/styles.css",
+            ]
+        volumes:
+            - .:/app
+
+    templates:
+        build: .
+        stop_signal: SIGINT
+        command: ["/venv/bin/python", "watch_templates.py", "--watch"]
+        volumes:
+            - .:/app
+
+    static:
+        build: .
+        tty: true
+        stop_signal: SIGINT
+        command: ["/venv/bin/python", "watch_static.py"]
+        volumes:
+            - .:/app
+
+    serve:
+        build: .
+        stop_signal: SIGINT
+        command:
+            [
+                "/venv/bin/python",
+                "-m",
+                "http.server",
+                "--directory",
+                "/app/dist",
+            ]
+        ports:
+            - "127.0.0.1:8000:8000"
+        volumes:
+            - .:/app
+        depends_on:
+            - css
+            - templates
+            - static

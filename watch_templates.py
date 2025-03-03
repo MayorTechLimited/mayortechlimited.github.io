@@ -1,4 +1,3 @@
-import shutil
 import os
 import sys
 from pathlib import Path
@@ -19,7 +18,7 @@ def post_index_context(template):
     posts = []
     dir = site.searchpath / Path("posts")
     for f in dir.iterdir():
-        if f.suffix == ".md":
+        if f.suffix == ".md" and not f.stem.startswith("_"):
             name = f.stem
             with f.open("r") as fd:
                 for line in fd.readlines():
@@ -46,15 +45,6 @@ def render_md(site, template, **kwargs):
     site.get_template("_post.html").stream(**kwargs).dump(str(out), encoding="utf-8")
 
 
-def copy_static():
-    src = Path(".") / "static"
-    src.mkdir(exist_ok=True, parents=True)
-    dest = Path(".") / "dist"
-    if dest.exists():
-        shutil.rmtree(dest)
-    shutil.copytree(src, dest)
-
-
 site = Site.make_site(
     searchpath="src",
     outpath="dist",
@@ -68,5 +58,4 @@ site = Site.make_site(
 )
 
 if __name__ == "__main__":
-    copy_static()
     site.render(use_reloader="--watch" in sys.argv)
