@@ -1,7 +1,9 @@
-{% extends "_base.html" %} {% block description %}{{ description }}{% endblock
-%} {% block content %}
-<div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
-    <div class="text-mt-darkest-blue text-sm mb-8">{{ created }}</div>
-    <div class="text-mt-darkest-blue prose prose-xl">{{ content }}</div>
-</div>
+{% extends "_base.html" %}
+{% set page = 'blog' %}
+{% block description %}{{ description }}{% endblock %}
+{% block content %}
+    <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
+        <div class="text-mt-darkest-blue text-sm mb-8">{{ created }}</div>
+        <div class="text-mt-darkest-blue prose prose-xl">{{ content }}</div>
+    </div>
 {% endblock %}
