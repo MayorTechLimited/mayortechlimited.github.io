@@ -4,7 +4,10 @@
         <title>MayorTech Limited - Projects</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="A list of names and descriptions of some of the projects and clients that I have worked with over the years." />
+        <meta
+            name="description"
+            content="A list of names and descriptions of some of the projects and clients that I have worked with over the years."
+        />
         <link href="/styles.css" rel="stylesheet" />
         <script
             src="https://kit.fontawesome.com/0ebfed0803.js"
@@ -42,20 +45,36 @@
                 <nav class="">
                     <ul class="flex flex-row items-center gap-4">
                         <li class="">
-                            <a class="hover:text-mt-red" href="/">Home</a>
-                        </li>
-                        <li class="">
-                            <a class="hover:text-mt-red" href="/projects/"
-                                >Projects</a
+                            <a
+                                class="hover:text-mt-red "
+                                href="/"
                             >
+                                Home
+                            </a>
                         </li>
                         <li class="">
-                            <a class="hover:text-mt-red" href="/posts/">Blog</a>
-                        </li>
-                        <li class="">
-                            <a class="hover:text-mt-red" href="/contact/"
-                                >Contact</a
+                            <a
+                                class="hover:text-mt-red text-mt-red"
+                                href="/projects/"
                             >
+                                Projects
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red "
+                                href="/posts/"
+                            >
+                                Blog
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red "
+                                href="/contact/"
+                            >
+                                Contact
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -74,12 +93,41 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
                 <div
-                    class="bg-mt-dark-blue text-white rounded-xl"
+                    class="bg-mt-dark-blue text-white rounded-xl flex flex-col"
+                >
+                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
+                        <h2 class="text-2xl">Asahi</h2>
+                        
+                            <div class="bg-white p-2">
+                                <img
+                                    src="/img/projects/asahi_logo.png"
+                                    alt=""
+                                    height="48"
+                                    class="max-h-12 max-w-32"
+                                />
+                            </div>
+                        
+                    </div>
+                    <div class="flex flex-col gap-4 justify-between grow p-4">
+                        <div>
+                            <p class="mb-4">
+                                <a class="hover:underline text-mt-red" href="https://asahisuperdry.com">https://asahisuperdry.com</a>
+                            </p>
+                            I helped build the Asahi Super Dry website using Python and Wagtail. This is a marketing/blog site ran by many teams across the world.
+                        </div>
+                        <div class="text-right">
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/asahi">Learn more <span class="sr-only">about Asahi</span></a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div
+                    class="bg-mt-dark-blue text-white rounded-xl flex flex-col"
                 >
                     <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
                         <h2 class="text-2xl">AXS Passport</h2>
                         
-                            <div class="">
+                            <div class="bg-white p-2">
                                 <img
                                     src="/img/projects/axs_passport.png"
                                     alt=""
@@ -89,228 +137,26 @@
                             </div>
                         
                     </div>
-                    <div class="p-4">
-                        <p class="mb-4">
-                            <a class="hover:underline text-mt-red" href="https://axs-passport.co">https://axs-passport.co</a>
-                        </p>
-                        <p>AXS Passport is a digital tool for sharing accessibility and inclusion
-requirements in order to create a more equitable society. I helped build the web
-app (JS, SvelteKit) and API (Python, FastAPI), and run the servers. I ran the
-team building this product including designers, front-end devs, back-end devs,
-mobile devs, and others.</p>
+                    <div class="flex flex-col gap-4 justify-between grow p-4">
+                        <div>
+                            <p class="mb-4">
+                                <a class="hover:underline text-mt-red" href="https://axs-passport.co">https://axs-passport.co</a>
+                            </p>
+                            I helped build the web app (JS, SvelteKit) and API (Python, FastAPI), and run the servers.
+                        </div>
+                        <div class="text-right">
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/axs_passport">Learn more <span class="sr-only">about AXS Passport</span></a>
+                        </div>
                     </div>
                 </div>
             
                 <div
-                    class="bg-mt-dark-blue text-white rounded-xl"
-                >
-                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
-                        <h2 class="text-2xl">Asahi</h2>
-                        
-                            <div class="">
-                                <img
-                                    src="/img/projects/asahi_super_dry.png"
-                                    alt=""
-                                    height="48"
-                                    class="max-h-12 max-w-32"
-                                />
-                            </div>
-                        
-                    </div>
-                    <div class="p-4">
-                        <p class="mb-4">
-                            <a class="hover:underline text-mt-red" href="https://asahisuperdry.com">https://asahisuperdry.com</a>
-                        </p>
-                        <p>I helped build the Asahi Super Dry website using Python and Wagtail. This is a
-marketing/blog site ran by many teams across the world. I built a flexible
-translation system (internationalisation, i18n) for them, as well as custom CRM
-widgets to help them easily create competitions. These competitions have seen
-tens of thousands of entries.</p>
-                    </div>
-                </div>
-            
-                <div
-                    class="bg-mt-dark-blue text-white rounded-xl"
-                >
-                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
-                        <h2 class="text-2xl">Diversity and Ability</h2>
-                        
-                            <div class="">
-                                <img
-                                    src="/img/projects/dna.png"
-                                    alt=""
-                                    height="48"
-                                    class="max-h-12 max-w-32"
-                                />
-                            </div>
-                        
-                    </div>
-                    <div class="p-4">
-                        <p class="mb-4">
-                            <a class="hover:underline text-mt-red" href="https://diversityandability.com">https://diversityandability.com</a>
-                        </p>
-                        <p>From the early days of this social enterprise I set up and ran the engineering
-team. For many years I was the only SWE. I built, and now run, the software team,
-the data protection team, and our website accessibility audit team.</p>
-                    </div>
-                </div>
-            
-                <div
-                    class="bg-mt-dark-blue text-white rounded-xl"
-                >
-                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
-                        <h2 class="text-2xl">MenuWizard</h2>
-                        
-                    </div>
-                    <div class="p-4">
-                        <p class="mb-4">
-                            <a class="hover:underline text-mt-red" href="https://menuwizard.com">https://menuwizard.com</a>
-                        </p>
-                        <p>An app that helps people find restaurants and meals that are suitable for their
-dietry/allergen requirements. I built the API (Python, FastAPI) that powers the
-app, and I manage the servers and hosting.</p>
-                    </div>
-                </div>
-            
-                <div
-                    class="bg-mt-dark-blue text-white rounded-xl"
-                >
-                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
-                        <h2 class="text-2xl">PickTeamz</h2>
-                        
-                            <div class="">
-                                <img
-                                    src="/img/projects/pickteamz.png"
-                                    alt=""
-                                    height="48"
-                                    class="max-h-12 max-w-32"
-                                />
-                            </div>
-                        
-                    </div>
-                    <div class="p-4">
-                        <p class="mb-4">
-                            <a class="hover:underline text-mt-red" href="https://pickteamz.com">https://pickteamz.com</a>
-                        </p>
-                        <p>I helped bring the ideas and passion of the founder to life; a new-style fantasy
-football game. As well as playing the game via the website (Python, Django), I
-also built an iOS and Android app (Dart, Flutter).</p>
-                    </div>
-                </div>
-            
-                <div
-                    class="bg-mt-dark-blue text-white rounded-xl"
-                >
-                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
-                        <h2 class="text-2xl">RFGraph</h2>
-                        
-                            <div class="">
-                                <img
-                                    src="/img/projects/rfgraph.png"
-                                    alt=""
-                                    height="48"
-                                    class="max-h-12 max-w-32"
-                                />
-                            </div>
-                        
-                    </div>
-                    <div class="p-4">
-                        <p class="mb-4">
-                            <a class="hover:underline text-mt-red" href="https://rfgraph.com">https://rfgraph.com</a>
-                        </p>
-                        <p>I built a single page app (JS, Svelte) and back-end API (Python, FastAPI) that
-enables complex hardware simulations. As well as a feature-rich front-end
-application I also built payment processing, and created the marketing and
-customer support sites.</p>
-                    </div>
-                </div>
-            
-                <div
-                    class="bg-mt-dark-blue text-white rounded-xl"
-                >
-                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
-                        <h2 class="text-2xl">SleepyMap</h2>
-                        
-                            <div class="">
-                                <img
-                                    src="/img/projects/sleepymap.png"
-                                    alt=""
-                                    height="48"
-                                    class="max-h-12 max-w-32"
-                                />
-                            </div>
-                        
-                    </div>
-                    <div class="p-4">
-                        <p class="mb-4">
-                            <a class="hover:underline text-mt-red" href="https://sleepymap.com">https://sleepymap.com</a>
-                        </p>
-                        <p>A side-project that I built to meet a gap in the market; a simple way to turn a
-spreadsheet into a map.</p>
-                    </div>
-                </div>
-            
-                <div
-                    class="bg-mt-dark-blue text-white rounded-xl"
-                >
-                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
-                        <h2 class="text-2xl">SoftIron</h2>
-                        
-                            <div class="">
-                                <img
-                                    src="/img/projects/softiron.jpg"
-                                    alt=""
-                                    height="48"
-                                    class="max-h-12 max-w-32"
-                                />
-                            </div>
-                        
-                    </div>
-                    <div class="p-4">
-                        <p class="mb-4">
-                            <a class="hover:underline text-mt-red" href="https://softiron.com">https://softiron.com</a>
-                        </p>
-                        <p>I helped them build various internal tools. Some for supporting their
-manufacturing; serial number generation, MAC address assignments, and lots more.
-Other projects included marketing tools (static asset management and hosting),
-and hardware cluster management (APIs for adding removing servers to a CEPH
-cluster).</p>
-                    </div>
-                </div>
-            
-                <div
-                    class="bg-mt-dark-blue text-white rounded-xl"
-                >
-                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
-                        <h2 class="text-2xl">UDISAS</h2>
-                        
-                            <div class="">
-                                <img
-                                    src="/img/projects/udisas.png"
-                                    alt=""
-                                    height="48"
-                                    class="max-h-12 max-w-32"
-                                />
-                            </div>
-                        
-                    </div>
-                    <div class="p-4">
-                        <p class="mb-4">
-                            <a class="hover:underline text-mt-red" href="https://udisas.com">https://udisas.com</a>
-                        </p>
-                        <p>An online assessment tool that can help a person to identify the barriers they
-are facing and possible solutions. I build the website (Python, Flask) and
-manage the servers and hosting.</p>
-                    </div>
-                </div>
-            
-                <div
-                    class="bg-mt-dark-blue text-white rounded-xl"
+                    class="bg-mt-dark-blue text-white rounded-xl flex flex-col"
                 >
                     <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
                         <h2 class="text-2xl">billabl</h2>
                         
-                            <div class="">
+                            <div class="bg-white p-2">
                                 <img
                                     src="/img/projects/billabl.png"
                                     alt=""
@@ -320,29 +166,230 @@ manage the servers and hosting.</p>
                             </div>
                         
                     </div>
-                    <div class="p-4">
-                        <p class="mb-4">
-                            <a class="hover:underline text-mt-red" href="https://billabl.co">https://billabl.co</a>
-                        </p>
-                        <p>billabl is a side-project I built to help me track and report on the time I spend
-working as a freelancer. It connects to your Google calendar instead of needing
-you to remember to clock in and out.</p>
+                    <div class="flex flex-col gap-4 justify-between grow p-4">
+                        <div>
+                            <p class="mb-4">
+                                <a class="hover:underline text-mt-red" href="https://billabl.co">https://billabl.co</a>
+                            </p>
+                            billabl is a side-project I built to help me track and report on the time I spend working as a freelancer.
+                        </div>
+                        <div class="text-right">
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/billabl">Learn more <span class="sr-only">about billabl</span></a>
+                        </div>
                     </div>
                 </div>
             
                 <div
-                    class="bg-mt-dark-blue text-white rounded-xl"
+                    class="bg-mt-dark-blue text-white rounded-xl flex flex-col"
+                >
+                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
+                        <h2 class="text-2xl">Diversity and Ability</h2>
+                        
+                            <div class="bg-white p-2">
+                                <img
+                                    src="/img/projects/dna.png"
+                                    alt=""
+                                    height="48"
+                                    class="max-h-12 max-w-32"
+                                />
+                            </div>
+                        
+                    </div>
+                    <div class="flex flex-col gap-4 justify-between grow p-4">
+                        <div>
+                            <p class="mb-4">
+                                <a class="hover:underline text-mt-red" href="https://diversityandability.com">https://diversityandability.com</a>
+                            </p>
+                            From the early days of this social enterprise I set up and ran the engineering team.
+                        </div>
+                        <div class="text-right">
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/diversity_and_ability">Learn more <span class="sr-only">about Diversity and Ability</span></a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div
+                    class="bg-mt-dark-blue text-white rounded-xl flex flex-col"
+                >
+                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
+                        <h2 class="text-2xl">MenuWizard</h2>
+                        
+                    </div>
+                    <div class="flex flex-col gap-4 justify-between grow p-4">
+                        <div>
+                            <p class="mb-4">
+                                <a class="hover:underline text-mt-red" href="https://menuwizard.com">https://menuwizard.com</a>
+                            </p>
+                            An app that helps people find restaurants and meals that are suitable for their dietry/allergen requirements.
+                        </div>
+                        <div class="text-right">
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/menu_wizard">Learn more <span class="sr-only">about MenuWizard</span></a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div
+                    class="bg-mt-dark-blue text-white rounded-xl flex flex-col"
+                >
+                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
+                        <h2 class="text-2xl">PickTeamz</h2>
+                        
+                            <div class="bg-white p-2">
+                                <img
+                                    src="/img/projects/pickteamz.png"
+                                    alt=""
+                                    height="48"
+                                    class="max-h-12 max-w-32"
+                                />
+                            </div>
+                        
+                    </div>
+                    <div class="flex flex-col gap-4 justify-between grow p-4">
+                        <div>
+                            <p class="mb-4">
+                                <a class="hover:underline text-mt-red" href="https://pickteamz.com">https://pickteamz.com</a>
+                            </p>
+                            As well as playing the game via the website (Python, Django), I also built an iOS and Android app (Dart, Flutter).
+                        </div>
+                        <div class="text-right">
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/pick_teamz">Learn more <span class="sr-only">about PickTeamz</span></a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div
+                    class="bg-mt-dark-blue text-white rounded-xl flex flex-col"
+                >
+                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
+                        <h2 class="text-2xl">RFGraph</h2>
+                        
+                            <div class="bg-white p-2">
+                                <img
+                                    src="/img/projects/rfgraph.png"
+                                    alt=""
+                                    height="48"
+                                    class="max-h-12 max-w-32"
+                                />
+                            </div>
+                        
+                    </div>
+                    <div class="flex flex-col gap-4 justify-between grow p-4">
+                        <div>
+                            <p class="mb-4">
+                                <a class="hover:underline text-mt-red" href="https://rfgraph.com">https://rfgraph.com</a>
+                            </p>
+                            I built a single page app (JS, Svelte) and back-end API (Python, FastAPI) that enables complex hardware simulations.
+                        </div>
+                        <div class="text-right">
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/rfgraph">Learn more <span class="sr-only">about RFGraph</span></a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div
+                    class="bg-mt-dark-blue text-white rounded-xl flex flex-col"
+                >
+                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
+                        <h2 class="text-2xl">SleepyMap</h2>
+                        
+                            <div class="bg-white p-2">
+                                <img
+                                    src="/img/projects/sleepymap.png"
+                                    alt=""
+                                    height="48"
+                                    class="max-h-12 max-w-32"
+                                />
+                            </div>
+                        
+                    </div>
+                    <div class="flex flex-col gap-4 justify-between grow p-4">
+                        <div>
+                            <p class="mb-4">
+                                <a class="hover:underline text-mt-red" href="https://sleepymap.com">https://sleepymap.com</a>
+                            </p>
+                            A side-project that I built to meet a gap in the market; a simple way to turn a spreadsheet into a map.
+                        </div>
+                        <div class="text-right">
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/sleepymap">Learn more <span class="sr-only">about SleepyMap</span></a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div
+                    class="bg-mt-dark-blue text-white rounded-xl flex flex-col"
+                >
+                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
+                        <h2 class="text-2xl">SoftIron</h2>
+                        
+                            <div class="bg-white p-2">
+                                <img
+                                    src="/img/projects/softiron.jpg"
+                                    alt=""
+                                    height="48"
+                                    class="max-h-12 max-w-32"
+                                />
+                            </div>
+                        
+                    </div>
+                    <div class="flex flex-col gap-4 justify-between grow p-4">
+                        <div>
+                            <p class="mb-4">
+                                <a class="hover:underline text-mt-red" href="https://softiron.com">https://softiron.com</a>
+                            </p>
+                            I helped them build various internal tools.
+                        </div>
+                        <div class="text-right">
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/softiron">Learn more <span class="sr-only">about SoftIron</span></a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div
+                    class="bg-mt-dark-blue text-white rounded-xl flex flex-col"
+                >
+                    <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
+                        <h2 class="text-2xl">UDISAS</h2>
+                        
+                            <div class="bg-white p-2">
+                                <img
+                                    src="/img/projects/udisas.png"
+                                    alt=""
+                                    height="48"
+                                    class="max-h-12 max-w-32"
+                                />
+                            </div>
+                        
+                    </div>
+                    <div class="flex flex-col gap-4 justify-between grow p-4">
+                        <div>
+                            <p class="mb-4">
+                                <a class="hover:underline text-mt-red" href="https://udisas.com">https://udisas.com</a>
+                            </p>
+                            An online assessment tool that can help a person to identify the barriers they are facing and possible solutions.
+                        </div>
+                        <div class="text-right">
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/udisas">Learn more <span class="sr-only">about UDISAS</span></a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div
+                    class="bg-mt-dark-blue text-white rounded-xl flex flex-col"
                 >
                     <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
                         <h2 class="text-2xl">vantage</h2>
                         
                     </div>
-                    <div class="p-4">
-                        <p class="mb-4">
-                            <a class="hover:underline text-mt-red" href="https://vantage-org.github.io/vantage">https://vantage-org.github.io/vantage</a>
-                        </p>
-                        <p>A task runner that integrates nicely with Docker and that has great support for
-managing environment variables. I use it in almost all of my projects.</p>
+                    <div class="flex flex-col gap-4 justify-between grow p-4">
+                        <div>
+                            <p class="mb-4">
+                                <a class="hover:underline text-mt-red" href="https://vantage-org.github.io/vantage">https://vantage-org.github.io/vantage</a>
+                            </p>
+                            A task runner that integrates nicely with Docker and that has great support for managing environment variables.
+                        </div>
+                        <div class="text-right">
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/vantage">Learn more <span class="sr-only">about vantage</span></a>
+                        </div>
                     </div>
                 </div>
             
@@ -373,17 +420,17 @@ managing environment variables. I use it in almost all of my projects.</p>
                             <a class="hover:text-mt-red" href="/">Home</a>
                         </li>
                         <li class="">
-                            <a class="hover:text-mt-red" href="/projects/"
-                                >Projects</a
-                            >
+                            <a class="hover:text-mt-red" href="/projects/">
+                                Projects
+                            </a>
                         </li>
                         <li class="">
                             <a class="hover:text-mt-red" href="/posts/">Blog</a>
                         </li>
                         <li class="">
-                            <a class="hover:text-mt-red" href="/contact/"
-                                >Contact</a
-                            >
+                            <a class="hover:text-mt-red" href="/contact/">
+                                Contact
+                            </a>
                         </li>
                     </ul>
                 </nav>

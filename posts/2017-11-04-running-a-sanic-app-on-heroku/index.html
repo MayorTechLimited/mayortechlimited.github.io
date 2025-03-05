@@ -4,7 +4,10 @@
         <title>MayorTech Limited</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="A quick guide to deploying a Python Sanic app on Heroku" />
+        <meta
+            name="description"
+            content="A quick guide to deploying a Python Sanic app on Heroku"
+        />
         <link href="/styles.css" rel="stylesheet" />
         <script
             src="https://kit.fontawesome.com/0ebfed0803.js"
@@ -42,29 +45,45 @@
                 <nav class="">
                     <ul class="flex flex-row items-center gap-4">
                         <li class="">
-                            <a class="hover:text-mt-red" href="/">Home</a>
-                        </li>
-                        <li class="">
-                            <a class="hover:text-mt-red" href="/projects/"
-                                >Projects</a
+                            <a
+                                class="hover:text-mt-red "
+                                href="/"
                             >
+                                Home
+                            </a>
                         </li>
                         <li class="">
-                            <a class="hover:text-mt-red" href="/posts/">Blog</a>
-                        </li>
-                        <li class="">
-                            <a class="hover:text-mt-red" href="/contact/"
-                                >Contact</a
+                            <a
+                                class="hover:text-mt-red "
+                                href="/projects/"
                             >
+                                Projects
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red text-mt-red"
+                                href="/posts/"
+                            >
+                                Blog
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red "
+                                href="/contact/"
+                            >
+                                Contact
+                            </a>
                         </li>
                     </ul>
                 </nav>
             </header>
         </div>
         <main class="grow px-4 sm:px-8">
-<div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
-    <div class="text-mt-darkest-blue text-sm mb-8">2017-11-04</div>
-    <div class="text-mt-darkest-blue prose prose-xl"><h1>Running a Sanic App on Heroku</h1>
+    <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
+        <div class="text-mt-darkest-blue text-sm mb-8">2017-11-04</div>
+        <div class="text-mt-darkest-blue prose prose-xl"><h1>Running a Sanic App on Heroku</h1>
 <p>Here&rsquo;s the context; I&rsquo;ve built lots of Python-based websites before, mostly using <a href="http://flask.pocoo.org/">Flask</a>. My latest side-project uses <a href="http://sanic.readthedocs.io/en/latest/">Sanic</a> instead. I&rsquo;ve hosted lots of websites on <a href="https://heroku.com">Heroku</a> before, I&rsquo;ve never hosted a Sanic app, and there didn&rsquo;t seem to be much in the way of documentation.  I managed to get something running, here&rsquo;s how.</p>
 <h3>To Gunicorn or Not?</h3>
 <p>Normally, when it comes time to put an app in production, I turn to <a href="http://gunicorn.org/">Gunicorn</a>. The local flask development servers that I use until then aren&rsquo;t production-ready. This message, &ldquo;not production-ready&rdquo;, is really drummed into you by the docs. Not so by the Sanic docs though. In fact, when I first read it, the <a href="http://sanic.readthedocs.io/en/latest/sanic/deploying.html">deployment section</a> of their docs was incredibly sparse. This made me a bit uncertain, do I use the same server in production as I am for dev? Really? That doesn&rsquo;t seem right&hellip;</p>
@@ -102,7 +121,7 @@ if __name__ == '__main__':
 <p>To connect to your DB using an external tool you have to turn off the web dynos so that your connections are freed up. That or pay more for your Heroku service :)</p>
 <h2>Anything Else?</h2>
 <p>That&rsquo;s all I&rsquo;ve got so far, I&rsquo;ll update this post when I come across more things worth noting down.</p></div>
-</div>
+    </div>
 </main>
         <div class="border-t-2 border-mt-dark-blue py-4 px-4">
             <footer
@@ -128,17 +147,17 @@ if __name__ == '__main__':
                             <a class="hover:text-mt-red" href="/">Home</a>
                         </li>
                         <li class="">
-                            <a class="hover:text-mt-red" href="/projects/"
-                                >Projects</a
-                            >
+                            <a class="hover:text-mt-red" href="/projects/">
+                                Projects
+                            </a>
                         </li>
                         <li class="">
                             <a class="hover:text-mt-red" href="/posts/">Blog</a>
                         </li>
                         <li class="">
-                            <a class="hover:text-mt-red" href="/contact/"
-                                >Contact</a
-                            >
+                            <a class="hover:text-mt-red" href="/contact/">
+                                Contact
+                            </a>
                         </li>
                     </ul>
                 </nav>
