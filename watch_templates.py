@@ -51,18 +51,39 @@ def project_index_context(template):
     for f in dir.iterdir():
         if f.suffix == ".md" and not f.stem.startswith("_"):
             markdown_content = f.read_text()
-            desc = markdowner.convert(markdown_content)
+            markdowner.convert(markdown_content)
             projects.append(
                 {
+                    "stem": f.stem,
                     "title": markdowner.Meta["title"][0],
-                    "description": desc,
+                    "description": "\n".join(markdowner.Meta["description"]),
                     "link": markdowner.Meta["link"][0],
                     "logo": markdowner.Meta.get("logo", [None])[0],
                     "screenshot": markdowner.Meta.get("screenshot", [None])[0],
                 }
             )
-    projects.sort(key=lambda p: p["title"])
+    projects.sort(key=lambda p: p["title"].lower())
     return {"projects": projects}
+
+
+def project_render_md(site, template, **kwargs):
+    out = Path(site.outpath) / "projects" / Path(template.name).stem / "index.html"
+    os.makedirs(out.parent, exist_ok=True)
+    site.get_template("projects/_project.html").stream(**kwargs).dump(
+        str(out), encoding="utf-8"
+    )
+
+
+def project_md_context(template):
+    markdown_content = Path(template.filename).read_text()
+    desc = markdowner.convert(markdown_content)
+    return {
+        "title": markdowner.Meta["title"][0],
+        "description": desc,
+        "link": markdowner.Meta["link"][0],
+        "logo": markdowner.Meta.get("logo", [None])[0],
+        "screenshot": markdowner.Meta.get("screenshot", [None])[0],
+    }
 
 
 site = Site.make_site(
@@ -70,11 +91,13 @@ site = Site.make_site(
     outpath="dist",
     contexts=[
         (r"posts/.*\.md", post_md_context),
+        (r"projects/.*\.md", project_md_context),
         ("posts/index.html", post_index_context),
         ("projects/index.html", project_index_context),
     ],
     rules=[
         (r"posts/.*\.md", post_render_md),
+        (r"projects/.*\.md", project_render_md),
     ],
 )
 

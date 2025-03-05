@@ -2,6 +2,7 @@ link: https://softiron.com
 logo: /img/projects/softiron.jpg
 screenshot: /img/projects/softiron.jpg
 title: SoftIron
+description: I helped them build various internal tools.
 
 I helped them build various internal tools. Some for supporting their
 manufacturing; serial number generation, MAC address assignments, and lots more.

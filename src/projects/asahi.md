@@ -1,7 +1,8 @@
 link: https://asahisuperdry.com
-logo: /img/projects/asahi_super_dry.png
-screenshot: /img/projects/asahi_super_dry.png
+logo: /img/projects/asahi_logo.png
+screenshot: /img/projects/asahi_screenshot.png
 title: Asahi
+description: I helped build the Asahi Super Dry website using Python and Wagtail. This is a marketing/blog site ran by many teams across the world.
 
 I helped build the Asahi Super Dry website using Python and Wagtail. This is a
 marketing/blog site ran by many teams across the world. I built a flexible
