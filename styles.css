@@ -17,7 +17,16 @@
 }
 
 @layer components {
-    .prose :where(ul > li):not(:where([class~="not-prose"] *))::marker {
+    .prose a {
+        @apply text-mt-blue;
+    }
+    .prose li::marker {
         color: #090535;
+    }
+    .prose code::before {
+        content: '';
+    }
+    .prose code::after {
+        content: '';
     }
 }

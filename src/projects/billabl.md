@@ -1,6 +1,5 @@
 link: https://billabl.co
 logo: /img/projects/billabl.png
-screenshot: /img/projects/billabl.png
 title: billabl
 description: billabl is a side-project I built to help me track and report on the time I spend working as a freelancer.
 

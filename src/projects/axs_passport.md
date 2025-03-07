@@ -1,6 +1,6 @@
 link: https://axs-passport.co
 logo: /img/projects/axs_passport.png
-screenshot: /img/projects/axs_passport.png
+screenshot: /img/projects/axs_passport_screenshot.png
 title: AXS Passport
 description: I helped build the web app (JS, SvelteKit) and API (Python, FastAPI), and run the servers.
 

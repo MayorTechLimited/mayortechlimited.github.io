@@ -43,7 +43,7 @@ There are a bunch of dokku plugins that I almost always install, check out Dokku
 
 For running a database take a look at [dokku-postgres](https://github.com/dokku/dokku-postgres). You install the plugin, create a DB, link the database to your apps and you're done. Lovely :)
 
-There's also [dokku-redis](https://github.com/dokku/dokku-redis) which is great for asyncronous workers, caching, or simple key/value storage. Again, the plugin makes managing redis instances really easy.
+There's also [dokku-redis](https://github.com/dokku/dokku-redis) which is great for asynchronous workers, caching, or simple key/value storage. Again, the plugin makes managing redis instances really easy.
 
 I love the [dokku-letsencrypt](https://github.com/dokku/dokku-letsencrypt) plugin, it manages the SSL certs for you in a really easy way. Remember to run this command to make sure your certs are auto-renewed:
 

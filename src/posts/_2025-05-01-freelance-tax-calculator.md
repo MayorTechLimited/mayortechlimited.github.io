@@ -1,3 +1,5 @@
+description: A quick and easy tool to work out how much tax you should save
+
 # UK Freelancer's Tax Calculator
 
 A quick and easy tool to work out how much tax you should save.

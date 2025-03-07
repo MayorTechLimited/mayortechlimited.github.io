@@ -1,6 +1,5 @@
 link: https://diversityandability.com
 logo: /img/projects/dna.png
-screenshot: /img/projects/dna.png
 title: Diversity and Ability
 description: From the early days of this social enterprise I set up and ran the engineering team.
 

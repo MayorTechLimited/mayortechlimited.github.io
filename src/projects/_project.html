@@ -20,7 +20,7 @@
             <a class="hover:underline text-mt-blue" href="{{ link }}">{{ link }}</a>
         </div>
         {% if screenshot %}
-            <div class="my-8 border-2 border-mt-darkest-blue rounded-xl">
+            <div class="mt-8 border-2 border-mt-darkest-blue rounded-xl">
                 <img
                     src="{{ screenshot }}"
                     alt=""
@@ -29,6 +29,6 @@
                 />
             </div>
         {% endif %}
-        <div class="text-mt-darkest-blue prose prose-xl">{{ description }}</div>
+        <div class="text-mt-darkest-blue prose prose-xl mt-8">{{ description }}</div>
     </div>
 {% endblock %}

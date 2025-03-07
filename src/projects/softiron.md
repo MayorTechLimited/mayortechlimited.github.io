@@ -1,6 +1,5 @@
 link: https://softiron.com
 logo: /img/projects/softiron.jpg
-screenshot: /img/projects/softiron.jpg
 title: SoftIron
 description: I helped them build various internal tools.
 
