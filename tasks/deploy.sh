@@ -29,5 +29,6 @@ cp -r "$TMP"/* ./
 echo 'www.mayortech.co.uk' > CNAME
 
 D=$(date +"%Y-%m-%dT%H:%M:%S")
-git commit -am "Deploy on $D"
+git add .
+git commit -m "Deploy on $D"
 git push origin main
