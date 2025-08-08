@@ -1,26 +1,26 @@
 {% extends "_base.html" %}
-{% set page = 'projects' %}
-{% block title %}MayorTech Limited - Projects{% endblock %}
-{% block description %}A list of some of the projects I've have worked on over the years.{% endblock %}
+{% set page = 'work' %}
+{% block title %}MayorTech Limited - Work{% endblock %}
+{% block description %}A list of some of the work I've done with clients.{% endblock %}
 {% block content %}
     <div class="flex flex-col gap-8">
         <div class="bg-mt-gray rounded-xl p-4 sm:p-8">
             <div class="text-mt-darkest-blue">
-                <h1 class="text-4xl">Projects</h1>
+                <h1 class="text-4xl">Work</h1>
                 <p class="text-2xl mt-8 max-w-3xl">
-                    Here's a list of some of the projects I've have worked on over the years. These are all personal side-projects that I've built to solve a problem or scratch an itch.
+                    Here's a list of some of the work I've done with clients.
                 </p>
             </div>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8  max-w-[2400px]">
-            {% for p in projects %}
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-[2400px]">
+            {% for w in work %}
                 <div class="max-w-3xl bg-mt-dark-blue text-white rounded-xl flex flex-col">
                     <div class="h-24 bg-mt-gray text-mt-darkest-blue rounded-t-xl p-4 flex flex-row justify-between items-center">
-                        <h2 class="text-2xl">{{ p.title }}</h2>
-                        {% if p.logo %}
+                        <h2 class="text-2xl">{{ w.title }}</h2>
+                        {% if w.logo %}
                             <div class="bg-white p-2">
                                 <img
-                                    src="{{ p.logo }}"
+                                    src="{{ w.logo }}"
                                     alt=""
                                     height="48"
                                     class="max-h-12 max-w-32"
@@ -31,13 +31,13 @@
                     <div class="flex flex-col gap-4 justify-between grow p-4">
                         <div>
                             <p class="mb-4">
-                                <a class="hover:underline text-mt-red" href="{{ p.link }}">{{ p.link }}</a>
+                                <a class="hover:underline text-mt-red" href="{{ w.link }}">{{ w.link }}</a>
                             </p>
-                            {{ p.description }}
+                            {{ w.description }}
                         </div>
                         <div class="text-right">
-                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/{{ p.stem }}">
-                                Learn more <span class="sr-only">about {{ p.title }}</span>
+                            <a class="inline-block bg-mt-red text-mt-darkest-blue rounded p-2 hover:bg-white" href="/projects/{{ w.stem }}">
+                                Learn more <span class="sr-only">about {{ w.title }}</span>
                             </a>
                         </div>
                     </div>

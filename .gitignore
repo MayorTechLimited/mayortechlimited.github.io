@@ -2,6 +2,8 @@ __pycache__
 dist/
 venv/
 .DS_Store
-.env/
+.env
 .vantage
 .static
+.vg-env/
+.zed

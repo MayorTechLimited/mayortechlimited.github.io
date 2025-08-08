@@ -3,7 +3,6 @@ import sys
 from pathlib import Path
 
 import markdown
-
 from staticjinja import Site
 
 markdowner = markdown.Markdown(output_format="html5", extensions=["smarty", "meta"])
@@ -86,18 +85,62 @@ def project_md_context(template):
     }
 
 
+def work_index_context(template):
+    work = []
+    dir = site.searchpath / Path("work")
+    for f in dir.iterdir():
+        if f.suffix == ".md" and not f.stem.startswith("_"):
+            markdown_content = f.read_text()
+            markdowner.convert(markdown_content)
+            work.append(
+                {
+                    "stem": f.stem,
+                    "title": markdowner.Meta["title"][0],
+                    "description": "\n".join(markdowner.Meta["description"]),
+                    "link": markdowner.Meta["link"][0],
+                    "logo": markdowner.Meta.get("logo", [None])[0],
+                    "screenshot": markdowner.Meta.get("screenshot", [None])[0],
+                }
+            )
+    work.sort(key=lambda p: p["title"].lower())
+    return {"work": work}
+
+
+def work_render_md(site, template, **kwargs):
+    out = Path(site.outpath) / "work" / Path(template.name).stem / "index.html"
+    os.makedirs(out.parent, exist_ok=True)
+    site.get_template("work/_work.html").stream(**kwargs).dump(
+        str(out), encoding="utf-8"
+    )
+
+
+def work_md_context(template):
+    markdown_content = Path(template.filename).read_text()
+    desc = markdowner.convert(markdown_content)
+    return {
+        "title": markdowner.Meta["title"][0],
+        "description": desc,
+        "link": markdowner.Meta["link"][0],
+        "logo": markdowner.Meta.get("logo", [None])[0],
+        "screenshot": markdowner.Meta.get("screenshot", [None])[0],
+    }
+
+
 site = Site.make_site(
     searchpath="src",
     outpath="dist",
     contexts=[
         (r"posts/.*\.md", post_md_context),
         (r"projects/.*\.md", project_md_context),
+        (r"work/.*\.md", work_md_context),
         ("posts/index.html", post_index_context),
         ("projects/index.html", project_index_context),
+        ("work/index.html", work_index_context),
     ],
     rules=[
         (r"posts/.*\.md", post_render_md),
         (r"projects/.*\.md", project_render_md),
+        (r"work/.*\.md", work_render_md),
     ],
 )
 

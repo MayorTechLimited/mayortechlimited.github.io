@@ -17,6 +17,9 @@
 }
 
 @layer components {
+    a {
+        @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mt-red;
+    }
     .prose a {
         @apply text-mt-blue;
     }
@@ -24,9 +27,9 @@
         color: #090535;
     }
     .prose code::before {
-        content: '';
+        content: "";
     }
     .prose code::after {
-        content: '';
+        content: "";
     }
 }
