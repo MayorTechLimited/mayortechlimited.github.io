@@ -1,4 +1,3 @@
-link: https://axs-passport.co
 logo: /img/projects/axs_passport.png
 screenshot: /img/projects/axs_passport_screenshot.png
 title: AXS Passport
