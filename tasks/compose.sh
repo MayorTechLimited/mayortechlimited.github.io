@@ -4,4 +4,4 @@
 # ---
 set -eu
 
-docker compose --rm "${@:---help}"
+docker compose "${@:---help}"
