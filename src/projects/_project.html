@@ -3,10 +3,10 @@
 {% block description %}{{ description }}{% endblock %}
 {% block content %}
     <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
-        <div class="flex flex-row justify-between items-center">
-            <div class="text-mt-darkest-blue prose prose-xl"><h1>{{ title }}</h1></div>
+        <div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
+            <div class="text-mt-darkest-blue prose prose-xl order-2 md:order-1"><h1>{{ title }}</h1></div>
             {% if logo %}
-                <div class="">
+                <div class="order-1 md:order-2">
                     <img
                         src="{{ logo }}"
                         alt=""
