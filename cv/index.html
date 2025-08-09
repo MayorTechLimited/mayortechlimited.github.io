@@ -61,6 +61,10 @@
                             <i class="fa fa-fw fab fa-github"></i>
                             <a class="hover:underline" href="https://github.com/WilliamMayor">WilliamMayor</a>
                         </li>
+                        <li id="pdf">
+                            <i class="fa fa-fw far fa-file-pdf"></i>
+                            <a class="hover:underline" href="/William Mayor's CV.pdf">Download PDF</a>
+                        </li>
                         <li>
                             <i class="fa fa-fw fab fa-linkedin"></i>
                             <a class="hover:underline" href="https://www.linkedin.com/in/william-mayor/">william-mayor</a>
@@ -123,12 +127,12 @@
                 <div class="max-w-4xl mx-auto py-2 px-4 bg-mt-gray rounded-xl text-mt-darkest-blue space-y-4">
                     <h2 class="text-2xl">Experience</h2>
 
-                    <p class="text-xl">When I graduated from UCL I started my own
+                    <p class="text-xl">When I graduated from UCL, I started my own
                         freelance/consultancy company. I’ve worked with many clients on
                         many varied projects, here are some highlights.</p>
 
                     <p><a href="/work/asahi/" class="text-mt-blue">Asahi Super Dry</a>
-                        - I was the backend developer for this global, multi-lingual,
+                        - I was the backend developer for this global, multilingual,
                         website. As well supporting regional teams to create branded and
                         accessible content, I also built a feature-rich competition form
                         system, allowing users to build engaging competition mechanics
@@ -147,7 +151,7 @@
 
                     <p><a href="/work/pickteamz/" class="text-mt-blue">PickTeamz</a> -
                         I built the website and the native iOS and Android that runs this
-                        fantasy football game. Using Django, and Flutter it supports
+                        fantasy football game. Using Django, and Flutter, it supports
                         pushing time-sensitive live goal notifications to thousands of
                         users, as well as providing fast access to league tables with
                         non-trivial scoring mechanics.</p>
@@ -160,7 +164,7 @@
 
                     <p><a href="/work/diversity_and_ability/" class="text-mt-blue">
                         Diversity and Ability</a> - From the early days of this social
-                        enterprise I set up and ran the engineering team. For many years
+                        enterprise, I set up and ran the engineering team. For many years
                         I was the only SWE. I built and now run the software team, the
                         data protection team, and our website accessibility audit team.
                     </p>
@@ -188,6 +192,7 @@
                     element.addEventListener("dblclick", function() {
                         element.setAttribute("contenteditable", "true");
                         element.focus();
+                        document.getElementById('pdf').classList.add('hidden');
                     });
                 });
             });
