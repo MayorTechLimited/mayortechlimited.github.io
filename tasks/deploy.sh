@@ -1,16 +1,16 @@
 #!/bin/bash
 # ---
 # help-text: Deploy the site
-# environent:
+# environment:
 #   - HOME
 #   - USER
 # ---
 set -eu
 
 rm -rf dist
-vg compose run --remove-orphans css /tailwindcss -i ./styles.css -o ./dist/styles.css --minify
-vg compose run --remove-orphans static /venv/bin/python watch_static.py --build
-vg compose run --remove-orphans templates /venv/bin/python watch_templates.py --build
+vg compose run --rm css /tailwindcss -i ./styles.css -o ./dist/styles.css --minify
+vg compose run --rm static /venv/bin/python watch_static.py --build
+vg compose run --rm templates /venv/bin/python watch_templates.py --build
 
 TMP=$(mktemp --directory)
 cp -r dist/* "$TMP"/
