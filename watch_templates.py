@@ -5,7 +5,9 @@ from pathlib import Path
 import markdown
 from staticjinja import Site
 
-markdowner = markdown.Markdown(output_format="html5", extensions=["smarty", "meta"])
+markdowner = markdown.Markdown(
+    output_format="html5", extensions=["smarty", "meta", "extra"]
+)
 
 
 def post_get_created(template):
