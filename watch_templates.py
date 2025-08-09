@@ -51,14 +51,15 @@ def project_index_context(template):
         if f.suffix == ".md" and not f.stem.startswith("_"):
             markdown_content = f.read_text()
             markdowner.convert(markdown_content)
+            meta = markdowner.Meta
             projects.append(
                 {
                     "stem": f.stem,
-                    "title": markdowner.Meta["title"][0],
-                    "description": "\n".join(markdowner.Meta["description"]),
-                    "link": markdowner.Meta["link"][0],
-                    "logo": markdowner.Meta.get("logo", [None])[0],
-                    "screenshot": markdowner.Meta.get("screenshot", [None])[0],
+                    "title": meta["title"][0],
+                    "description": "\n".join(meta["description"]),
+                    "link": meta["link"][0] if meta.get("link") else None,
+                    "logo": meta.get("logo", [None])[0],
+                    "screenshot": meta.get("screenshot", [None])[0],
                 }
             )
     projects.sort(key=lambda p: p["title"].lower())
@@ -76,12 +77,13 @@ def project_render_md(site, template, **kwargs):
 def project_md_context(template):
     markdown_content = Path(template.filename).read_text()
     desc = markdowner.convert(markdown_content)
+    meta = markdowner.Meta
     return {
-        "title": markdowner.Meta["title"][0],
+        "title": meta["title"][0],
         "description": desc,
-        "link": markdowner.Meta["link"][0],
-        "logo": markdowner.Meta.get("logo", [None])[0],
-        "screenshot": markdowner.Meta.get("screenshot", [None])[0],
+        "link": meta["link"][0] if meta.get("link") else None,
+        "logo": meta.get("logo", [None])[0],
+        "screenshot": meta.get("screenshot", [None])[0],
     }
 
 
@@ -92,14 +94,15 @@ def work_index_context(template):
         if f.suffix == ".md" and not f.stem.startswith("_"):
             markdown_content = f.read_text()
             markdowner.convert(markdown_content)
+            meta = markdowner.Meta
             work.append(
                 {
                     "stem": f.stem,
-                    "title": markdowner.Meta["title"][0],
-                    "description": "\n".join(markdowner.Meta["description"]),
-                    "link": markdowner.Meta["link"][0],
-                    "logo": markdowner.Meta.get("logo", [None])[0],
-                    "screenshot": markdowner.Meta.get("screenshot", [None])[0],
+                    "title": meta["title"][0],
+                    "description": "\n".join(meta["description"]),
+                    "link": meta["link"][0] if meta.get("link") else None,
+                    "logo": meta.get("logo", [None])[0],
+                    "screenshot": meta.get("screenshot", [None])[0],
                 }
             )
     work.sort(key=lambda p: p["title"].lower())
@@ -117,12 +120,13 @@ def work_render_md(site, template, **kwargs):
 def work_md_context(template):
     markdown_content = Path(template.filename).read_text()
     desc = markdowner.convert(markdown_content)
+    meta = markdowner.Meta
     return {
-        "title": markdowner.Meta["title"][0],
+        "title": meta["title"][0],
         "description": desc,
-        "link": markdowner.Meta["link"][0],
-        "logo": markdowner.Meta.get("logo", [None])[0],
-        "screenshot": markdowner.Meta.get("screenshot", [None])[0],
+        "link": meta["link"][0] if meta.get("link") else None,
+        "logo": meta.get("logo", [None])[0],
+        "screenshot": meta.get("screenshot", [None])[0],
     }
 
 

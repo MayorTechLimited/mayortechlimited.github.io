@@ -16,9 +16,11 @@
                 </div>
             {% endif %}
         </div>
-        <div class="text-xl mt-8">
-            <a class="hover:underline text-mt-blue" href="{{ link }}">{{ link }}</a>
-        </div>
+        {% if link %}
+            <div class="text-xl mt-8">
+                <a class="hover:underline text-mt-blue" href="{{ link }}">{{ link }}</a>
+            </div>
+        {% endif %}
         {% if screenshot %}
             <div class="mt-8 border-2 border-mt-darkest-blue rounded-xl">
                 <img
