@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en" class="h-full">
+    <head>
+        <title>MayorTech Limited</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="How I setup Puppeteer to automatically generate a PDF of my CV"
+        />
+        <link href="/styles.css" rel="stylesheet" />
+        <script
+            src="https://kit.fontawesome.com/0ebfed0803.js"
+            crossorigin="anonymous"
+            defer
+            async
+        ></script>
+        <script
+            defer
+            src="https://api.pirsch.io/pa.js"
+            id="pianjs"
+            data-code="EzgOWgXDZppcr8suk1FApdXVGO5KY2Cg"
+        ></script>
+    </head>
+
+    <body class="bg-mt-darkest-blue text-slate-50 flex flex-col gap-8 h-full">
+        <div class="border-b-2 border-mt-dark-blue py-4 px-4">
+            <header
+                class="flex flex-col sm:flex-row items-center justify-between"
+            >
+                <div class="">
+                    <a
+                        class="flex flex-row items-center gap-2 font-bold text-2xl"
+                        href="/"
+                    >
+                        <img
+                            src="/img/logo.png"
+                            alt="The MayorTech limited logo; a pixel art cartoon image of William Mayor."
+                            height="56"
+                            class="h-14"
+                        />
+                        MayorTech Limited
+                    </a>
+                </div>
+                <nav class="">
+                    <ul class="flex flex-row items-center gap-4">
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red "
+                                href="/"
+                            >
+                                Home
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red "
+                                href="/work/"
+                            >
+                                Work
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red "
+                                href="/projects/"
+                            >
+                                Projects
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red text-mt-red"
+                                href="/posts/"
+                            >
+                                Blog
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red"
+                                href="/cv/"
+                            >
+                                CV
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red "
+                                href="/contact/"
+                            >
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+        <main class="grow px-4 sm:px-8">
+    <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
+        <div class="text-mt-darkest-blue text-sm mb-8">2025-08-18</div>
+        <div class="text-mt-darkest-blue prose prose-xl"><h1>Automatically building a PDF of my CV</h1>
+<p>I have a web version of <a href="/cv/">my CV online</a>.</p>
+<p>I&rsquo;m currently applying for lots of jobs, so I&rsquo;m making tweaks to my CV all the time. In a previous post I
+talked about how (and why) I&rsquo;ve <a href="/posts/2025-08-09-editable-cv/">made the CV editable online</a>.
+The problem I was facing this time is that when I make changes to the original CV I want
+to have the web version and PDF version stay in sync, without me having to remember to
+manually save the web version as a PDF.</p>
+<p>Changing the HTML side of things is nice and easy. But regenerating the PDF is a fiddly pain, so I decided to automate it.</p>
+<h2>1. Add Puppeteer to my project</h2>
+<p>I already had a Docker-based build system for my website, I just needed to add Puppeteer
+as a new dependency. Puppeteer is a node library so I needed to install node and npm, and
+then use npm to install Puppeteer. All standard stuff.</p>
+<p>What makes it fun is that my local dev machine is an M1 Mac, and I&rsquo;ve been using the
+Linux ARM64 runners in GitHub Actions to run the build system (in order to have a little
+bit of parity between my dev machine and the &ldquo;production&rdquo; machine). Most of the world
+(but certainly the Puppeteer docs) assume that you&rsquo;re running x86_64 and the installation
+instructions often end up causing very confusing errors. In this case I had an ubuntu
+linux docker image printing a rosetta error message:</p>
+<pre><code>rosetta error: failed to open elf at /lib64/ld-linux-x86-64.so.2
+</code></pre>
+<p>But rosetta is a MacOS utility, not something you&rsquo;d find installed in a Linux Docker image!</p>
+<p>After a fair amount of fiddling with how to get ARM64 builds running with Chromium I&rsquo;ve
+ended up with this setup in the Dockerfile:</p>
+<pre><code>FROM debian:latest
+
+RUN apt update &amp;&amp; apt install -y --no-install-recommends \
+    chromium \
+    curl \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+WORKDIR /pdf
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash &amp;&amp; \
+    bash -c &quot;source /root/.nvm/nvm.sh &amp;&amp; \
+        nvm install 22.18.0 &amp;&amp; \
+        nvm use 22.18.0 &amp;&amp; \
+        npm install puppeteer&quot;
+</code></pre>
+<p>What ended up being super important was a) to switch from ubuntu to debian because the
+chromium build in ubuntu requires using snap, which seemed like a very silly/complex dependency to have to add to a docker image, and b) to install
+chromium manually, and not rely on Puppeteer to install it itself (which it didn&rsquo;t seem
+to be able to do).</p>
+<div class="admonition info">
+<p class="admonition-title">Side bar</p>
+<p>The Docker system I&rsquo;m talking about here is only the build system. It outputs static
+HTML that is hosted using GitHub pages. So there are no Docker containers in my stack
+that a reader would ever interact with.</p>
+</div>
+<p>The next fiddly bit was to get the nvm managed version of node to be loaded up and
+recognised when using <code>docker run</code>. Outside of docker this is done by adding
+<code>source /root/.nvm/nvm.sh</code> to your shell profile, but that isn&rsquo;t going to work here very
+well. You don&rsquo;t normally run a full/modern interactive shell inside a docker image, it&rsquo;s
+wasteful, you don&rsquo;t need history and bash completions etc. Normally you&rsquo;re using something
+super lightweight like <code>sh</code>. So I can&rsquo;t easily rely on shell startup profile scripts,
+instead I modified the entrypoint of the docker image, but only when running the <code>pdf</code>
+service, here&rsquo;s what I added to my docker compose file:</p>
+<pre><code>pdf:
+    build: .
+    tty: true
+    stop_signal: SIGINT
+    working_dir: /pdf
+    entrypoint: [&quot;bash&quot;, &quot;-c&quot;, 'source /root/.nvm/nvm.sh &amp;&amp; exec &quot;$@&quot;', &quot;--&quot;]
+    command: [&quot;node&quot;, &quot;/pdf/makePdf.js&quot;]
+    volumes:
+        - .:/app
+</code></pre>
+<p>It&rsquo;s that entrypoint part that&rsquo;s doing the heavy lifting, sourcing the nvm set up script
+and then immediately executing whatever the original command was.</p>
+<h2>2. Write/run JS script</h2>
+<p>Next I needed to be able to load the local HTML file with my CV in it into Puppeteer and
+have it save the page as a PDF:</p>
+<pre><code>const browser = await puppeteer.launch({
+    executablePath: &quot;/usr/bin/chromium&quot;,
+    args: [
+        &quot;--no-sandbox&quot;,
+        &quot;--headless&quot;,
+        &quot;--disable-gpu&quot;,
+        &quot;--font-render-hinting=none&quot;,
+    ],
+});
+const page = await browser.newPage();
+
+await page.setRequestInterception(true);
+page.on(&quot;request&quot;, (request) =&gt; {
+    const headers = {
+        ...request.headers(),
+        Origin: &quot;https://www.mayortech.co.uk&quot;,
+    };
+    request.continue({
+        headers: headers,
+    });
+});
+await page.goto(&quot;file:///app/dist/cv/index.html&quot;, {
+    waitUntil: &quot;networkidle0&quot;,
+});
+await page.pdf({
+    path: &quot;/app/dist/William Mayor's CV.pdf&quot;,
+    format: &quot;A4&quot;,
+    margin: {
+        top: &quot;0px&quot;,
+        left: &quot;0px&quot;,
+        right: &quot;0px&quot;,
+        bottom: &quot;0px&quot;,
+    },
+    printBackground: true,
+});
+await browser.close();
+</code></pre>
+<p>This is mostly a pretty simple set up. I&rsquo;ve got a full page background on my CV, so I
+had to set the margins to be 0 (relying on the HTML padding in the page to push the
+content away from the edges), and then use the <code>printBackground: true</code> setting to allow
+the &ldquo;printed&rdquo; PDF to use the background colour.</p>
+<p>The most fun issue to solve was that the Font Awesome icons wouldn&rsquo;t load. At first I
+thought it was a timing issue; maybe the assets were loading in but the page wasn&rsquo;t
+given enough time for Font Awesome to switch out the <code>&lt;i&gt;</code> elements with the <code>&lt;svg&gt;</code>s
+they actually use for the icons. But I added in some really large timeouts and it didn&rsquo;t
+solve the problem.</p>
+<p>So I loaded up the file in my local browser using the <code>file://</code> protocol, not
+<code>http://</code> as I normally use. This replicated the issue that Puppeteer was seeing and I
+could see from the network tab that Font Awesome was returning a 403 error saying that
+the origin for the page wasn&rsquo;t set. This makes sense, I&rsquo;m loading up a local file, I&rsquo;m
+not serving a page in the normal manner, there is no origin. I looked to see if I could
+whitelabel the <code>file://</code> protocol in my Font Awesome settings, but I don&rsquo;t think you can.
+So next I looked into spoofing the origin to get Font Awesome to be happy. You can do
+this really easily using curl:</p>
+<pre><code>$ curl -H &quot;Origin: https://example.com&quot; https://kit.fontawesome.com/YOUR_KIT_CODE.js
+</code></pre>
+<p>After I verified that this would work I looked at how to add the origin header in
+Puppeteer. You should be able to add it using <code>page.setExtraHTTPHeaders</code> but this didn&rsquo;t
+work for me, Font Awesome still returned a 403 error. So instead I used request
+intercepting to add the header to each request as it left the browser:</p>
+<pre><code>await page.setRequestInterception(true);
+page.on(&quot;request&quot;, (request) =&gt; {
+    const headers = {
+        ...request.headers(),
+        Origin: &quot;https://www.mayortech.co.uk&quot;,
+    };
+    request.continue({
+        headers: headers,
+    });
+});
+</code></pre>
+<p>At the time of writing there&rsquo;s an open bug ticket in the Puppeteer repo about
+inconsistent text rendering in the headless vs non-headless modes. The fix is to add
+that <code>--font-render-hinting=none</code> parameter to the launch args.</p>
+<h2>3. Tell GitHub Actions to generate, save, and deploy the PDF version</h2>
+<p>This one was the simplest bit, once I had the system working locally I then needed to add
+a step to my GitHub Actions:</p>
+<pre><code>- name: Build PDF version of CV
+  run: docker compose run --rm pdf
+</code></pre>
+<p>That&rsquo;s it! The hard work is done inside Docker, so once it&rsquo;s working locally, getting it
+to run in GitHub is usually pretty easy (ignoring the pain that can come with trying to
+get GitHub to run anything at all).</p></div>
+    </div>
+</main>
+        <div class="border-t-2 border-mt-dark-blue py-4 px-4">
+            <footer
+                class="flex flex-col sm:flex-row items-center justify-between"
+            >
+                <div class="">
+                    <a
+                        class="flex flex-row items-center gap-2 font-bold text-2xl"
+                        href="/"
+                    >
+                        <img
+                            src="/img/logo.png"
+                            alt="The MayorTech limited logo; a pixel art cartoon image of William Mayor."
+                            height="56"
+                            class="h-14"
+                        />
+                        MayorTech Limited
+                    </a>
+                </div>
+                <nav class="">
+                    <ul class="flex flex-row items-center gap-4">
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/">Home</a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/projects/">
+                                Projects
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/posts/">Blog</a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/contact/">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </footer>
+        </div>
+    </body>
+</html>
