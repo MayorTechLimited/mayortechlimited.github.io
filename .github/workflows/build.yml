@@ -38,7 +38,8 @@ jobs:
               run: |
                   TMP=$(mktemp --directory)
                   cp -r dist/* "$TMP"/
-                  git checkout main
+                  git checkout -b main
+                  git pull origin main
 
                   rm -rf ./*
                   cp -r "$TMP"/* ./
