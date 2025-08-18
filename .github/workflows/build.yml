@@ -42,7 +42,7 @@ jobs:
 
                   TMP=$(mktemp --directory)
                   cp -r dist/* "$TMP"/
-                  rm -rf ./*
+                  docker compose run templates rm -rf ./*
 
                   git checkout -b main
                   git pull origin main
