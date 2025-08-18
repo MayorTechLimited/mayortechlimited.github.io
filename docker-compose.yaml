@@ -30,6 +30,17 @@ services:
         volumes:
             - .:/app
 
+    pdf:
+        build: .
+        tty: true
+        stop_signal: SIGINT
+        working_dir: /pdf
+        entrypoint:
+            ["bash", "-c", 'source /root/.nvm/nvm.sh && exec "$@"', "--"]
+        command: ["node", "/pdf/makePdf.js"]
+        volumes:
+            - .:/app
+
     serve:
         build: .
         stop_signal: SIGINT

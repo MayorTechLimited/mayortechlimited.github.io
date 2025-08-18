@@ -40,12 +40,8 @@ jobs:
             - name: Build HTML
               run: docker compose run --rm templates /venv/bin/python watch_templates.py --build
 
-            - name: html to pdf
-              uses: fifsky/html-to-pdf-action@master
-              with:
-                  htmlFile: ./dist/cv/index.html
-                  outputFile: "./dist/William Mayor's CV.pdf"
-                  pdfOptions: '{"format": "A4", "margin": {"top": "0mm", "left": "0mm", "right": "0mm", "bottom": "0mm"}}'
+            - name: Build PDF version of CV
+              run: docker compose run --rm pdf
 
             - name: Push to main
               run: |
