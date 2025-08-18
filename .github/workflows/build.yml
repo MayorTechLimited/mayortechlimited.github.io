@@ -26,23 +26,23 @@ jobs:
               run: docker compose build
 
             - name: Build CSS
-              run: docker compose run css /tailwindcss -i ./styles.css -o ./dist/styles.css --minify
+              run: docker compose run --all css /tailwindcss -i ./styles.css -o ./dist/styles.css --minify
 
             - name: Build static
-              run: docker compose run static /venv/bin/python watch_static.py --build
+              run: docker compose run --all static /venv/bin/python watch_static.py --build
 
             - name: Build HTML
-              run: docker compose run templates /venv/bin/python watch_templates.py --build
+              run: docker compose run --all templates /venv/bin/python watch_templates.py --build
 
             - name: Push to main
               run: |
                   git config user.name 'William Mayor'
                   git config user.email 'WilliamMayor@users.noreply.github.com'
-                  git config pull.ff only
+                  git config pull.rebase true
 
                   TMP=$(mktemp --directory)
                   cp -r dist/* "$TMP"/
-                  docker compose run templates rm -rf ./*
+                  docker compose run --all templates rm -rf ./*
 
                   git checkout -b main
                   git pull origin main
