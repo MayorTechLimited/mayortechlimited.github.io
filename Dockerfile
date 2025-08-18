@@ -17,13 +17,13 @@ COPY makePdf.js /pdf/makePdf.js
 
 WORKDIR /app
 
-# RUN curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/tailwindcss-linux-arm64 && \
-#     chmod +x tailwindcss-linux-arm64 && \
-#     mv tailwindcss-linux-arm64 /tailwindcss
+RUN curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/tailwindcss-linux-arm64 && \
+    chmod +x tailwindcss-linux-arm64 && \
+    mv tailwindcss-linux-arm64 /tailwindcss
 
-# RUN python3 -m venv /venv
+RUN python3 -m venv /venv
 
-# RUN /venv/bin/pip install --no-cache-dir \
-#     Markdown==3.7 \
-#     staticjinja==5.0.0 \
-#     watchdog==4.0.2
+RUN /venv/bin/pip install --no-cache-dir \
+    Markdown==3.7 \
+    staticjinja==5.0.0 \
+    watchdog==4.0.2
