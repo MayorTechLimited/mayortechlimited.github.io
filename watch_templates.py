@@ -121,11 +121,12 @@ def work_render_md(site, template, **kwargs):
 
 def work_md_context(template):
     markdown_content = Path(template.filename).read_text()
-    desc = markdowner.convert(markdown_content)
+    content = markdowner.convert(markdown_content)
     meta = markdowner.Meta
     return {
         "title": meta["title"][0],
-        "description": desc,
+        "description": meta["description"][0],
+        "content": content,
         "link": meta["link"][0] if meta.get("link") else None,
         "logo": meta.get("logo", [None])[0],
         "screenshot": meta.get("screenshot", [None])[0],
