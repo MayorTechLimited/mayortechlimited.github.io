@@ -8,4 +8,4 @@
 # ---
 set -eu
 
-docker compose up
+docker compose up css templates static serve
