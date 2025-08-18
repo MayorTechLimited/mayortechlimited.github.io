@@ -16,6 +16,10 @@ module.exports = {
             fontFamily: {
                 sans: ["SpaceGrotesk", ...defaultTheme.fontFamily.sans],
             },
+            screens: {
+                print: { raw: "print" },
+                screen: { raw: "screen" },
+            },
         },
     },
     plugins: [require("@tailwindcss/typography")],
