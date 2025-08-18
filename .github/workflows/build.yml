@@ -26,13 +26,13 @@ jobs:
               run: docker compose build
 
             - name: Build CSS
-              run: docker compose run --all css /tailwindcss -i ./styles.css -o ./dist/styles.css --minify
+              run: docker compose run --rm css /tailwindcss -i ./styles.css -o ./dist/styles.css --minify
 
             - name: Build static
-              run: docker compose run --all static /venv/bin/python watch_static.py --build
+              run: docker compose run --rm static /venv/bin/python watch_static.py --build
 
             - name: Build HTML
-              run: docker compose run --all templates /venv/bin/python watch_templates.py --build
+              run: docker compose run --rm templates /venv/bin/python watch_templates.py --build
 
             - name: Push to main
               run: |
@@ -42,7 +42,7 @@ jobs:
 
                   TMP=$(mktemp --directory)
                   cp -r dist/* "$TMP"/
-                  docker compose run --all templates rm -rf ./*
+                  docker compose run --rm templates rm -rf ./*
 
                   git checkout -b main
                   git pull origin main
