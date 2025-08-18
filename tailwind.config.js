@@ -2,6 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
     content: ["./src/**/*.html"],
+    safelist: ["admonition"],
     theme: {
         extend: {
             colors: {

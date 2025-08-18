@@ -32,4 +32,25 @@
     .prose code::after {
         content: "";
     }
+    .admonition {
+        @apply border-2 border-l-4 rounded p-2 border-mt-darkest-blue bg-gray-200;
+
+        & p:first-child {
+            @apply mt-0;
+        }
+
+        & p:last-child {
+            @apply mb-0;
+        }
+
+        & .admonition-title {
+            @apply font-bold;
+        }
+    }
+    .admonition.info {
+        @apply border-blue-500 bg-blue-50;
+        & .admonition-title {
+            @apply text-blue-500;
+        }
+    }
 }
