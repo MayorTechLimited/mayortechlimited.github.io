@@ -11,7 +11,7 @@ RUN apt update && apt install -y --no-install-recommends \
 WORKDIR /pdf
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash && \
-    bash -c "source /root/.nvm/nvm.sh && nvm install 22.18.0 && nvm use 22.18.0 && PUPPETEER_PRODUCT=firefox npm install puppeteer"
+    bash -c "source /root/.nvm/nvm.sh && nvm install 22.18.0 && nvm use 22.18.0 && npm install puppeteer"
 
 COPY makePdf.js /pdf/makePdf.js
 
