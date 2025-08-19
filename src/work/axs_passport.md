@@ -49,9 +49,3 @@ I established a comprehensive deployment pipeline that ensured reliable, secure 
 - **Quality Assurance**: Implemented a release pipeline requiring pull request sign-off from senior engineers and passing test suites before deployment
 - **Containerisation**: Utilised **Docker** and **Docker Compose** for consistent deployments across environments
 - **Infrastructure Management**: Managed deployment and maintenance of **Linux/Debian** servers, ensuring high availability and performance
-
-## Impact & Results
-
-Through careful technical planning and execution, AXS Passport evolved from an initial concept to a production-ready platform serving complex organisational needs. The combination of robust backend architecture, intuitive frontend design, and reliable infrastructure created a system that not only met immediate requirements but was designed to scale with the business's growth.
-
-This project demonstrates my ability to architect and deliver complete software solutions, lead technical teams, and balance innovation with security and maintainability requirements.

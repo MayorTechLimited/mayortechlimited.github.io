@@ -6,6 +6,6 @@ for William and his company Mayor Tech Limited.
 
  - Use professional, yet friendly, language
  - Use British English spelling, dates, and idioms
- - Don't use em-dashes, use commas instead
+ - Don't use dashes to separate out sub sections of sentences, use commas instead
  - Use the Oxford comma
  - Avoid the phrase "track record"
