@@ -1,24 +1,38 @@
+---
 description: How I added my CV to my website, and made it editable, so I can easily produce custom CVs for each job role.
+---
 
 # You can edit my CV (if you want to)
 
-I'm more actively looking for work right now than I've ever been in the past. It's quite terrifying, and demoralising.
+I'm more actively looking for work right now than I've ever been in the past. It's quite
+terrifying, and demoralising.
 
-To make myself seem more attractive, I'm doing up this website (very slowly), and I thought that I could make my CV look like the website. To follow a similar style, and to have similar information.
+To make myself seem more attractive, I'm doing up this website (very slowly), and I
+thought that I could make my CV look like the website. To follow a similar style, and to
+have similar information.
 
 Here it is: [https://www.mayortech.co.uk/cv/](https://www.mayortech.co.uk/cv/)
 
-Then I thought that it would be useful to be able to edit the CV as I needed, to customise it to fit the particular job/contract I was applying for.
+Then I thought that it would be useful to be able to edit the CV as I needed, to
+customise it to fit the particular job/contract I was applying for.
 
-So I did something potentially stupid. I made it so that you can **double click on almost any bit of text on the CV to make it editable**. You can then change the text, and then save the page as a PDF. The changes you make aren't saved forever, and they aren't available for other people to see. It's just local text editing. But it is super useful to be able to do that.
+So I did something potentially stupid. I made it so that you can **double click on
+almost any bit of text on the CV to make it editable**. You can then change the text,
+and then save the page as a PDF. The changes you make aren't saved forever, and they
+aren't available for other people to see. It's just local text editing. But it is super
+useful to be able to do that.
 
-OK, it's not that stupid. Anyone can already edit the content of a web page they're looking at, using the developer tools. But this adds `contenteditable` to any `<p>` that is double clicked, so it's a bit easier.
+OK, it's not that stupid. Anyone can already edit the content of a web page they're
+looking at, using the developer tools. But this adds `contenteditable` to any `<p>` that
+is double clicked, so it's a bit easier.
 
 ## Hey, Claude!
 
-My next thought was that now that my CV is online, I can easily ask an AI to compare it against a job spec. Then I can fix up the CV, and "Easy Apply" with my shiny new PDF.
+My next thought was that now that my CV is online, I can easily ask an AI to compare it
+against a job spec. Then I can fix up the CV, and "Easy Apply" with my shiny new PDF.
 
-So I tested it out. I took a job that LinkedIn was promoting to me (not one that I was particularly well suited for), and asked Claude Sonnet 4 to compare them:
+So I tested it out. I took a job that LinkedIn was promoting to me (not one that I was
+particularly well suited for), and asked Claude Sonnet 4 to compare them:
 
 ```
 Can you review the CV here: https://www.mayortech.co.uk/cv/ and compare it to the job description here: https://www.linkedin.com/jobs/view/4281606944.
@@ -105,7 +119,8 @@ William's CV shows strong technical competency and relevant experience, but it n
 The remote work capability and contract experience should also be more prominently featured given the nature of this role.
 ````
 
-OK, that's pretty good. I don't really meet the requirements for this role, and it's found why.
+OK, that's pretty good. I don't really meet the requirements for this role, and it's
+found why.
 
 Let's go a step further:
 
@@ -132,10 +147,12 @@ These paragraphs:
 The tone is confident without being arrogant, and it reframes potential weaknesses as opportunities to demonstrate adaptability—a crucial trait for contractors who often need to quickly get up to speed with new tech stacks.
 ```
 
-That's pretty good. It's not perfect, but it's pretty good, and it took me no time at all.
+That's pretty good. It's not perfect, but it's pretty good, and it took me no time at
+all.
 
 I'm going to add that to my CV and apply for this role. I'll update when I hear back.
 
 Side note: I expect to be completely ghosted.
 
-Side note 2: I had to edit the text a little bit to make it smaller, the paragraphs wouldn't fit on a single page.
+Side note 2: I had to edit the text a little bit to make it smaller, the paragraphs
+wouldn't fit on a single page.
