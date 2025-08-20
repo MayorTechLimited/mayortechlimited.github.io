@@ -28,7 +28,7 @@
             <header
                 class="flex flex-col sm:flex-row items-center justify-between"
             >
-                <div class="">
+                <div class="flex flex-col md:flex-row items-center gap-4">
                     <a
                         class="flex flex-row items-center gap-2 font-bold text-2xl"
                         href="/"
@@ -41,9 +41,15 @@
                         />
                         MayorTech Limited
                     </a>
+                    <a
+                        href="#main"
+                        class="translate-y-[-1000px] focus:translate-y-0"
+                    >
+                        Skip to main content
+                    </a>
                 </div>
                 <nav class="">
-                    <ul class="flex flex-row items-center gap-4">
+                    <ul class="flex flex-row flex-wrap items-center gap-4">
                         <li class="">
                             <a
                                 class="hover:text-mt-red "
@@ -96,7 +102,7 @@
                 </nav>
             </header>
         </div>
-        <main class="grow px-4 sm:px-8">
+        <main id="main" class="grow px-4 sm:px-8">
     <div class="bg-mt-gray rounded-xl p-4 sm:p-8">
         <div class="text-mt-darkest-blue">
             <h1 class="text-4xl">Blog</h1>
@@ -107,6 +113,26 @@
     </div>
     <div class="bg-mt-dark-blue text-white text-2xl rounded-xl p-4 sm:p-8 mt-8">
         <ul>
+            
+            <li class="my-2 border-b-white border-b pb-2 last:border-b-0">
+                <div class="">
+                    <div class="">
+                        <a class="text-mt-red hover:underline" href="/posts/2025-08-20-celery-task-middleware">Celery task "middleware"
+</a>
+                    </div>
+                    <div class="text-sm">2025-08-20</div>
+                </div>
+            </li>
+            
+            <li class="my-2 border-b-white border-b pb-2 last:border-b-0">
+                <div class="">
+                    <div class="">
+                        <a class="text-mt-red hover:underline" href="/posts/2025-08-20-autoformatting-markdown-in-zed">Autoformatting markdown files that have frontmatter in Zed
+</a>
+                    </div>
+                    <div class="text-sm">2025-08-20</div>
+                </div>
+            </li>
             
             <li class="my-2 border-b-white border-b pb-2 last:border-b-0">
                 <div class="">

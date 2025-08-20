@@ -7,8 +7,8 @@
         <meta
             name="description"
             content="<p>billabl is a side-project I built to help me track and report on the time I spend
-working as a freelancer. It connects to your Google calendar instead of needing
-you to remember to clock in and out.</p>"
+working as a freelancer. It connects to your Google calendar instead of needing you to
+remember to clock in and out.</p>"
         />
         <link href="/styles.css" rel="stylesheet" />
         <script
@@ -30,7 +30,7 @@ you to remember to clock in and out.</p>"
             <header
                 class="flex flex-col sm:flex-row items-center justify-between"
             >
-                <div class="">
+                <div class="flex flex-col md:flex-row items-center gap-4">
                     <a
                         class="flex flex-row items-center gap-2 font-bold text-2xl"
                         href="/"
@@ -43,9 +43,15 @@ you to remember to clock in and out.</p>"
                         />
                         MayorTech Limited
                     </a>
+                    <a
+                        href="#main"
+                        class="translate-y-[-1000px] focus:translate-y-0"
+                    >
+                        Skip to main content
+                    </a>
                 </div>
                 <nav class="">
-                    <ul class="flex flex-row items-center gap-4">
+                    <ul class="flex flex-row flex-wrap items-center gap-4">
                         <li class="">
                             <a
                                 class="hover:text-mt-red "
@@ -98,7 +104,7 @@ you to remember to clock in and out.</p>"
                 </nav>
             </header>
         </div>
-        <main class="grow px-4 sm:px-8">
+        <main id="main" class="grow px-4 sm:px-8">
     <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
         <div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
             <div class="text-mt-darkest-blue prose prose-xl order-2 md:order-1"><h1>billabl</h1></div>
@@ -120,8 +126,8 @@ you to remember to clock in and out.</p>"
         
         
         <div class="text-mt-darkest-blue prose prose-xl mt-8"><p>billabl is a side-project I built to help me track and report on the time I spend
-working as a freelancer. It connects to your Google calendar instead of needing
-you to remember to clock in and out.</p></div>
+working as a freelancer. It connects to your Google calendar instead of needing you to
+remember to clock in and out.</p></div>
     </div>
 </main>
         <div class="border-t-2 border-mt-dark-blue py-4 px-4">

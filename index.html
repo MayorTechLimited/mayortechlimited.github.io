@@ -28,7 +28,7 @@
             <header
                 class="flex flex-col sm:flex-row items-center justify-between"
             >
-                <div class="">
+                <div class="flex flex-col md:flex-row items-center gap-4">
                     <a
                         class="flex flex-row items-center gap-2 font-bold text-2xl"
                         href="/"
@@ -41,9 +41,15 @@
                         />
                         MayorTech Limited
                     </a>
+                    <a
+                        href="#main"
+                        class="translate-y-[-1000px] focus:translate-y-0"
+                    >
+                        Skip to main content
+                    </a>
                 </div>
                 <nav class="">
-                    <ul class="flex flex-row items-center gap-4">
+                    <ul class="flex flex-row flex-wrap items-center gap-4">
                         <li class="">
                             <a
                                 class="hover:text-mt-red text-mt-red"
@@ -96,7 +102,7 @@
                 </nav>
             </header>
         </div>
-        <main class="grow px-4 sm:px-8">
+        <main id="main" class="grow px-4 sm:px-8">
 <h1 class="sr-only">MayorTech Limited</h1>
 <div class="flex flex-col gap-8">
     <div

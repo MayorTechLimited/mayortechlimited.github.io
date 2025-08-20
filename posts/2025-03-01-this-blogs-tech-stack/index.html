@@ -28,7 +28,7 @@
             <header
                 class="flex flex-col sm:flex-row items-center justify-between"
             >
-                <div class="">
+                <div class="flex flex-col md:flex-row items-center gap-4">
                     <a
                         class="flex flex-row items-center gap-2 font-bold text-2xl"
                         href="/"
@@ -41,9 +41,15 @@
                         />
                         MayorTech Limited
                     </a>
+                    <a
+                        href="#main"
+                        class="translate-y-[-1000px] focus:translate-y-0"
+                    >
+                        Skip to main content
+                    </a>
                 </div>
                 <nav class="">
-                    <ul class="flex flex-row items-center gap-4">
+                    <ul class="flex flex-row flex-wrap items-center gap-4">
                         <li class="">
                             <a
                                 class="hover:text-mt-red "
@@ -96,28 +102,69 @@
                 </nav>
             </header>
         </div>
-        <main class="grow px-4 sm:px-8">
+        <main id="main" class="grow px-4 sm:px-8">
     <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
         <div class="text-mt-darkest-blue text-sm mb-8">2025-03-01</div>
         <div class="text-mt-darkest-blue prose prose-xl"><h1>This Blog&rsquo;s Tech Stack</h1>
-<p>This feels like one of those trite blog posts that every software engineer writes, so I apologise if this post is dull. However, I wanted to get back into writing blog posts, something I&rsquo;ve never been able to manage very well, and this seemed like an easy win.</p>
+<p>This feels like one of those trite blog posts that every software engineer writes, so I
+apologise if this post is dull. However, I wanted to get back into writing blog posts,
+something I&rsquo;ve never been able to manage very well, and this seemed like an easy win.</p>
 <p>So here goes&hellip;</p>
 <h2>Hosting</h2>
-<p>It&rsquo;s hosted on GitHub Pages, for free! It&rsquo;s a static site, and I wanted it to be fast, always available, and hassle free. GitHub Pages is exactly that, so this was a bit of a no-brainer.</p>
+<p>It&rsquo;s hosted on GitHub Pages, for free! It&rsquo;s a static site, and I wanted it to be fast,
+always available, and hassle free. GitHub Pages is exactly that, so this was a bit of a
+no-brainer.</p>
 <h2>Analytics</h2>
-<p>I use a privacy-first analytics tool called <a href="https://pirsch.io">Pirsch</a>, it doesn&rsquo;t set cookies or anything like that, it just tells me which pages people are visiting.</p>
-<p>They have a useful system where you can create dashboards of data and share it with other people. For instance you can see all of the analytics data for my blog on the public dashboard: <a href="https://mayortech.pirsch.io">https://mayortech.pirsch.io</a>. As you can see, I don&rsquo;t get much traffic :)</p>
-<p>You can also create private links that only your clients have access to, this is super useful when you want to share a lightweight, easily digestible dashboard of their site&rsquo;s performance.</p>
-<p>It supports campaign tracking, goals, conversions, all the stuff that you care about. Excellent tool.</p>
+<p>I use a privacy-first analytics tool called <a href="https://pirsch.io">Pirsch</a>, it doesn&rsquo;t set
+cookies or anything like that, it just tells me which pages people are visiting.</p>
+<p>They have a useful system where you can create dashboards of data and share it with
+other people. For instance you can see all of the analytics data for my blog on the
+public dashboard: <a href="https://mayortech.pirsch.io">https://mayortech.pirsch.io</a>. As you can
+see, I don&rsquo;t get much traffic :)</p>
+<p>You can also create private links that only your clients have access to, this is super
+useful when you want to share a lightweight, easily digestible dashboard of their site&rsquo;s
+performance.</p>
+<p>It supports campaign tracking, goals, conversions, all the stuff that you care about.
+Excellent tool.</p>
 <h2>Building</h2>
 <p>On to the fun stuff!</p>
-<p>The GitHub repo for this site is here: <a href="https://github.com/MayorTechLimited/www">https://github.com/MayorTechLimited/www</a>. You can look at the raw contents of the site, and the scripts that build it, on the <code>develop</code> branch. The <code>main</code> branch has just the built version of everything.</p>
-<p>I&rsquo;m a Python developer, I&rsquo;ve used lots of Flask and Jinja2 templates over the years. I wanted my site to use Jinja2 for templates, so that it would always be easy for me to drop in and understand what&rsquo;s going on. I didn&rsquo;t want to have to learn a new JS template language just to render a few markdown files. I found a tool called <a href="https://staticjinja.readthedocs.io/en/stable/">staticjinja</a> that works really well for me. You give it a directory of template files and it renders them all into an output directory. If you have files that aren&rsquo;t Jinja2 templates (e.g. markdown files) then you add some config to tell it what to do with those files. You can add hooks that pass in variables/data, so your pages can be properly templated and dynamic. For instance the blog post list page on my site is updated by using Python to walk through the directory and list all the files, passing the result to the template to render. It&rsquo;s pretty simple, understandable, and it uses the tech that I&rsquo;m already really familiar with, so it feels easy.</p>
-<p>My blog posts are written in markdown, using the Python library <a href="https://pypi.org/project/Markdown/">Markdown</a> to render them into HTML, and then using Jinja2 to place that HTML inside my webpage.</p>
-<p>The staticjinja library doesn&rsquo;t do anything with static files, it only cares about taking templates and outputting HTML files. So I needed something to watch an input directory of static files and copy them over to a destination/build directory when something changes. I ended up over engineering this, because it was fun.</p>
-<p>I have a script called <code>watch_static.py</code> that uses the <a href="https://pypi.org/project/watchdog/">watchdog</a> package to respond to file change events inside a folder called <code>static</code>. When a file is changed inside that folder the script runs a function to synchronise the contents of the <code>static</code> folder into the <code>dist</code> directory where the rest of the website is built. It keeps a record of all of the static files that it deals with in a file called <code>.static</code>. This way when a file is removed from the <code>static</code> directory, it can be removed from the <code>dist</code> directory too.</p>
-<p>What this doesn&rsquo;t do is append any kind of cache busting hashes to the file names. This is something that you&rsquo;d get for free if you used any of the popular JS libraries, it&rsquo;s a really useful feature. Hopefully I&rsquo;ll be able to build it into my script in the future.</p>
-<p>The final piece is the CSS that makes the site look nice. This is all based on tailwind. I use the standalone executable that the tailwind people provide. This is nice and simple and produces a minified and tree shaken CSS file.</p></div>
+<p>The GitHub repo for this site is here:
+<a href="https://github.com/MayorTechLimited/www">https://github.com/MayorTechLimited/www</a>. You
+can look at the raw contents of the site, and the scripts that build it, on the
+<code>develop</code> branch. The <code>main</code> branch has just the built version of everything.</p>
+<p>I&rsquo;m a Python developer, I&rsquo;ve used lots of Flask and Jinja2 templates over the years. I
+wanted my site to use Jinja2 for templates, so that it would always be easy for me to
+drop in and understand what&rsquo;s going on. I didn&rsquo;t want to have to learn a new JS template
+language just to render a few markdown files. I found a tool called
+<a href="https://staticjinja.readthedocs.io/en/stable/">staticjinja</a> that works really well for
+me. You give it a directory of template files and it renders them all into an output
+directory. If you have files that aren&rsquo;t Jinja2 templates (e.g. markdown files) then you
+add some config to tell it what to do with those files. You can add hooks that pass in
+variables/data, so your pages can be properly templated and dynamic. For instance the
+blog post list page on my site is updated by using Python to walk through the directory
+and list all the files, passing the result to the template to render. It&rsquo;s pretty
+simple, understandable, and it uses the tech that I&rsquo;m already really familiar with, so
+it feels easy.</p>
+<p>My blog posts are written in markdown, using the Python library
+<a href="https://pypi.org/project/Markdown/">Markdown</a> to render them into HTML, and then using
+Jinja2 to place that HTML inside my webpage.</p>
+<p>The staticjinja library doesn&rsquo;t do anything with static files, it only cares about
+taking templates and outputting HTML files. So I needed something to watch an input
+directory of static files and copy them over to a destination/build directory when
+something changes. I ended up over engineering this, because it was fun.</p>
+<p>I have a script called <code>watch_static.py</code> that uses the
+<a href="https://pypi.org/project/watchdog/">watchdog</a> package to respond to file change events
+inside a folder called <code>static</code>. When a file is changed inside that folder the script
+runs a function to synchronise the contents of the <code>static</code> folder into the <code>dist</code>
+directory where the rest of the website is built. It keeps a record of all of the static
+files that it deals with in a file called <code>.static</code>. This way when a file is removed
+from the <code>static</code> directory, it can be removed from the <code>dist</code> directory too.</p>
+<p>What this doesn&rsquo;t do is append any kind of cache busting hashes to the file names. This
+is something that you&rsquo;d get for free if you used any of the popular JS libraries, it&rsquo;s a
+really useful feature. Hopefully I&rsquo;ll be able to build it into my script in the future.</p>
+<p>The final piece is the CSS that makes the site look nice. This is all based on tailwind.
+I use the standalone executable that the tailwind people provide. This is nice and
+simple and produces a minified and tree shaken CSS file.</p></div>
     </div>
 </main>
         <div class="border-t-2 border-mt-dark-blue py-4 px-4">

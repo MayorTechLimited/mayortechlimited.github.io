@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="<p>A task runner that integrates nicely with Docker and that has great support for
-managing environment variables. I use it in almost all of my projects.</p>"
+            content="<p>A task runner that integrates nicely with Docker and that has great support for managing
+environment variables. I use it in almost all of my projects.</p>"
         />
         <link href="/styles.css" rel="stylesheet" />
         <script
@@ -29,7 +29,7 @@ managing environment variables. I use it in almost all of my projects.</p>"
             <header
                 class="flex flex-col sm:flex-row items-center justify-between"
             >
-                <div class="">
+                <div class="flex flex-col md:flex-row items-center gap-4">
                     <a
                         class="flex flex-row items-center gap-2 font-bold text-2xl"
                         href="/"
@@ -42,9 +42,15 @@ managing environment variables. I use it in almost all of my projects.</p>"
                         />
                         MayorTech Limited
                     </a>
+                    <a
+                        href="#main"
+                        class="translate-y-[-1000px] focus:translate-y-0"
+                    >
+                        Skip to main content
+                    </a>
                 </div>
                 <nav class="">
-                    <ul class="flex flex-row items-center gap-4">
+                    <ul class="flex flex-row flex-wrap items-center gap-4">
                         <li class="">
                             <a
                                 class="hover:text-mt-red "
@@ -97,7 +103,7 @@ managing environment variables. I use it in almost all of my projects.</p>"
                 </nav>
             </header>
         </div>
-        <main class="grow px-4 sm:px-8">
+        <main id="main" class="grow px-4 sm:px-8">
     <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
         <div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
             <div class="text-mt-darkest-blue prose prose-xl order-2 md:order-1"><h1>vantage</h1></div>
@@ -109,8 +115,8 @@ managing environment variables. I use it in almost all of my projects.</p>"
             </div>
         
         
-        <div class="text-mt-darkest-blue prose prose-xl mt-8"><p>A task runner that integrates nicely with Docker and that has great support for
-managing environment variables. I use it in almost all of my projects.</p></div>
+        <div class="text-mt-darkest-blue prose prose-xl mt-8"><p>A task runner that integrates nicely with Docker and that has great support for managing
+environment variables. I use it in almost all of my projects.</p></div>
     </div>
 </main>
         <div class="border-t-2 border-mt-dark-blue py-4 px-4">

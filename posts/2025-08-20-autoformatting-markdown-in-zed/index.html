@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="I built a single page app (JS, Svelte) and back-end API (Python, FastAPI) that enables complex hardware simulations."
+            content="How to set up Zed to autoformat markdown files that are using frontmatter/metadata"
         />
         <link href="/styles.css" rel="stylesheet" />
         <script
@@ -60,7 +60,7 @@
                         </li>
                         <li class="">
                             <a
-                                class="hover:text-mt-red text-mt-red"
+                                class="hover:text-mt-red "
                                 href="/work/"
                             >
                                 Work
@@ -76,7 +76,7 @@
                         </li>
                         <li class="">
                             <a
-                                class="hover:text-mt-red "
+                                class="hover:text-mt-red text-mt-red"
                                 href="/posts/"
                             >
                                 Blog
@@ -104,41 +104,81 @@
         </div>
         <main id="main" class="grow px-4 sm:px-8">
     <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
-        <div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
-            <div class="text-mt-darkest-blue prose prose-xl order-2 md:order-1">
-                <h1>RFGraph</h1>
-            </div>
-            
-                <div class="order-1 md:order-2">
-                    <img
-                        src="/img/projects/rfgraph.png"
-                        alt=""
-                        height="48"
-                        class="max-h-12 max-w-32"
-                    />
-                </div>
-            
-        </div>
-        <div class="text-xl mt-8">
-            
-                <a class="hover:underline text-mt-blue" href="https://rfgraph.com">https://rfgraph.com</a>
-            
-        </div>
-        
-            <div class="mt-8 border-2 border-mt-darkest-blue rounded-xl">
-                <img
-                    src="/img/projects/rfgraph_screenshot.png"
-                    alt=""
-                    height=""
-                    class="w-full rounded-xl"
-                />
-            </div>
-        
-        <div class="text-mt-darkest-blue prose prose-xl mt-8">
-            <p>I built a single page app (JS, Svelte) and back-end API (Python, FastAPI) that enables
-complex hardware simulations. As well as a feature-rich front-end application I also
-built payment processing, and created the marketing and customer support sites.</p>
-        </div>
+        <div class="text-mt-darkest-blue text-sm mb-8">2025-08-20</div>
+        <div class="text-mt-darkest-blue prose prose-xl"><h1>Autoformatting markdown files that have frontmatter in Zed</h1>
+<p>I write the posts on this blog in Markdown, using the
+<a href="https://github.com/Python-Markdown/markdown">python markdown library</a> to render them to
+HTML. The library has some nice extra features that extend the markdown syntax, one that
+I&rsquo;m using is the
+<a href="https://python-markdown.github.io/extensions/meta_data/">frontmatter extension</a> that
+lets me add metadata to the top of the markdown file, something like this:</p>
+<pre><code class="language-markdown">---
+description: How to set up Zed to autoformat markdown files that are using frontmatter/metadata
+---
+
+# Autoformatting markdown files that have frontmatter in Zed
+
+I write the posts on this blog in Markdown, using the python markdown library to render...
+</code></pre>
+<p>I wanted <a href="https://zed.dev/">Zed (my text editor)</a> to auto format the markdown files when
+I hit save. Mostly I wanted it to wrap the text so that each line didn&rsquo;t go over 88
+characters. This is the standard line length in Python code and I&rsquo;ve become used to
+reading things that width. When lines get longer they often have to either soft wrap or
+scroll and that can be annoying. I&rsquo;d much rather have the computer format the lines to a
+readable 88 characters.</p>
+<p>Zed uses <a href="https://prettier.io/">prettier</a> by default to format markdown files, and you
+can turn on autoformatting on save by changing the Zed settings:</p>
+<pre><code class="language-json">{
+    &quot;languages&quot;: {
+        &quot;Markdown&quot;: {
+            &quot;format_on_save&quot;: &quot;on&quot;
+        }
+    }
+}
+</code></pre>
+<p>The problem is that prettier doesn&rsquo;t like the frontmatter and squishes it all up onto a
+single line.</p>
+<p>I poked around in the prettier documentation for a while, looking for solutions. The
+most obvious one was to get the formatter to ignore the frontmatter entirely and only
+format the actual markdown parts of the file. I tried adding some ignore blocks to get
+prettier to not format the frontmatter:</p>
+<pre><code class="language-markdown">&lt;!-- prettier-ignore-start --&gt;
+---
+description: How to set up Zed to autoformat markdown files that are using frontmatter/metadata
+---
+&lt;!-- prettier-ignore-end --&gt;
+</code></pre>
+<p>This worked, in that prettier no longer mangled the frontmatter, the problem was that
+the python markdown library no longer recognised the frontmatter because it expects the
+metadata part of the file to start on the first line, but I&rsquo;d now added a comment there
+instead.</p>
+<p>I couldn&rsquo;t get the python markdown library and prettier to play nicely together. So, I
+decided to switch formatters. I found a python based formatter called
+<a href="https://github.com/hukkin/mdformat">mdformat</a> that comes with plugins that extended the
+formatter to understand the extra syntax I was using.</p>
+<p>Installing it was as simple as this:</p>
+<pre><code class="language-bash">$ pipx install mdformat
+$ pipx inject mdformat mdformat-frontmatter
+</code></pre>
+<p>I used the <code>pipx inject</code> command to add a bunch of plugins that I thought would be
+useful. The list of available plugins is on the
+<a href="https://github.com/topics/mdformat">mdformat GitHub topic</a>.</p>
+<p>Then I only had to update my Zed config to use the new formatter:</p>
+<pre><code class="language-json">{
+    &quot;languages&quot;: {
+        &quot;Markdown&quot;: {
+            &quot;format_on_save&quot;: &quot;on&quot;,
+            &quot;formatter&quot;: {
+                &quot;external&quot;: {
+                    &quot;command&quot;: &quot;mdformat&quot;,
+                    &quot;arguments&quot;: [&quot;--wrap&quot;, &quot;88&quot;, &quot;-&quot;]
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<p>Now, whenever I save a markdown file when editing my blog, the file gets autoformatted.</p></div>
     </div>
 </main>
         <div class="border-t-2 border-mt-dark-blue py-4 px-4">

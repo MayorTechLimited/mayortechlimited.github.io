@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="I built a single page app (JS, Svelte) and back-end API (Python, FastAPI) that enables complex hardware simulations."
+            content="How to add code that gets run before/after every time celery executes a Task"
         />
         <link href="/styles.css" rel="stylesheet" />
         <script
@@ -60,7 +60,7 @@
                         </li>
                         <li class="">
                             <a
-                                class="hover:text-mt-red text-mt-red"
+                                class="hover:text-mt-red "
                                 href="/work/"
                             >
                                 Work
@@ -76,7 +76,7 @@
                         </li>
                         <li class="">
                             <a
-                                class="hover:text-mt-red "
+                                class="hover:text-mt-red text-mt-red"
                                 href="/posts/"
                             >
                                 Blog
@@ -104,41 +104,78 @@
         </div>
         <main id="main" class="grow px-4 sm:px-8">
     <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
-        <div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
-            <div class="text-mt-darkest-blue prose prose-xl order-2 md:order-1">
-                <h1>RFGraph</h1>
-            </div>
-            
-                <div class="order-1 md:order-2">
-                    <img
-                        src="/img/projects/rfgraph.png"
-                        alt=""
-                        height="48"
-                        class="max-h-12 max-w-32"
-                    />
-                </div>
-            
-        </div>
-        <div class="text-xl mt-8">
-            
-                <a class="hover:underline text-mt-blue" href="https://rfgraph.com">https://rfgraph.com</a>
-            
-        </div>
-        
-            <div class="mt-8 border-2 border-mt-darkest-blue rounded-xl">
-                <img
-                    src="/img/projects/rfgraph_screenshot.png"
-                    alt=""
-                    height=""
-                    class="w-full rounded-xl"
-                />
-            </div>
-        
-        <div class="text-mt-darkest-blue prose prose-xl mt-8">
-            <p>I built a single page app (JS, Svelte) and back-end API (Python, FastAPI) that enables
-complex hardware simulations. As well as a feature-rich front-end application I also
-built payment processing, and created the marketing and customer support sites.</p>
-        </div>
+        <div class="text-mt-darkest-blue text-sm mb-8">2025-08-20</div>
+        <div class="text-mt-darkest-blue prose prose-xl"><h1>Celery task &ldquo;middleware&rdquo;</h1>
+<p>I was looking for a way to run some logging code before and after every task execution
+in my celery set up. I couldn&rsquo;t find anything that was immediately and obviously the
+solution in Google. I tried Claude Sonnet 4 and it gave me 3 solutions, one of which,
+after some tweaking, worked. (Which is my experience with LLMs in general.)</p>
+<p>I&rsquo;m using Django, and I&rsquo;ve got some custom Django middleware that logs every database
+query (not the values of the parameters, so no personal data is logged, just the SQL
+statement with placeholders for values). This is useful for keeping an eye on which
+queries are executed lots of times, which ones take a lot of time to run, and if there
+are any requests that fire off too many queries (which would be evidence of a 1+N
+problem).</p>
+<p>The problem is that the middleware runs on every Django request, but a celery task
+execution doesn&rsquo;t happen within a request. So any database queries being made in my
+tasks weren&rsquo;t being logged.</p>
+<p>I solved this by creating a custom Task class and overwriting the <code>__call__</code> method to
+add the same logging that my middleware does.</p>
+<p>I&rsquo;ve got a file called <code>celery_.py</code> where I put my celery config, and it looks something
+like this:</p>
+<pre><code class="language-python">from celery.contrib.django.task import DjangoTask
+from django.db import connection
+
+
+class DatabaseLogger:
+    def __call__(self, execute, sql, params, many, context):
+        instruction = sql.split(&quot; &quot;, 1)
+        with logfire.span(instruction[0], type=&quot;query&quot;, sql=sql, many=many):
+            return execute(sql, params, many, context)
+
+
+class DatabaseLoggingTask(DjangoTask):
+    def __call__(self, *args, **kwargs):
+        with connection.execute_wrapper(DatabaseLogger()):
+            return super().__call__(*args, **kwargs)
+
+
+app = Celery(&quot;PROJECT&quot;, task_cls=&quot;PROJECT.celery_:DatabaseLoggingTask&quot;)
+</code></pre>
+<p>The <code>DatabaseLogger</code> class isn&rsquo;t that interesting really, it&rsquo;s a class with a call
+method that conforms to the spec laid out by Django in their
+<a href="https://docs.djangoproject.com/en/5.2/topics/db/instrumentation/">database instrumentation</a>
+docs. When called, it logs some details of the SQL query.</p>
+<p>I&rsquo;m using the excellent <a href="https://logfire.dev/">logfire</a> library and service to do the
+logging.</p>
+<p>I&rsquo;m making a best guess about the SQL instruction (SELECT, INSERT, DELETE etc.) by
+looking at the first word in the query. It&rsquo;s probably not going to be correct in all
+cases, for instance something with a CTE would say &ldquo;WITH&rdquo;, which wouldn&rsquo;t be hugely
+useful. But it will be enough when scanning over the logs quickly, you can always look
+inside the span to see the actual details.</p>
+<p>The <code>DatabaseLoggingTask</code> class is only slightly more interesting, and that&rsquo;s because
+there aren&rsquo;t really many details on how to extend a <code>Task</code> class in the
+<a href="https://docs.celeryq.dev/en/stable/userguide/tasks.html#custom-task-classes">celery docs on Tasks</a>.</p>
+<p>There are a number of candidate methods on Task that could be overwritten to add our
+logging code, they are <code>__call__</code>, <code>run</code>, <code>apply</code>, and <code>apply_async</code>. I considered each,
+with the help of Claude.</p>
+<p>Looking at the code we can see that <code>apply_async</code> calls <code>apply</code>, so we can rule that one
+out. Any change we could make to <code>apply</code> would have the desired effect in <code>apply_async</code>
+straightaway.</p>
+<p>It wasn&rsquo;t super clear to me from reading the code when <code>apply</code> would get executed over
+<code>run</code>, so I just tried it out. I overwrote <code>apply</code> and wrapped a call to <code>super().apply</code>
+in the <code>execute_wrapper</code> as above&hellip; it didn&rsquo;t work. Nothing got logged, and a simple
+print statement showed me that apply wasn&rsquo;t even getting called as far as I could see,
+it must be used elsewhere.</p>
+<p><code>run</code> is interesting because the <code>@shared_task</code> decorator seems to set the <code>run</code>
+function to be whatever function was decorated. So trying to overwrite <code>run</code> didn&rsquo;t seem
+to work because it just got overwritten a second time.</p>
+<p>That left <code>__call__</code>, which after a quick test, did what I needed. It&rsquo;s always in the
+last place you look isn&rsquo;t it.</p>
+<p>So if you&rsquo;re using celery in Django and want to add some celery &ldquo;middleware&rdquo; you should
+be able to adapt the <code>DatabaseLoggingTask</code> above to fit your needs. If you&rsquo;re not using
+Django, then replacing the parent class <code>DjangoTask</code> with the regular celery <code>Task</code>
+should be enough to have the same effect.</p></div>
     </div>
 </main>
         <div class="border-t-2 border-mt-dark-blue py-4 px-4">

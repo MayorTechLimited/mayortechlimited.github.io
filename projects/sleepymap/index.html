@@ -29,7 +29,7 @@ spreadsheet into a map.</p>"
             <header
                 class="flex flex-col sm:flex-row items-center justify-between"
             >
-                <div class="">
+                <div class="flex flex-col md:flex-row items-center gap-4">
                     <a
                         class="flex flex-row items-center gap-2 font-bold text-2xl"
                         href="/"
@@ -42,9 +42,15 @@ spreadsheet into a map.</p>"
                         />
                         MayorTech Limited
                     </a>
+                    <a
+                        href="#main"
+                        class="translate-y-[-1000px] focus:translate-y-0"
+                    >
+                        Skip to main content
+                    </a>
                 </div>
                 <nav class="">
-                    <ul class="flex flex-row items-center gap-4">
+                    <ul class="flex flex-row flex-wrap items-center gap-4">
                         <li class="">
                             <a
                                 class="hover:text-mt-red "
@@ -97,7 +103,7 @@ spreadsheet into a map.</p>"
                 </nav>
             </header>
         </div>
-        <main class="grow px-4 sm:px-8">
+        <main id="main" class="grow px-4 sm:px-8">
     <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
         <div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
             <div class="text-mt-darkest-blue prose prose-xl order-2 md:order-1"><h1>SleepyMap</h1></div>

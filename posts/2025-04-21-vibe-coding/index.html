@@ -28,7 +28,7 @@
             <header
                 class="flex flex-col sm:flex-row items-center justify-between"
             >
-                <div class="">
+                <div class="flex flex-col md:flex-row items-center gap-4">
                     <a
                         class="flex flex-row items-center gap-2 font-bold text-2xl"
                         href="/"
@@ -41,9 +41,15 @@
                         />
                         MayorTech Limited
                     </a>
+                    <a
+                        href="#main"
+                        class="translate-y-[-1000px] focus:translate-y-0"
+                    >
+                        Skip to main content
+                    </a>
                 </div>
                 <nav class="">
-                    <ul class="flex flex-row items-center gap-4">
+                    <ul class="flex flex-row flex-wrap items-center gap-4">
                         <li class="">
                             <a
                                 class="hover:text-mt-red "
@@ -96,30 +102,94 @@
                 </nav>
             </header>
         </div>
-        <main class="grow px-4 sm:px-8">
+        <main id="main" class="grow px-4 sm:px-8">
     <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
         <div class="text-mt-darkest-blue text-sm mb-8">2025-04-21</div>
         <div class="text-mt-darkest-blue prose prose-xl"><h1>Vibe Coding</h1>
-<p>I built a mobile app (a game) using AI tools as much as possible. This is my write up about my experience. I used Gemini 2.5.</p>
+<p>I built a mobile app (a game) using AI tools as much as possible. This is my write up
+about my experience. I used Gemini 2.5.</p>
 <h2>Context, caveats, and considerations</h2>
-<p>I&rsquo;m mostly a Python developer focused on building websites, I do a fair amount of JavaScript development, and I do very little mobile app development. I would say that I&rsquo;m proficient in JS, and that I know enough about mobile app dev to be dangerous. I think this made building a mobile app a good candidate for testing out AI &ldquo;vibe coding&rdquo; because I didn&rsquo;t immediately know the answers to problems I encountered. Where I would usually reach for Google or Stack Overflow, I instead tried to use AI.</p>
-<p>I&rsquo;m going to refer to the AI agents that I used for this experiment with &ldquo;it/its&rdquo; pronouns. AI agents are not people and they are nowhere near having anything approaching consciousness.</p>
-<p>I&rsquo;m using the Cursor IDE to talk to the AI and have it write code for me. I&rsquo;m using the free plan with the Pro tier trial expired, so everything I did was at no additional cost to me.</p>
+<p>I&rsquo;m mostly a Python developer focused on building websites, I do a fair amount of
+JavaScript development, and I do very little mobile app development. I would say that
+I&rsquo;m proficient in JS, and that I know enough about mobile app dev to be dangerous. I
+think this made building a mobile app a good candidate for testing out AI &ldquo;vibe coding&rdquo;
+because I didn&rsquo;t immediately know the answers to problems I encountered. Where I would
+usually reach for Google or Stack Overflow, I instead tried to use AI.</p>
+<p>I&rsquo;m going to refer to the AI agents that I used for this experiment with &ldquo;it/its&rdquo;
+pronouns. AI agents are not people and they are nowhere near having anything approaching
+consciousness.</p>
+<p>I&rsquo;m using the Cursor IDE to talk to the AI and have it write code for me. I&rsquo;m using the
+free plan with the Pro tier trial expired, so everything I did was at no additional cost
+to me.</p>
 <h2>The outcome</h2>
-<p>It built a good MVP I think. It was fun to build and there were a good number of times that the AI helped me fix a bug, or dramatically sped up my development speed.</p>
-<p>I will continue to use AI to help me code. I don&rsquo;t think I&rsquo;ll continue to use Cursor, I&rsquo;ll switch back to Zed (which also has good AI integrations). I don&rsquo;t think that LLMs are ready to completely code non-trivial projects so using an editor/IDE that is so focused on having the AI do everything is counter-productive. When you ask the AI to do something in Cursor it will happily re-write loads of files and then ask you to approve or reject those changes &ldquo;in place&rdquo;, Git merge style. When the AI gets confused, or insists on a certain way of doing things, you end up rejecting lots of code and trying to piece together the good bits. Zed&rsquo;s approach seems right for me; ask for a snippet or two, and then copy and paste the good bits into your code. Much more like I&rsquo;d approach finding a solution the old fashioned way.</p>
-<p>Possibly someday LLMs will be good enough to build large codebases, maybe this will be sooner than I think, I&rsquo;m open to that idea. But I wonder if that&rsquo;s a reasonable end-goal? If we have AI capable of building anything we like, why would we make it write code in languages created for humans? Why would it use React Native? Wouldn&rsquo;t it be better to use some kind of &ldquo;machine code&rdquo;? Have the machine talk directly to other machines. The answer right now is that LLMs can only write code when it&rsquo;s seen lots and lots of examples of that language before. So it&rsquo;s better at writing JavaScript than it is Racket, and I doubt it could write a web server or iOS app in assembly. But doesn&rsquo;t that seem messy and inefficient? Why have the AI write in code that a human <em>could</em> read and change, but never will?</p>
-<p>Are we seeing the end of language development? If languages need a groundswell of example code before they can be used, and that example code has to be written by humans, then will we ever see a Python 4? Or a complete newcomer?</p>
+<p>It built a good MVP I think. It was fun to build and there were a good number of times
+that the AI helped me fix a bug, or dramatically sped up my development speed.</p>
+<p>I will continue to use AI to help me code. I don&rsquo;t think I&rsquo;ll continue to use Cursor,
+I&rsquo;ll switch back to Zed (which also has good AI integrations). I don&rsquo;t think that LLMs
+are ready to completely code non-trivial projects so using an editor/IDE that is so
+focused on having the AI do everything is counter-productive. When you ask the AI to do
+something in Cursor it will happily re-write loads of files and then ask you to approve
+or reject those changes &ldquo;in place&rdquo;, Git merge style. When the AI gets confused, or
+insists on a certain way of doing things, you end up rejecting lots of code and trying
+to piece together the good bits. Zed&rsquo;s approach seems right for me; ask for a snippet or
+two, and then copy and paste the good bits into your code. Much more like I&rsquo;d approach
+finding a solution the old fashioned way.</p>
+<p>Possibly someday LLMs will be good enough to build large codebases, maybe this will be
+sooner than I think, I&rsquo;m open to that idea. But I wonder if that&rsquo;s a reasonable
+end-goal? If we have AI capable of building anything we like, why would we make it write
+code in languages created for humans? Why would it use React Native? Wouldn&rsquo;t it be
+better to use some kind of &ldquo;machine code&rdquo;? Have the machine talk directly to other
+machines. The answer right now is that LLMs can only write code when it&rsquo;s seen lots and
+lots of examples of that language before. So it&rsquo;s better at writing JavaScript than it
+is Racket, and I doubt it could write a web server or iOS app in assembly. But doesn&rsquo;t
+that seem messy and inefficient? Why have the AI write in code that a human <em>could</em> read
+and change, but never will?</p>
+<p>Are we seeing the end of language development? If languages need a groundswell of
+example code before they can be used, and that example code has to be written by humans,
+then will we ever see a Python 4? Or a complete newcomer?</p>
 <h2>Escapades, and learnings</h2>
 <h3>Svelte vs React</h3>
-<p>Being picky about the tech stack doesn&rsquo;t work, unless you pick incredibly well known things. I wanted to use Svelte and I&rsquo;d heard about Svelte Native, I thought this might be a good opportunity to try it out. It completely failed, it couldn&rsquo;t even install the dependencies without running into conflicting peers. I hand-edited the code a bit, and manually tweaked some dependency versions, but it didn&rsquo;t work and it wasn&rsquo;t immediately obvious to me how to fix it.</p>
-<p>This highlights to me that vibe coding takes so much out of the hands of the developer that fixing issues becomes hard because you don&rsquo;t know the context of your code any more. Of course this isn&rsquo;t an issue if the AI can peer in and fix things, but as I learned, it can&rsquo;t just yet. Maybe in the future it will be able to do this.</p>
-<p>Second attempt, I didn&rsquo;t specify the tech stack, I just said what I wanted to build. It picked some rock solid, dependable technologies (ReactNative and Firebase) and built something that worked first time. Much more impressive. It even left a list at the end of the things that it hadn&rsquo;t done and said that it could help me with them. Getting the various Google accounts created and config files set up took much more time than the app build.</p>
+<p>Being picky about the tech stack doesn&rsquo;t work, unless you pick incredibly well known
+things. I wanted to use Svelte and I&rsquo;d heard about Svelte Native, I thought this might
+be a good opportunity to try it out. It completely failed, it couldn&rsquo;t even install the
+dependencies without running into conflicting peers. I hand-edited the code a bit, and
+manually tweaked some dependency versions, but it didn&rsquo;t work and it wasn&rsquo;t immediately
+obvious to me how to fix it.</p>
+<p>This highlights to me that vibe coding takes so much out of the hands of the developer
+that fixing issues becomes hard because you don&rsquo;t know the context of your code any
+more. Of course this isn&rsquo;t an issue if the AI can peer in and fix things, but as I
+learned, it can&rsquo;t just yet. Maybe in the future it will be able to do this.</p>
+<p>Second attempt, I didn&rsquo;t specify the tech stack, I just said what I wanted to build. It
+picked some rock solid, dependable technologies (ReactNative and Firebase) and built
+something that worked first time. Much more impressive. It even left a list at the end
+of the things that it hadn&rsquo;t done and said that it could help me with them. Getting the
+various Google accounts created and config files set up took much more time than the app
+build.</p>
 <h3>Wild replacements</h3>
-<p>The AI often replaces a file, or lines in a file, sometimes with identical content, sometimes with slightly different content, e.g. a createdAt field becomes a createdOn field, or a &ldquo;live&rdquo; status becomes an &ldquo;in_progress&rdquo; status.</p>
-<p>I found some cursor rules that would enforce some nice coding styles and approaches, so I installed those and asked cursor to review one of the files using the new rules. It happily changed things, I wasn&rsquo;t completely satisfied so we had a back and forth about the changes until things started to look pretty good. Unfortunately the app was completely broken at this point. It just loaded to a white screen, no error messages just a blank screen. The AI couldn&rsquo;t help, it just kept trying to add error borders around components (that weren&rsquo;t rendering) or console.log statements that never ran. In the end the solution was good ol&rsquo; fashioned searching for blog posts and StackOverflow answers.</p>
+<p>The AI often replaces a file, or lines in a file, sometimes with identical content,
+sometimes with slightly different content, e.g. a createdAt field becomes a createdOn
+field, or a &ldquo;live&rdquo; status becomes an &ldquo;in_progress&rdquo; status.</p>
+<p>I found some cursor rules that would enforce some nice coding styles and approaches, so
+I installed those and asked cursor to review one of the files using the new rules. It
+happily changed things, I wasn&rsquo;t completely satisfied so we had a back and forth about
+the changes until things started to look pretty good. Unfortunately the app was
+completely broken at this point. It just loaded to a white screen, no error messages
+just a blank screen. The AI couldn&rsquo;t help, it just kept trying to add error borders
+around components (that weren&rsquo;t rendering) or console.log statements that never ran. In
+the end the solution was good ol&rsquo; fashioned searching for blog posts and StackOverflow
+answers.</p>
 <h3>New API and bad docs</h3>
-<p>I needed to use the Sportmonks API v3 to fetch live data about football matches. The documentation for this API is patchy in places and hard to understand. I don&rsquo;t think there are too many examples of the v3 API being used. This means the AI is terrible at writing code against it. Lots of my time was spent re-writing from scratch the attempts that it made to talk to the API. It would write a type declaration for what it thought the data would look like, and be completely wrong, but because I didn&rsquo;t write the type, finding, diagnosing, and fixing bugs was harder because I had to read and fully understand everything that the AI had written. If I&rsquo;d have written everything myself then I would have that context in my head already. In these cases I felt like the AI slowed me down, or at least took the fun out of programming (it did all the building, leaving me with all the bugs).</p></div>
+<p>I needed to use the Sportmonks API v3 to fetch live data about football matches. The
+documentation for this API is patchy in places and hard to understand. I don&rsquo;t think
+there are too many examples of the v3 API being used. This means the AI is terrible at
+writing code against it. Lots of my time was spent re-writing from scratch the attempts
+that it made to talk to the API. It would write a type declaration for what it thought
+the data would look like, and be completely wrong, but because I didn&rsquo;t write the type,
+finding, diagnosing, and fixing bugs was harder because I had to read and fully
+understand everything that the AI had written. If I&rsquo;d have written everything myself
+then I would have that context in my head already. In these cases I felt like the AI
+slowed me down, or at least took the fun out of programming (it did all the building,
+leaving me with all the bugs).</p></div>
     </div>
 </main>
         <div class="border-t-2 border-mt-dark-blue py-4 px-4">
