@@ -21,6 +21,12 @@
             id="pianjs"
             data-code="EzgOWgXDZppcr8suk1FApdXVGO5KY2Cg"
         ></script>
+        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/nord.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
     </head>
 
     <body class="bg-mt-darkest-blue text-slate-50 flex flex-col gap-8 h-full">
@@ -301,5 +307,13 @@ get GitHub to run anything at all).</p></div>
                 </nav>
             </footer>
         </div>
+        
+    <script>
+        document.querySelectorAll('pre').forEach(el => {
+            el.classList.add("not-prose");
+            hljs.highlightElement(el.querySelector('code'));
+        });
+    </script>
+
     </body>
 </html>

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="How to add code that gets run before/after every time celery executes a Task"
+            content="How I got Xonsh to auto-complete using my SSH config"
         />
         <link href="/styles.css" rel="stylesheet" />
         <script
@@ -110,78 +110,108 @@
         </div>
         <main id="main" class="grow px-4 sm:px-8">
     <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
-        <div class="text-mt-darkest-blue text-sm mb-8">2025-08-20</div>
-        <div class="text-mt-darkest-blue prose prose-xl"><h1>Celery task &ldquo;middleware&rdquo;</h1>
-<p>I was looking for a way to run some logging code before and after every task execution
-in my celery set up. I couldn&rsquo;t find anything that was immediately and obviously the
-solution in Google. I tried Claude Sonnet 4 and it gave me 3 solutions, one of which,
-after some tweaking, worked. (Which is my experience with LLMs in general.)</p>
-<p>I&rsquo;m using Django, and I&rsquo;ve got some custom Django middleware that logs every database
-query (not the values of the parameters, so no personal data is logged, just the SQL
-statement with placeholders for values). This is useful for keeping an eye on which
-queries are executed lots of times, which ones take a lot of time to run, and if there
-are any requests that fire off too many queries (which would be evidence of a 1+N
-problem).</p>
-<p>The problem is that the middleware runs on every Django request, but a celery task
-execution doesn&rsquo;t happen within a request. So any database queries being made in my
-tasks weren&rsquo;t being logged.</p>
-<p>I solved this by creating a custom Task class and overwriting the <code>__call__</code> method to
-add the same logging that my middleware does.</p>
-<p>I&rsquo;ve got a file called <code>celery_.py</code> where I put my celery config, and it looks something
-like this:</p>
-<pre><code class="language-python">from celery.contrib.django.task import DjangoTask
-from django.db import connection
+        <div class="text-mt-darkest-blue text-sm mb-8">2025-08-26</div>
+        <div class="text-mt-darkest-blue prose prose-xl"><h1>Xonsh SSH auto-complete</h1>
+<p>I recently tried switching over to the <a href="https://xon.sh/index.html">xonsh shell</a>. I&rsquo;m
+normally a very happy bash user, but a few years ago MacOS started shipping with zsh as
+the default shell and that started me on a journey of new shell discovery. Don&rsquo;t get me
+wrong, zsh is pretty good, and I&rsquo;m a big fan of <a href="https://ohmyz.sh/">oh-my-zsh</a> and all
+of the plugins and themes it comes with. But now that I&rsquo;m not always using bash, I&rsquo;m
+free to take a look around and explore the other options.</p>
+<p>xonsh appeals to me because it&rsquo;s a python-based shell. That means the code that runs the
+shell is written in Python, so it&rsquo;s easy for me to take a look if I want. It also means
+that interacting with the shell means writing Python code, which I&rsquo;m very happy to do.
+Plugins and extensions are all in Python too.</p>
+<p>When I first installed it I noticed something that was missing. SSH host autocomplete. I
+start up the shell, type <code>ssh &lt;tab&gt;</code> and nothing, it doesn&rsquo;t present me with a list of
+SSH command options, or hostnames, nothing. I&rsquo;m used to hostname autocompletion from
+zsh, it&rsquo;s very handy.</p>
+<p>I couldn&rsquo;t find anything in the docs about hostname autocomplete, so I don&rsquo;t think it&rsquo;s
+something supported out of the box. I did find lots about how to make your own
+autocomplete plugin (or a xontrib in xonsh parlance).</p>
+<p>This felt like an opportunity too good to miss. So I built one, here it is:</p>
+<pre><code class="language-python">from pathlib import Path
+
+from xonsh.built_ins import XonshSession
+from xonsh.completers.tools import contextual_command_completer_for
+from xonsh.completers.completer import add_one_completer, remove_completer
 
 
-class DatabaseLogger:
-    def __call__(self, execute, sql, params, many, context):
-        instruction = sql.split(&quot; &quot;, 1)
-        with logfire.span(instruction[0], type=&quot;query&quot;, sql=sql, many=many):
-            return execute(sql, params, many, context)
+def make_absolute(path):
+    if not path.is_absolute():
+        return Path.home() / &quot;.ssh&quot; / path
+    return path
 
 
-class DatabaseLoggingTask(DjangoTask):
-    def __call__(self, *args, **kwargs):
-        with connection.execute_wrapper(DatabaseLogger()):
-            return super().__call__(*args, **kwargs)
+def find_hosts(config_file):
+    config_file = make_absolute(config_file)
+    if config_file.exists():
+        with open(config_file, &quot;r&quot;) as f:
+            for line in f:
+                line = line.strip()
+                if line.lower().startswith(&quot;host &quot;):
+                    # Skip wildcards like '*'
+                    hosts = line.split()[1:]
+                    for host in hosts:
+                        if &quot;*&quot; not in host and &quot;?&quot; not in host:
+                            yield host
+                elif line.lower().startswith(&quot;include &quot;):
+                    includes = line.split()[1:]
+                    for include in includes:
+                        if &quot;*&quot; in include:
+                            root, rest = include.split(&quot;*&quot;, 1)
+                            root = make_absolute(Path(root))
+                            for p in root.glob(f&quot;*{rest}&quot;):
+                                yield from find_hosts(p)
+                        else:
+                            yield from find_hosts(Path(include))
 
 
-app = Celery(&quot;PROJECT&quot;, task_cls=&quot;PROJECT.celery_:DatabaseLoggingTask&quot;)
+def get_ssh_hosts():
+    ssh_config_files = [
+        Path.home() / &quot;.ssh&quot; / &quot;config&quot;,
+        Path(&quot;/etc/ssh/ssh_config&quot;),
+    ]
+    for config_file in ssh_config_files:
+        yield from find_hosts(config_file)
+
+
+@contextual_command_completer_for(&quot;ssh&quot;)
+def ssh_completer(context):
+    hosts = get_ssh_hosts()
+    return {host for host in hosts if host.startswith(context.prefix)}
+
+
+def _load_xontrib_(xsh: XonshSession, **kwargs) -&gt; dict:
+    add_one_completer(&quot;ssh-hosts&quot;, ssh_completer, &quot;start&quot;)
+    return {}
+
+
+def _unload_xontrib_(xsh: XonshSession, **kwargs) -&gt; dict:
+    remove_completer(&quot;ssh-hosts&quot;)
+    return {}
 </code></pre>
-<p>The <code>DatabaseLogger</code> class isn&rsquo;t that interesting really, it&rsquo;s a class with a call
-method that conforms to the spec laid out by Django in their
-<a href="https://docs.djangoproject.com/en/5.2/topics/db/instrumentation/">database instrumentation</a>
-docs. When called, it logs some details of the SQL query.</p>
-<p>I&rsquo;m using the excellent <a href="https://logfire.dev/">logfire</a> library and service to do the
-logging.</p>
-<p>I&rsquo;m making a best guess about the SQL instruction (SELECT, INSERT, DELETE etc.) by
-looking at the first word in the query. It&rsquo;s probably not going to be correct in all
-cases, for instance something with a CTE would say &ldquo;WITH&rdquo;, which wouldn&rsquo;t be hugely
-useful. But it will be enough when scanning over the logs quickly, you can always look
-inside the span to see the actual details.</p>
-<p>The <code>DatabaseLoggingTask</code> class is only slightly more interesting, and that&rsquo;s because
-there aren&rsquo;t really many details on how to extend a <code>Task</code> class in the
-<a href="https://docs.celeryq.dev/en/stable/userguide/tasks.html#custom-task-classes">celery docs on Tasks</a>.</p>
-<p>There are a number of candidate methods on Task that could be overwritten to add our
-logging code, they are <code>__call__</code>, <code>run</code>, <code>apply</code>, and <code>apply_async</code>. I considered each,
-with the help of Claude.</p>
-<p>Looking at the code we can see that <code>apply_async</code> calls <code>apply</code>, so we can rule that one
-out. Any change we could make to <code>apply</code> would have the desired effect in <code>apply_async</code>
-straightaway.</p>
-<p>It wasn&rsquo;t super clear to me from reading the code when <code>apply</code> would get executed over
-<code>run</code>, so I just tried it out. I overwrote <code>apply</code> and wrapped a call to <code>super().apply</code>
-in the <code>execute_wrapper</code> as above&hellip; it didn&rsquo;t work. Nothing got logged, and a simple
-print statement showed me that apply wasn&rsquo;t even getting called as far as I could see,
-it must be used elsewhere.</p>
-<p><code>run</code> is interesting because the <code>@shared_task</code> decorator seems to set the <code>run</code>
-function to be whatever function was decorated. So trying to overwrite <code>run</code> didn&rsquo;t seem
-to work because it just got overwritten a second time.</p>
-<p>That left <code>__call__</code>, which after a quick test, did what I needed. It&rsquo;s always in the
-last place you look isn&rsquo;t it.</p>
-<p>So if you&rsquo;re using celery in Django and want to add some celery &ldquo;middleware&rdquo; you should
-be able to adapt the <code>DatabaseLoggingTask</code> above to fit your needs. If you&rsquo;re not using
-Django, then replacing the parent class <code>DjangoTask</code> with the regular celery <code>Task</code>
-should be enough to have the same effect.</p></div>
+<p>Most of the file is setup and installation code, nothing interesting happening that you
+couldn&rsquo;t just read in the xonsh docs. The interesting parts are the <code>get_ssh_hosts</code> and
+<code>find_hosts</code> functions. The former is responsible for looking in directories that
+commonly contain SSH config files, when it finds one it passes it to the latter,
+<code>find_hosts</code>, and yields the responses.</p>
+<p><code>find_hosts</code> goes through the config file line by line looking for config that is either
+a) a host directive that can be yielded back as a named host for the user to pick from,
+or b) is a nested include directive that calls <code>find_hosts</code> again with a new config
+file.</p>
+<div class="admonition info">
+<p class="admonition-title">Heads up</p>
+<p>This file was written to be installed on my computer, and might not work on yours. You
+might have to tweak the file paths and change some of the assumptions I&rsquo;ve made.</p>
+</div>
+<p>You can install and use this xcontrib on your own machine. Copy and paste the contents
+into a file, I called mine &ldquo;ssh_host_completer.py&rdquo;. Then save that file to a location
+you like. Then update your <code>.xonshrc</code> file to add the location to your path and then
+load the xontrib:</p>
+<pre><code class="language-python">path.append(&quot;/path/to/location&quot;)
+xontrib load ssh_host_completer
+</code></pre></div>
     </div>
 </main>
         <div class="border-t-2 border-mt-dark-blue py-4 px-4">
