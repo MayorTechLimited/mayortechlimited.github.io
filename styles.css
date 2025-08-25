@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.language-json {
+    & .hljs-punctuation {
+        color: #d8dee9;
+    }
+}
+
 @layer base {
     @font-face {
         font-family: SpaceGrotesk;
@@ -31,6 +37,9 @@
     }
     .prose code::after {
         content: "";
+    }
+    .prose pre {
+        @apply text-sm;
     }
     .admonition {
         @apply border-2 border-l-4 rounded p-2 border-mt-darkest-blue bg-gray-200;

@@ -6,7 +6,8 @@ import markdown
 from staticjinja import Site
 
 markdowner = markdown.Markdown(
-    output_format="html5", extensions=["smarty", "meta", "extra", "admonition"]
+    output_format="html5",
+    extensions=["smarty", "meta", "extra", "admonition"],
 )
 
 

@@ -1,9 +1,23 @@
 {% extends "_base.html" %}
 {% set page = 'blog' %}
 {% block description %}{{ description }}{% endblock %}
+{% block extrahead %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/nord.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+{% endblock %}
 {% block content %}
     <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
         <div class="text-mt-darkest-blue text-sm mb-8">{{ created }}</div>
         <div class="text-mt-darkest-blue prose prose-xl">{{ content }}</div>
     </div>
+{% endblock %}
+{% block extrabody %}
+    <script>
+        document.querySelectorAll('pre').forEach(el => {
+            el.classList.add("not-prose");
+            hljs.highlightElement(el.querySelector('code'));
+        });
+    </script>
 {% endblock %}
