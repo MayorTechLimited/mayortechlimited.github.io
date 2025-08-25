@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en" class="h-full">
+    <head>
+        <title>MayorTech Limited</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Creating an offline-first user experience for invelope"
+        />
+        <link href="/styles.css" rel="stylesheet" />
+        <script
+            src="https://kit.fontawesome.com/0ebfed0803.js"
+            crossorigin="anonymous"
+            defer
+            async
+        ></script>
+        <script
+            defer
+            src="https://api.pirsch.io/pa.js"
+            id="pianjs"
+            data-code="EzgOWgXDZppcr8suk1FApdXVGO5KY2Cg"
+        ></script>
+        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/nord.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    </head>
+
+    <body class="bg-mt-darkest-blue text-slate-50 flex flex-col gap-8 h-full">
+        <div class="border-b-2 border-mt-dark-blue py-4 px-4">
+            <header
+                class="flex flex-col sm:flex-row items-center justify-between"
+            >
+                <div class="flex flex-col md:flex-row items-center gap-4">
+                    <a
+                        class="flex flex-row items-center gap-2 font-bold text-2xl"
+                        href="/"
+                    >
+                        <img
+                            src="/img/logo.png"
+                            alt="The MayorTech limited logo; a pixel art cartoon image of William Mayor."
+                            height="56"
+                            class="h-14"
+                        />
+                        MayorTech Limited
+                    </a>
+                    <a
+                        href="#main"
+                        class="translate-y-[-1000px] focus:translate-y-0"
+                    >
+                        Skip to main content
+                    </a>
+                </div>
+                <nav class="">
+                    <ul class="flex flex-row flex-wrap items-center gap-4">
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red "
+                                href="/"
+                            >
+                                Home
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red "
+                                href="/work/"
+                            >
+                                Work
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red "
+                                href="/projects/"
+                            >
+                                Projects
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red text-mt-red"
+                                href="/posts/"
+                            >
+                                Blog
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red"
+                                href="/cv/"
+                            >
+                                CV
+                            </a>
+                        </li>
+                        <li class="">
+                            <a
+                                class="hover:text-mt-red "
+                                href="/contact/"
+                            >
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+        <main id="main" class="grow px-4 sm:px-8">
+    <div class="max-w-3xl mx-auto bg-mt-gray rounded-xl p-4 sm:p-8">
+        <div class="text-mt-darkest-blue text-sm mb-8">2025-08-28</div>
+        <div class="text-mt-darkest-blue prose prose-xl prose-code:bg-slate-50 prose-code:font-light prose-code:border prose-code:rounded prose-code:p-1 prose-code:border-gray-400 prose-code:text-red-700"><h1>Creating an offline-first user experience for invelope</h1>
+<p><a href="https://invelope.co">invelope</a> is one of my many side projects. This one is a
+family-friendly envelope budgeting tool. It&rsquo;s something I built so that my daughter and
+I could organise the family&rsquo;s monthly shopping budget together, giving her some
+important life skills.</p>
+<p>One of the things I wanted to do with invelope was make it free for users. Or at least
+as free as I could make it, without having to fork out lots of money each month to keep
+things ticking over.</p>
+<p>Hosting is basically free nowadays, especially for small projects that don&rsquo;t have a lot
+of users. I&rsquo;m using <a href="https://vercel.com">Vercel</a> for invelope, it currently costs me
+nothing to run, and when invelope becomes the next big thing, it&rsquo;ll only cost me about
+$20 per month.</p>
+<p>But that&rsquo;s just to host the app, it doesn&rsquo;t include a database. Those tend to be a bit
+more expensive.</p>
+<p>There are solutions out there that will give you a generous free tier that includes a
+database. Supabase is one of my favourites, another side project,
+<a href="https://billabl.co">billabl</a> runs over there.</p>
+<p>I wanted to try something different with invelope. I wanted to have the user&rsquo;s data
+stored locally in their browser, and nothing stored on any servers that I manage. This
+makes the free tier of invelope almost infinitely scalable, it doesn&rsquo;t matter how many
+people use the service, the data storage and processing all happens on their computer,
+not mine. I could even re-build invelope to be a static site, making hosting even
+cheaper.</p>
+<p>So I turned to <a href="https://en.wikipedia.org/wiki/IndexedDB">IndexedDB</a> for the local
+database side of things. This gives me a NoSQL database that I can use, that runs in the
+user&rsquo;s browser. It&rsquo;s a bit fiddly to use, but here&rsquo;s a basic example of adding a budget:</p>
+<pre><code class="language-javascript">let open = indexedDB.open('invelope', 1);
+open.onsuccess = function() {
+    let db = open.result;
+    db.createObjectStore('budgets', {
+        keyPath: 'id'
+    });
+    let budgets = db.transaction('budgets', 'readwrite');
+    budgets.add({
+        id: 1,
+        name: 'August',
+        amount: 1000
+    });
+};
+</code></pre>
+<p>There&rsquo;s a lot more you can do here around versioning and error handling, but I&rsquo;ve
+skipped that for brevity.</p>
+<p>There are some obvious downsides to a local database like this. The data is only every
+held on a single browser on a single device. So there are no backups, if you lose your
+phone or your laptop breaks then you&rsquo;ve lost all of your data. You also can&rsquo;t share
+between devices, so you can&rsquo;t have the same budget on your phone and on your laptop at
+the same time (or in my case, on my laptop and my daughter&rsquo;s laptop).</p>
+<p>The obvious solution is to have some kind of cloud sync feature, which mirrors the local
+database state into the cloud and can then pull that state down on every extra device.
+There are quite a few solutions out there for adding cloud sync to an IndexedDB
+database, for invelope I went with <a href="https://dexie.org/">Dexie</a>.</p>
+<p>Dexie is a lightweight wrapper around IndexedDB that, in my opinion, makes the syntax
+nicer, and has extra features for syncing into the Dexie Cloud. Now the snippet above
+looks like this:</p>
+<pre><code class="language-javascript">import Dexie from &quot;dexie&quot;;
+
+const db = new Dexie('invelope');
+db.version(1).stores({
+    budgets: '++id'
+});
+await db.budgets.add({
+    name: 'August',
+    amount: 1000,
+});
+</code></pre>
+<p>There&rsquo;s no callback to open the database, and no transaction for these kinds of basic
+edits. The code is just simpler and nicer to read. Also, the schema for the budgets
+store declares an <code>id++</code> field, which means that Dexie will auto-create an <code>id</code> field
+for every document and will give it a locally unique ID.</p>
+<p>To add cloud sync:</p>
+<pre><code class="language-javascript">import Dexie from &quot;dexie&quot;;
+import dexieCloud from &quot;dexie-cloud-addon&quot;;
+
+const db = new Dexie('invelope', {
+    addons: [dexieCloud]
+});
+db.version(1).stores({
+    budgets: '@id'
+});
+db.cloud.configure({
+    databaseUrl: &quot;https://UNIQUE_ID.dexie.cloud&quot;
+});
+await db.budgets.add({
+    name: 'August',
+    amount: 1000,
+});
+</code></pre>
+<p>Now the ID field is declared using <code>@id</code> which means it gets a globally unique ID.
+There&rsquo;s also some config to connect to the correct database endpoint in the cloud. But
+that&rsquo;s it. When the user makes changes to their local database it will get pushed up to
+the cloud and then pulled down to every other device signed into the same account. Dexie
+even manages the authentication flow as part of the service.</p>
+<p>There&rsquo;s lots more you can do with Dexie. It plays really nicely with svelte because the
+result objects conform to the Observable interface meaning that svelte can treat them
+like regular stores and use the <code>$budgets</code> notation to access the value. I&rsquo;ve been
+customising the authentication flow to add invelope branding to the popups, and
+eventually I&rsquo;ll change from the default emails too.</p>
+<p>Crucially, my Vercel servers don&rsquo;t know anything about Dexie or anything about my users&rsquo;
+data. The invelope app could be re-built as a static site, with no server-side code at
+all, and it would still work as it currently does. It&rsquo;s not quite a cop-out to rely on
+Dexie to do the server-side sync bits because, unlike regular webapps, there isn&rsquo;t any
+server-side database querying happening, Dexie is effectively moving a blob of data
+around between machines, it doesn&rsquo;t need to look inside that blob, it doesn&rsquo;t need to do
+any processing.</p>
+<p>This should mean that I can continue to run invelope on a shoe string budget for a long
+time (of course it would be great if people would sign up to the premium tier as well).</p></div>
+    </div>
+</main>
+        <div class="border-t-2 border-mt-dark-blue py-4 px-4">
+            <footer
+                class="flex flex-col sm:flex-row items-center justify-between"
+            >
+                <div class="">
+                    <a
+                        class="flex flex-row items-center gap-2 font-bold text-2xl"
+                        href="/"
+                    >
+                        <img
+                            src="/img/logo.png"
+                            alt="The MayorTech limited logo; a pixel art cartoon image of William Mayor."
+                            height="56"
+                            class="h-14"
+                        />
+                        MayorTech Limited
+                    </a>
+                </div>
+                <nav class="">
+                    <ul class="flex flex-row items-center gap-4">
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/">Home</a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/projects/">
+                                Projects
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/posts/">Blog</a>
+                        </li>
+                        <li class="">
+                            <a class="hover:text-mt-red" href="/contact/">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </footer>
+        </div>
+        
+    <script>
+        document.querySelectorAll('pre').forEach(el => {
+            el.classList.add("not-prose");
+            hljs.highlightElement(el.querySelector('code'));
+        });
+    </script>
+
+    </body>
+</html>
